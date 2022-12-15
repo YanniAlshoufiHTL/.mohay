@@ -12,6 +12,8 @@ This Project is being fully developed—Frontend and Backend—by Yane Al Shoufi
 
 Due to the first semester being only about HTML and (S)CSS, we'll start working on a static documentation page for the language.
 
+In the second semester we will be working on an online .mohay Compiler on our Website. We will also be working together with another team to create an Scratch coding space on the other teams website.
+
 ## Motivation
 
 All three of us are enthusiastic programmers that love challenges. Thus, we took the challenge to make a compiler-like tool, which is more on the hard side do realize.
