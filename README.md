@@ -22,6 +22,13 @@ All three of us are enthusiastic programmers that love challenges. Thus, we took
 
 ### Frontend
 
+##### Colors
+
+Primary: #2596be
+bg-first: #121212
+bg-second: #191c1c
+fg: #d6ddd6
+
 HTML, SCSS
 
 ### Backend
