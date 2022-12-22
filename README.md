@@ -24,10 +24,10 @@ All three of us are enthusiastic programmers that love challenges. Thus, we took
 
 ##### Colors
 
-Primary: #2596be
-bg-first: #121212
-bg-second: #191c1c
-fg: #d6ddd6
+Primary: #2596be  </br>
+bg-first: #121212 </br>
+bg-second: #191c1c </br>
+fg: #d6ddd6 </br>
 
 HTML, SCSS
 
