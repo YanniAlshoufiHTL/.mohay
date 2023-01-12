@@ -71,6 +71,7 @@ nav > .wrapper #nav-div #nav-btn-div {
 }
 nav > .wrapper #nav-div #nav-btn-div button {
   cursor: pointer;
+  user-select: none;
   transition: background-color 0.2s;
   box-sizing: border-box;
 }
