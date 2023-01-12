@@ -13,109 +13,109 @@ $fg-dark-darker-color: #a6a6a6;
 $nav-height: 140px;
 
 body {
-	background-color: $bg-dark-color;
-	color: $fg-dark-color;
+  background-color: $bg-dark-color;
+  color: $fg-dark-color;
 }
 
 .wrapper {
-	position: relative;
-	left: 10vw;
+  position: relative;
+  left: 10vw;
 
-	width: 80vw;
-	height: 100%;
+  width: 80vw;
+  height: 100%;
 }
 
 .codespace-btn {
-	padding: 1rem;
+  padding: 1rem;
 
-	background-color: $primary-dark-color;
-	color: $fg-dark-color;
+  background-color: $primary-dark-color;
+  color: $fg-dark-color;
 
-	border-radius: 13px;
-	border: none;
+  border-radius: 13px;
+  border: none;
 
-	font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 nav {
-	position: fixed;
-	top: 0;
-	left: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
 
-	width: 100vw;
-	height: $nav-height;
+  width: 100vw;
+  height: $nav-height;
 
-	background-color: $nav-bg-dark;
+  background-color: $nav-bg-dark;
 
-	> .wrapper {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+  > .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-		#logo-div {
-			color: $primary-dark-color;
+    #logo-div {
+      color: $primary-dark-color;
 
-			font-size: 4vw;
-			font-family: "Fredoka One", sans-serif;
+      font-size: 4vw;
+      font-family: "Fredoka One", sans-serif;
 
-			user-select: none;
+      user-select: none;
 
-			transform: translateY(-10%);
-		}
+      transform: translateY(-10%);
+    }
 
-		#nav-div {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			font-family: "Work Sans", sans-serif;
+    #nav-div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: "Work Sans", sans-serif;
 
-			width: 50%;
+      width: 50%;
 
-			a {
-				color: $fg-dark-color;
-				transition: color linear 0.09s;
+      a {
+        color: $fg-dark-color;
+        transition: color linear 0.09s;
 
-				text-decoration: none;
-				font-size: 20pt;
+        text-decoration: none;
+        font-size: 20pt;
 
-				&:hover {
-					color: $fg-dark-darker-color;
+        &:hover {
+          color: $fg-dark-darker-color;
 
-					&::after {
-						content: " ";
-						display: block;
+          &::after {
+            content: " ";
+            display: block;
 
-						position: relative;
-						animation: scale-x forwards 0.8s;
-						height: 1px;
-						background-color: $fg-dark-darker-color;
-					}
-				}
-			}
+            position: relative;
+            animation: scale-x forwards 0.8s;
+            height: 1px;
+            background-color: $fg-dark-darker-color;
+          }
+        }
+      }
 
-			#nav-btn-div {
-				display: flex;
-				justify-content: center;
-				align-items: center;
+      #nav-btn-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-				button {
-					cursor: pointer;
+        button {
+          cursor: pointer;
 
-					&:hover {
-						color: white;
-						background-color: $primary-dark-darker-color;
-					}
-				}
-			}
-		}
-	}
+          &:hover {
+            color: white;
+            background-color: $primary-dark-darker-color;
+          }
+        }
+      }
+    }
+  }
 }
 
 @keyframes scale-x {
-	from {
-		width: 0%;
-	}
-	to {
-		width: 100%;
-	}
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
 }
