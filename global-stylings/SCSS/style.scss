@@ -100,10 +100,21 @@ nav {
 
 				button {
 					cursor: pointer;
+					transition: background-color 0.2s;
+					box-sizing: border-box;
 
 					&:hover {
 						color: white;
 						background-color: $primary-dark-darker-color;
+					}
+
+					&:active {
+						transform: scale(0.9);
+					}
+
+					&:focus {
+						background-color: $primary-dark-darker-color;
+						box-shadow: 0 0 0 2px $primary-dark-color;
 					}
 				}
 			}

@@ -71,10 +71,19 @@ nav > .wrapper #nav-div #nav-btn-div {
 }
 nav > .wrapper #nav-div #nav-btn-div button {
   cursor: pointer;
+  transition: background-color 0.2s;
+  box-sizing: border-box;
 }
 nav > .wrapper #nav-div #nav-btn-div button:hover {
   color: white;
   background-color: #1d7999;
+}
+nav > .wrapper #nav-div #nav-btn-div button:active {
+  transform: scale(0.9);
+}
+nav > .wrapper #nav-div #nav-btn-div button:focus {
+  background-color: #1d7999;
+  box-shadow: 0 0 0 2px #2596be;
 }
 
 @keyframes scale-x {
