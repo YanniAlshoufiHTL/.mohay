@@ -24,6 +24,7 @@ nav {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 10;
   width: 100vw;
   height: 140px;
   background-color: #292a2f;
@@ -87,12 +88,34 @@ nav > .wrapper #nav-div #nav-btn-div button:focus {
   box-shadow: 0 0 0 2px #2596be;
 }
 
+main {
+  position: absolute;
+  z-index: 9;
+  top: 140px;
+}
+
+#bg-main-img {
+  width: 100vw;
+  height: calc(100vh - 140px);
+  object-fit: cover;
+  overflow: hidden;
+}
+
 @keyframes scale-x {
   from {
     width: 0%;
   }
   to {
     width: 100%;
+  }
+}
+@media (max-width: 1200px) {
+  #logo-div {
+    font-size: 48px !important;
+  }
+
+  #nav-div {
+    width: 70% !important;
   }
 }
 
