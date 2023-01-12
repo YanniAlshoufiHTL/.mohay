@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Work+Sans:wght@300&display=swap");
 body {
   background-color: #121212;
   color: #d6ddd6;
@@ -8,29 +8,66 @@ body {
   position: relative;
   left: 10vw;
   width: 80vw;
+  height: 100%;
+}
+
+.codespace-btn {
+  padding: 1rem;
+  background-color: #2596be;
+  color: #d6ddd6;
+  border-radius: 13px;
+  border: none;
+  font-size: 1.5rem;
 }
 
 nav {
   position: fixed;
   top: 0;
   left: 0;
-  display: flex;
-  justify-content: space-between;
   width: 100vw;
   height: 140px;
   background-color: #292a2f;
 }
-nav #logo-div {
+nav > .wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav > .wrapper #logo-div {
+  color: #2596be;
   font-size: 4vw;
   font-family: "Fredoka One", sans-serif;
   user-select: none;
+  transform: translateY(-10%);
 }
-nav #navigation-div {
+nav > .wrapper #nav-div {
   display: flex;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Work Sans", sans-serif;
+  width: 50%;
 }
-nav #navigation-div a {
+nav > .wrapper #nav-div a {
+  color: #d6ddd6;
+  transition: color linear 0.09s;
   text-decoration: none;
+  font-size: 20pt;
+}
+nav > .wrapper #nav-div a:hover {
+  color: #a6a6a6;
+}
+nav > .wrapper #nav-div a:hover::after {
+  content: " ";
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 1px;
+  background-color: #a6a6a6;
+}
+nav > .wrapper #nav-div #nav-btn-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /*# sourceMappingURL=style.css.map */
