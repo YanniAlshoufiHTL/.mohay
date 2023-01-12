@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Work+Sans:wght@300&display=swap");
 
-$primary-color: #2596be;
+$primary-dark-color: #2596be;
+$primary-dark-darker-color: #1d7999;
 
 $bg-dark-color: #121212;
 $fg-dark-color: #d6ddd6;
@@ -27,7 +28,7 @@ body {
 .codespace-btn {
 	padding: 1rem;
 
-	background-color: $primary-color;
+	background-color: $primary-dark-color;
 	color: $fg-dark-color;
 
 	border-radius: 13px;
@@ -52,7 +53,7 @@ nav {
 		align-items: center;
 
 		#logo-div {
-			color: $primary-color;
+			color: $primary-dark-color;
 
 			font-size: 4vw;
 			font-family: "Fredoka One", sans-serif;
@@ -85,7 +86,7 @@ nav {
 						display: block;
 
 						position: relative;
-						width: 100%;
+						animation: scale-x forwards 0.8s;
 						height: 1px;
 						background-color: $fg-dark-darker-color;
 					}
@@ -96,7 +97,25 @@ nav {
 				display: flex;
 				justify-content: center;
 				align-items: center;
+
+				button {
+					cursor: pointer;
+
+					&:hover {
+						color: white;
+						background-color: $primary-dark-darker-color;
+					}
+				}
 			}
 		}
+	}
+}
+
+@keyframes scale-x {
+	from {
+		width: 0%;
+	}
+	to {
+		width: 100%;
 	}
 }
