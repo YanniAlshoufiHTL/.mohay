@@ -12,6 +12,8 @@ $fg-dark-darker-color: #a6a6a6;
 
 $nav-height: 140px;
 
+// TODO: FIX BODY OVERFOW (NO 'overflow: hidden'!)
+
 body {
 	background-color: $bg-dark-color;
 	color: $fg-dark-color;
