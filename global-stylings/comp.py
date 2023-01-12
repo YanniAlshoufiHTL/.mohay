@@ -1,6 +1,12 @@
 import os
 from time import sleep
+from FileModificationHandler import FileModified
 
-while True:
-    sleep(1)
-    os.system("sass scss:css")
+
+def file_modified():
+    os.system("sass scss:css > scss-out.log")
+    return False
+
+
+fileModifiedHandler = FileModified(r"SCSS/style.scss", file_modified)
+fileModifiedHandler.start()
