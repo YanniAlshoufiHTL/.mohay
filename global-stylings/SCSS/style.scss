@@ -133,12 +133,28 @@ main {
 	top: $nav-height;
 }
 
+$ad-img-width: 100vw;
+$ad-img-height: calc(100vh - $nav-height);
+
 #bg-main-img {
-	width: 100vw;
-	height: calc(100vh - $nav-height);
+	width: $ad-img-width;
+	height: $ad-img-height;
 	object-fit: cover;
 
 	overflow: hidden;
+}
+
+#homepage-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 100;
+
+	width: $ad-img-width;
+	height: $ad-img-height;
+	background: rgba(0, 0, 0, 0.3);
+	background: radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.681) 88%);
 }
 
 @keyframes scale-x {
