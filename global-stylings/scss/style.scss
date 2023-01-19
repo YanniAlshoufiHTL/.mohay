@@ -54,6 +54,7 @@ nav {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		user-select: none;
 
 		#logo-div {
 			color: $primary-dark-color;
@@ -80,6 +81,7 @@ nav {
 
 				text-decoration: none;
 				font-size: 20pt;
+				user-select: none;
 
 				&:hover {
 					color: $fg-dark-darker-color;
@@ -134,14 +136,14 @@ main {
 }
 
 $ad-img-width: 100vw;
-$ad-img-height: calc(100vh - $nav-height);
+$ad-img-height: calc(100vh - $nav-height); 
 
 #bg-main-img {
 	width: $ad-img-width;
 	height: $ad-img-height;
-	object-fit: cover;
+	object-fit: cover; 
 
-	overflow: hidden;
+	user-select: none;
 }
 
 #homepage-overlay {
@@ -150,6 +152,7 @@ $ad-img-height: calc(100vh - $nav-height);
 	left: 0;
 	right: 0;
 	z-index: 100;
+	user-select: none;
 
 	width: $ad-img-width;
 	height: $ad-img-height;
