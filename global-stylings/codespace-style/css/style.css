@@ -23,6 +23,26 @@ body {
   cursor: pointer;
   border-radius: 3px;
   box-shadow: 0 8px 5px -5px rgba(0, 0, 0, 0.2);
+  display: grid;
+  place-content: center;
+}
+.compile-wrapper .loader {
+  pointer-events: none;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #fff;
+  animation: loaderanimation 1.3s ease infinite;
+}
+
+@keyframes loaderanimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
