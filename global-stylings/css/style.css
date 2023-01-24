@@ -33,6 +33,7 @@ nav > .wrapper {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	user-select: none;
 }
 nav > .wrapper #logo-div {
 	color: #2596be;
@@ -53,6 +54,7 @@ nav > .wrapper #nav-div a {
 	transition: color linear 0.09s;
 	text-decoration: none;
 	font-size: 20pt;
+	user-select: none;
 }
 nav > .wrapper #nav-div a:hover {
 	color: #a6a6a6;
@@ -98,7 +100,7 @@ main {
 	width: 100vw;
 	height: calc(100vh - 140px);
 	object-fit: cover;
-	overflow: hidden;
+	user-select: none;
 }
 
 #homepage-overlay {
@@ -107,6 +109,7 @@ main {
 	left: 0;
 	right: 0;
 	z-index: 100;
+	user-select: none;
 	width: 100vw;
 	height: calc(100vh - 140px);
 	background: rgba(0, 0, 0, 0.3);
@@ -125,7 +128,6 @@ main {
 	#logo-div {
 		font-size: 48px !important;
 	}
-
 	#nav-div {
 		width: 70% !important;
 	}
