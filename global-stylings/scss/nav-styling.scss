@@ -1,0 +1,91 @@
+@import "./vars.scss";
+
+nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
+
+	width: 100vw;
+	height: $nav-height;
+
+	background-color: $nav-bg-dark;
+
+	> .wrapper {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		user-select: none;
+
+		#logo-div {
+			color: $primary-dark-color;
+
+			font-size: 4vw;
+			font-family: "Fredoka One", sans-serif;
+
+			user-select: none;
+
+			transform: translateY(-10%);
+		}
+
+		#nav-div {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-family: "Work Sans", sans-serif;
+
+			width: 50%;
+
+			a {
+				color: $fg-dark-color;
+				transition: color linear 0.09s;
+
+				text-decoration: none;
+				font-size: 20pt;
+				user-select: none;
+
+				&:hover {
+					color: $fg-dark-darker-color;
+
+					&::after {
+						content: " ";
+						display: block;
+
+						position: relative;
+						animation: scale-x forwards 0.8s;
+						height: 1px;
+						background-color: $fg-dark-darker-color;
+					}
+				}
+			}
+
+			#nav-btn-div {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
+				button {
+					cursor: pointer;
+					user-select: none;
+
+					transition: background-color 0.2s;
+					box-sizing: border-box;
+
+					&:hover {
+						color: white;
+						background-color: $primary-dark-darker-color;
+					}
+
+					&:active {
+						transform: scale(0.9);
+					}
+
+					&:focus {
+						background-color: $primary-dark-darker-color;
+						box-shadow: 0 0 0 2px $primary-dark-color;
+					}
+				}
+			}
+		}
+	}
+}
