@@ -12,11 +12,13 @@ $fg-dark-darker-color: #a6a6a6;
 
 $nav-height: 140px;
 
-// TODO: FIX BODY OVERFOW (NO 'overflow: hidden'!)
+// TODO: Try to solve overflow without using `overflow-x: hidden`
 
 body {
 	background-color: $bg-dark-color;
 	color: $fg-dark-color;
+
+	overflow-x: hidden;
 }
 
 .wrapper {
@@ -136,12 +138,12 @@ main {
 }
 
 $ad-img-width: 100vw;
-$ad-img-height: calc(100vh - $nav-height); 
+$ad-img-height: calc(100vh - $nav-height);
 
 #bg-main-img {
 	width: $ad-img-width;
 	height: $ad-img-height;
-	object-fit: cover; 
+	object-fit: cover;
 
 	user-select: none;
 }
