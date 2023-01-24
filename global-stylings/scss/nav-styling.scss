@@ -12,9 +12,18 @@ nav {
 	background-color: $nav-bg-dark;
 
 	> .wrapper {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-pack: justify;
+		-ms-flex-pack: justify;
 		justify-content: space-between;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
 		align-items: center;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
 		user-select: none;
 
 		#logo-div {
@@ -23,14 +32,30 @@ nav {
 			font-size: 4vw;
 			font-family: "Fredoka One", sans-serif;
 
+			-webkit-user-select: none;
+
+			-moz-user-select: none;
+
+			-ms-user-select: none;
+
 			user-select: none;
+
+			-webkit-transform: translateY(-10%);
+
+			-ms-transform: translateY(-10%);
 
 			transform: translateY(-10%);
 		}
 
 		#nav-div {
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-webkit-box-pack: justify;
+			-ms-flex-pack: justify;
 			justify-content: space-between;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
 			align-items: center;
 			font-family: "Work Sans", sans-serif;
 
@@ -38,10 +63,15 @@ nav {
 
 			a {
 				color: $fg-dark-color;
+				-webkit-transition: color linear 0.09s;
+				-o-transition: color linear 0.09s;
 				transition: color linear 0.09s;
 
 				text-decoration: none;
 				font-size: 20pt;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
 				user-select: none;
 
 				&:hover {
@@ -52,6 +82,7 @@ nav {
 						display: block;
 
 						position: relative;
+						-webkit-animation: scale-x forwards 0.8s;
 						animation: scale-x forwards 0.8s;
 						height: 1px;
 						background-color: $fg-dark-darker-color;
@@ -60,15 +91,29 @@ nav {
 			}
 
 			#nav-btn-div {
+				display: -webkit-box;
+				display: -ms-flexbox;
 				display: flex;
+				-webkit-box-pack: center;
+				-ms-flex-pack: center;
 				justify-content: center;
+				-webkit-box-align: center;
+				-ms-flex-align: center;
 				align-items: center;
 
 				button {
 					cursor: pointer;
+					-webkit-user-select: none;
+					-moz-user-select: none;
+					-ms-user-select: none;
 					user-select: none;
 
+					-webkit-transition: background-color 0.2s;
+
+					-o-transition: background-color 0.2s;
+
 					transition: background-color 0.2s;
+					-webkit-box-sizing: border-box;
 					box-sizing: border-box;
 
 					&:hover {
@@ -77,11 +122,14 @@ nav {
 					}
 
 					&:active {
-						transform: scale(0.9);
+						-webkit-transform: scale(0.98);
+						-ms-transform: scale(0.98);
+						transform: scale(0.98);
 					}
 
 					&:focus {
 						background-color: $primary-dark-darker-color;
+						-webkit-box-shadow: 0 0 0 2px $primary-dark-color;
 						box-shadow: 0 0 0 2px $primary-dark-color;
 					}
 				}

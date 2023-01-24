@@ -9,30 +9,55 @@ nav {
   background-color: #292a2f;
 }
 nav > .wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
 }
 nav > .wrapper #logo-div {
   color: #2596be;
   font-size: 4vw;
   font-family: "Fredoka One", sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
+  -webkit-transform: translateY(-10%);
+  -ms-transform: translateY(-10%);
   transform: translateY(-10%);
 }
 nav > .wrapper #nav-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   font-family: "Work Sans", sans-serif;
   width: 50%;
 }
 nav > .wrapper #nav-div a {
   color: #d6ddd6;
+  -webkit-transition: color linear 0.09s;
+  -o-transition: color linear 0.09s;
   transition: color linear 0.09s;
   text-decoration: none;
   font-size: 20pt;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
 }
 nav > .wrapper #nav-div a:hover {
@@ -42,19 +67,32 @@ nav > .wrapper #nav-div a:hover::after {
   content: " ";
   display: block;
   position: relative;
+  -webkit-animation: scale-x forwards 0.8s;
   animation: scale-x forwards 0.8s;
   height: 1px;
   background-color: #a6a6a6;
 }
 nav > .wrapper #nav-div #nav-btn-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 nav > .wrapper #nav-div #nav-btn-div button {
   cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
+  -webkit-transition: background-color 0.2s;
+  -o-transition: background-color 0.2s;
   transition: background-color 0.2s;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 nav > .wrapper #nav-div #nav-btn-div button:hover {
@@ -62,10 +100,13 @@ nav > .wrapper #nav-div #nav-btn-div button:hover {
   background-color: #1d7999;
 }
 nav > .wrapper #nav-div #nav-btn-div button:active {
-  transform: scale(0.9);
+  -webkit-transform: scale(0.98);
+  -ms-transform: scale(0.98);
+  transform: scale(0.98);
 }
 nav > .wrapper #nav-div #nav-btn-div button:focus {
   background-color: #1d7999;
+  -webkit-box-shadow: 0 0 0 2px #2596be;
   box-shadow: 0 0 0 2px #2596be;
 }
 
