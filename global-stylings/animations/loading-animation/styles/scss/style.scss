@@ -8,7 +8,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #111;
+    background: #fff;
 }
 .container {
     position: relative;
@@ -80,7 +80,7 @@ body {
     }
     p {
         position: absolute;
-        color: #fff;
+        color: #111;
         font-size: 1.5em;
         font-family: consolas;
         bottom: -100px;
