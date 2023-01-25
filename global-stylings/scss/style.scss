@@ -1,16 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Work+Sans:wght@300&display=swap");
-
-$primary-dark-color: #2596be;
-$primary-dark-darker-color: #1d7999;
-
-$bg-dark-color: #121212;
-$fg-dark-color: #d6ddd6;
-
-$nav-bg-dark: #292a2f;
-
-$fg-dark-darker-color: #a6a6a6;
-
-$nav-height: 140px;
+@import "./vars.scss";
 
 // TODO: Try to solve overflow without using `overflow-x: hidden`
 
@@ -41,96 +29,6 @@ body {
     font-size: 1.5rem;
 }
 
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10;
-
-    width: 100vw;
-    height: $nav-height;
-
-    background-color: $nav-bg-dark;
-
-    > .wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        user-select: none;
-
-        #logo-div {
-            color: $primary-dark-color;
-
-            font-size: 4vw;
-            font-family: "Fredoka One", sans-serif;
-
-            user-select: none;
-
-            transform: translateY(-10%);
-        }
-
-        #nav-div {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: "Work Sans", sans-serif;
-
-            width: 50%;
-
-            a {
-                color: $fg-dark-color;
-                transition: color linear 0.09s;
-
-                text-decoration: none;
-                font-size: 20pt;
-                user-select: none;
-
-                &:hover {
-                    color: $fg-dark-darker-color;
-
-                    &::after {
-                        content: " ";
-                        display: block;
-
-                        position: relative;
-                        animation: scale-x forwards 0.8s;
-                        height: 1px;
-                        background-color: $fg-dark-darker-color;
-                    }
-                }
-            }
-
-            #nav-btn-div {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                button {
-                    cursor: pointer;
-                    user-select: none;
-
-                    transition: background-color 0.2s;
-                    box-sizing: border-box;
-
-                    &:hover {
-                        color: white;
-                        background-color: $primary-dark-darker-color;
-                    }
-
-                    &:active {
-                        transform: scale(0.9);
-                    }
-
-                    &:focus {
-                        background-color: $primary-dark-darker-color;
-                        box-shadow: 0 0 0 2px $primary-dark-color;
-                    }
-                }
-            }
-        }
-    }
-}
-
 main {
     position: absolute;
     z-index: 9;
@@ -140,30 +38,49 @@ main {
 $ad-img-width: 100vw;
 $ad-img-height: calc(100vh - $nav-height);
 
-#bg-main-img {
-    width: $ad-img-width;
-    height: $ad-img-height;
-    object-fit: cover;
+#b
 
-    user-select: none;
+
+	width: $ad-img-width;
+	height: $ad-img-height;
+	-o-object-fit: cover;
+	object-fit: cover;
+
+	-webkit-user-select: none;
+
+	-moz-user-select: none;
+
+	-ms-user-select: none;
+
+	user-select: none;
 }
 
 #homepage-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    user-select: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 100;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 
-    width: $ad-img-width;
-    height: $ad-img-height;
-    background: rgba(0, 0, 0, 0.3);
-    background: radial-gradient(
-        circle,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(0, 0, 0, 0.681) 88%
-    );
+	width: $ad-img-width;
+	height: $ad-img-height;
+	background: rgba(0, 0, 0, 0.3);
+	background: -o-radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.681) 88%);
+	background: radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.681) 88%);
+>>>>>>> main
+}
+
+@-webkit-keyframes scale-x {
+	from {
+		width: 0%;
+	}
+	to {
+		width: 100%;
+	}
 }
 
 @keyframes scale-x {
