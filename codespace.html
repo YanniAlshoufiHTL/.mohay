@@ -12,9 +12,28 @@
     </head>
     <body>
         <div class="compile-wrapper">
-            <button>
-                <div class="loader"></div>
-            </button>
+            <div class="twoToneCenter">
+                <button class="twoToneButton">SignIn</button>
+            </div>
         </div>
+        <script>
+            $(function () {
+                let twoToneButton = document.querySelector(".twoToneButton");
+
+                twoToneButton.addEventListener(
+                    "click",
+                    function () {
+                        twoToneButton.innerHTML = "";
+                        twoToneButton.classList.add("spinning");
+
+                        setTimeout(function () {
+                            twoToneButton.classList.remove("spinning");
+                            twoToneButton.innerHTML = "Loaded";
+                        }, 2000);
+                    },
+                    false
+                );
+            });
+        </script>
     </body>
 </html>
