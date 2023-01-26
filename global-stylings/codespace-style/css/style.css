@@ -26,7 +26,7 @@ body {
   display: grid;
   place-content: center;
 }
-.compile-wrapper .loader.rotate {
+.compile-wrapper .loader {
   pointer-events: none;
   width: 19px;
   height: 19px;

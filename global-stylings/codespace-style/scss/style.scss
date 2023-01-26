@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Work+Sans:wght@300&display=swap");
+$compile-btn-bg: #29ca8e;
 
 * {
     border: 0;
@@ -17,7 +18,7 @@ body {
         font-family: "Work Sans", sans-serif;
         font-size: 22px;
         color: #fff;
-        background: #29ca8e;
+        background: $compile-btn-bg;
         width: 150px;
         height: 35px;
         cursor: pointer;
@@ -26,7 +27,7 @@ body {
         display: grid;
         place-content: center;
     }
-    .loader.rotate {
+    .loader {
         pointer-events: none;
         width: 19px;
         height: 19px;
