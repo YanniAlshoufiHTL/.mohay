@@ -1,0 +1,39 @@
+/* Methods: */
+
+// Lines
+line p1 p2
+vector p1 p2
+
+// Shapes
+rect p w h
+circle p r
+arc p r a1 a2
+triangle p1 p2 p3
+polygon p n r a
+polygon p1 p2 p3 …
+dot p
+
+// Clear
+clear
+c(#333):clear
+
+// Fills and Strokes
+/*
+	c(#344)
+	f:rect p 4 4
+	s:c(3, 24, 25):rect p 4 4
+*/
+
+c // rgb, rgba, hex, hsl
+
+/* Special Syntax */
+
+// Variables and Points
+.point = (0, 0)
+
+// Constants
+wow RANDOM = 4
+
+:loop { /* ≈ 60 fps */ }
+
+
