@@ -38,49 +38,54 @@ main {
 $ad-img-width: 100vw;
 $ad-img-height: calc(100vh - $nav-height);
 
-#b
+#b {
+    width: $ad-img-width;
+    height: $ad-img-height;
+    -o-object-fit: cover;
+    object-fit: cover;
 
+    -webkit-user-select: none;
 
-	width: $ad-img-width;
-	height: $ad-img-height;
-	-o-object-fit: cover;
-	object-fit: cover;
+    -moz-user-select: none;
 
-	-webkit-user-select: none;
+    -ms-user-select: none;
 
-	-moz-user-select: none;
-
-	-ms-user-select: none;
-
-	user-select: none;
+    user-select: none;
 }
 
 #homepage-overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 100;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 
-	width: $ad-img-width;
-	height: $ad-img-height;
-	background: rgba(0, 0, 0, 0.3);
-	background: -o-radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.681) 88%);
-	background: radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.681) 88%);
->>>>>>> main
+    width: $ad-img-width;
+    height: $ad-img-height;
+    background: rgba(0, 0, 0, 0.3);
+    background: -o-radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(0, 0, 0, 0.681) 88%
+    );
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(0, 0, 0, 0.681) 88%
+    );
 }
 
 @-webkit-keyframes scale-x {
-	from {
-		width: 0%;
-	}
-	to {
-		width: 100%;
-	}
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
 }
 
 @keyframes scale-x {
