@@ -1,4 +1,4 @@
-@import "./vars.scss";
+@import './vars.scss';
 
 nav {
 	position: fixed;
@@ -26,13 +26,14 @@ nav {
 		-ms-user-select: none;
 		user-select: none;
 
-		#logo-div {
+		#logo-link {
 			color: $primary-dark-color;
 
 			font-size: 4vw;
-			font-family: "Fredoka One", sans-serif;
+			font-family: 'Fredoka One', sans-serif;
+			text-decoration: none;
 
-			cursor: default;
+			cursor: pointer;
 
 			-webkit-user-select: none;
 			-moz-user-select: none;
@@ -57,7 +58,7 @@ nav {
 			-webkit-box-align: center;
 			-ms-flex-align: center;
 			align-items: center;
-			font-family: "Work Sans", sans-serif;
+			font-family: 'Work Sans', sans-serif;
 
 			width: 50%;
 
@@ -78,7 +79,7 @@ nav {
 					color: $fg-dark-darker-color;
 
 					&::after {
-						content: " ";
+						content: ' ';
 						display: block;
 
 						position: relative;

@@ -23,11 +23,12 @@ nav > .wrapper {
   -ms-user-select: none;
   user-select: none;
 }
-nav > .wrapper #logo-div {
+nav > .wrapper #logo-link {
   color: #2596be;
   font-size: 4vw;
   font-family: "Fredoka One", sans-serif;
-  cursor: default;
+  text-decoration: none;
+  cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
