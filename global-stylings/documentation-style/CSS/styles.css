@@ -1,0 +1,168 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Work+Sans:wght@300&display=swap");
+body {
+  overflow-x: hidden;
+  background-color: #292a2f;
+}
+
+.wrapper {
+  position: relative;
+  left: 10vw;
+  width: 80vw;
+  height: 100%;
+}
+
+.codespace-btn {
+  padding: 1rem;
+  background-color: #2596be;
+  color: #d6ddd6;
+  border-radius: 13px;
+  border: none;
+  font-size: 1.5rem;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  width: 100vw;
+  height: 140px;
+  background-color: #292a2f;
+}
+nav > .wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+nav > .wrapper #logo-div {
+  color: #2596be;
+  font-size: 4vw;
+  font-family: "Fredoka One", sans-serif;
+  user-select: none;
+  transform: translateY(-10%);
+}
+nav > .wrapper #nav-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Work Sans", sans-serif;
+  width: 50%;
+}
+nav > .wrapper #nav-div a {
+  color: #d6ddd6;
+  transition: color linear 0.09s;
+  text-decoration: none;
+  font-size: 20pt;
+  user-select: none;
+}
+nav > .wrapper #nav-div a:hover {
+  color: #a6a6a6;
+}
+nav > .wrapper #nav-div a:hover::after {
+  content: " ";
+  display: block;
+  position: relative;
+  animation: scale-x forwards 0.8s;
+  height: 1px;
+  background-color: #a6a6a6;
+}
+nav > .wrapper #nav-div #nav-btn-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+nav > .wrapper #nav-div #nav-btn-div button {
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s;
+  box-sizing: border-box;
+}
+nav > .wrapper #nav-div #nav-btn-div button:hover {
+  color: white;
+  background-color: #1d7999;
+}
+nav > .wrapper #nav-div #nav-btn-div button:active {
+  transform: scale(0.9);
+}
+nav > .wrapper #nav-div #nav-btn-div button:focus {
+  background-color: #1d7999;
+  box-shadow: 0 0 0 2px #2596be;
+}
+
+.content {
+  width: 90vw;
+  height: 100vh;
+  background-color: #121212;
+}
+.content .side-bar {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  list-style-type: none;
+  top: 140px;
+  left: 0;
+  background-color: rgb(53, 53, 53);
+  height: calc(100vh - 140px);
+  width: 10vw;
+  /*.side-bar-elements:hover {
+  }*/
+}
+.content .side-bar .side-bar-elements {
+  color: #d6ddd6;
+  text-align: center;
+  margin-top: 10px;
+  height: 5vh;
+}
+.content .main-content {
+  font-family: "Work Sans", sans-serif;
+  position: absolute;
+  top: 140px;
+  left: 10vw;
+  width: 80vw;
+  margin: 2vw;
+}
+.content .main-content .heading {
+  color: #2596be;
+  font-size: 4rem;
+  margin-left: 25vw;
+  font-family: "Fredoka One", sans-serif;
+  user-select: none;
+}
+.content .main-content .part .small-heading {
+  color: #d6ddd6;
+  font-size: 25pt;
+  font-weight: 700;
+  margin-left: 1vw;
+}
+.content .main-content .part .text {
+  color: #d6ddd6;
+  margin-left: 1vw;
+  font-size: 13pt;
+  font-weight: 500;
+  padding-bottom: 15px;
+}
+.content .main-content .part .text-break {
+  width: 75vw;
+  margin-bottom: 2vw;
+  margin-left: 1vw;
+}
+.content .main-content .code-example-box {
+  width: 75vw;
+  background-color: #38444d;
+  border-radius: 6px;
+  padding: 0.8vw;
+}
+.content .main-content .code-example-box .code-example-heading {
+  font-size: 20pt;
+  color: #d6ddd6;
+  padding: 0 0.2vw;
+}
+.content .main-content .code-example-box .code-example {
+  padding: 2vw;
+  background-color: #15202b;
+  color: #d6ddd6;
+}
+
+/*# sourceMappingURL=styles.css.map */
