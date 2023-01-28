@@ -27,6 +27,7 @@ nav > .wrapper #logo-div {
   color: #2596be;
   font-size: 4vw;
   font-family: "Fredoka One", sans-serif;
+  cursor: default;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
