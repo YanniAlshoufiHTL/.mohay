@@ -63,14 +63,6 @@ main {
     width: 100%;
   }
 }
-@keyframes scale-x {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 100%;
-  }
-}
 @media (max-width: 1200px) {
   #logo-div {
     font-size: 48px !important;

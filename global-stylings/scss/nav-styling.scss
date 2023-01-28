@@ -138,3 +138,12 @@ nav {
 		}
 	}
 }
+
+@keyframes scale-x {
+	from {
+		width: 0%;
+	}
+	to {
+		width: 100%;
+	}
+}
