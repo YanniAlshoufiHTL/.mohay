@@ -38,6 +38,7 @@ main {
 $ad-img-width: 100vw;
 $ad-img-height: calc(100vh - $nav-height);
 
+
 #bg-main-img {
 	width: $ad-img-width;
 	height: $ad-img-height;
@@ -49,18 +50,19 @@ $ad-img-height: calc(100vh - $nav-height);
 	-ms-user-select: none;
 
 	user-select: none;
+>>>>>>> main
 }
 
 #homepage-overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 100;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 
 	width: $ad-img-width;
 	height: $ad-img-height;
@@ -70,12 +72,12 @@ $ad-img-height: calc(100vh - $nav-height);
 }
 
 @-webkit-keyframes scale-x {
-	from {
-		width: 0%;
-	}
-	to {
-		width: 100%;
-	}
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
 }
 
 @keyframes scale-x {
