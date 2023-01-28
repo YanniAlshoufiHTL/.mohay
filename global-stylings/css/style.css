@@ -1,84 +1,84 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Work+Sans:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Work+Sans:wght@300&display=swap");
 body {
-	background-color: #121212;
-	color: #d6ddd6;
-	overflow-x: hidden;
+  background-color: #121212;
+  color: #d6ddd6;
+  overflow-x: hidden;
 }
 
 .wrapper {
-	position: relative;
-	left: 10vw;
-	width: 80vw;
-	height: 100%;
+  position: relative;
+  left: 10vw;
+  width: 80vw;
+  height: 100%;
 }
 
 .codespace-btn {
-	padding: 1rem;
-	background-color: #2596be;
-	color: #d6ddd6;
-	border-radius: 13px;
-	border: none;
-	font-size: 1.5rem;
+  padding: 1rem;
+  background-color: #2596be;
+  color: #d6ddd6;
+  border-radius: 13px;
+  border: none;
+  font-size: 1.5rem;
 }
 
 main {
-	position: absolute;
-	z-index: 9;
-	top: 140px;
+  position: absolute;
+  z-index: 9;
+  top: 140px;
 }
 
 #bg-main-img {
-	width: 100vw;
-	height: calc(100vh - 140px);
-	-o-object-fit: cover;
-	object-fit: cover;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+  width: 100vw;
+  height: calc(100vh - 140px);
+  -o-object-fit: cover;
+  object-fit: cover;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 #homepage-overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 100;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	width: 100vw;
-	height: calc(100vh - 140px);
-	background: rgba(0, 0, 0, 0.3);
-	background: -o-radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.681) 88%);
-	background: radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.681) 88%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 100vw;
+  height: calc(100vh - 140px);
+  background: rgba(0, 0, 0, 0.3);
+  background: -o-radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.681) 88%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.681) 88%);
 }
 
 @-webkit-keyframes scale-x {
-	from {
-		width: 0%;
-	}
-	to {
-		width: 100%;
-	}
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
 }
 @keyframes scale-x {
-	from {
-		width: 0%;
-	}
-	to {
-		width: 100%;
-	}
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
 }
 @media (max-width: 1200px) {
-	#logo-div {
-		font-size: 48px !important;
-	}
+  #logo-div {
+    font-size: 48px !important;
+  }
 
-	#nav-div {
-		width: 70% !important;
-	}
+  #nav-div {
+    width: 70% !important;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
