@@ -120,5 +120,13 @@ nav > .wrapper #nav-div #nav-btn-div button:focus {
     width: 100%;
   }
 }
+@-webkit-keyframes scale-x {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
 
 /*# sourceMappingURL=nav-styling.css.map */
