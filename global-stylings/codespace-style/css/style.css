@@ -10,39 +10,43 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #fff;
+  background-color: #fff;
 }
 
-.compile-wrapper button {
-  font-family: "Work Sans", sans-serif;
-  font-size: 22px;
-  color: #fff;
-  background: #29ca8e;
-  width: 150px;
-  height: 35px;
-  cursor: pointer;
-  border-radius: 3px;
-  box-shadow: 0 8px 5px -5px rgba(0, 0, 0, 0.2);
-  display: grid;
-  place-content: center;
+.top-bar {
+  background-color: #121212;
+  height: 2.5vh;
+  width: 100vw;
+  justify-content: space-evenly;
 }
-.compile-wrapper .loader {
-  pointer-events: none;
-  width: 19px;
-  height: 19px;
+.top-bar .code-editor-menu {
+  display: flex;
+  justify-content: space-evenly;
+  width: 40vw;
+}
+.top-bar .code-editor-menu .editor-file {
+  font-size: 2.5vh;
+}
+.top-bar .code-editor-menu .editor-Edit {
+  font-size: 2.5vh;
+}
+.top-bar .code-editor-menu .editor-Find {
+  font-size: 2.5vh;
+}
+.top-bar .code-editor-menu .editor-file {
+  font-size: 2.5vh;
+}
+.top-bar .code-editor-menu .editor-project {
+  font-size: 2.5vh;
+}
+.top-bar .code-editor-menu .editor-help {
+  font-size: 2.5vh;
+}
+.top-bar .user-profile-picture {
+  background-color: red;
+  width: 1.3vw;
+  height: 1.3vh;
   border-radius: 50%;
-  border: 3px solid transparent;
-  border-top-color: #fff;
-  animation: loaderanimation 1.3s ease infinite;
-}
-
-@keyframes loaderanimation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 /*# sourceMappingURL=style.css.map */
