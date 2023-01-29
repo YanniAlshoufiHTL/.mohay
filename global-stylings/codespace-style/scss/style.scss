@@ -6,8 +6,8 @@
     display: inline-flex;
 
     .menu-wrapper {
-        display: inline-flex;
         float: left;
+        display: inline-flex;
         justify-content: space-evenly;
         background-color: red;
         .editor-file {
@@ -16,5 +16,12 @@
         .editor-edit {
             margin: 0;
         }
+    }
+    .profile-icon {
+        float: right;
+        background-color: red;
+        border-radius: 50%;
+        height: 1.8rem;
+        width: 1.8rem;
     }
 }
