@@ -1,52 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Work+Sans:wght@300&display=swap");
-* {
-  border: 0;
-  outline: none;
-  user-select: none;
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #fff;
-}
-
-.top-bar {
-  background-color: #121212;
-  height: 2.5vh;
+.top-bar-wrapper {
   width: 100vw;
+  height: 2.3vh;
+  background-color: #fff;
+  display: inline-flex;
+}
+.top-bar-wrapper .menu-wrapper {
+  display: inline-flex;
+  float: left;
   justify-content: space-evenly;
-}
-.top-bar .code-editor-menu {
-  display: flex;
-  justify-content: space-evenly;
-  width: 40vw;
-}
-.top-bar .code-editor-menu .editor-file {
-  font-size: 2.5vh;
-}
-.top-bar .code-editor-menu .editor-Edit {
-  font-size: 2.5vh;
-}
-.top-bar .code-editor-menu .editor-Find {
-  font-size: 2.5vh;
-}
-.top-bar .code-editor-menu .editor-file {
-  font-size: 2.5vh;
-}
-.top-bar .code-editor-menu .editor-project {
-  font-size: 2.5vh;
-}
-.top-bar .code-editor-menu .editor-help {
-  font-size: 2.5vh;
-}
-.top-bar .user-profile-picture {
   background-color: red;
-  width: 1.3vw;
-  height: 1.3vh;
-  border-radius: 50%;
+}
+.top-bar-wrapper .menu-wrapper .editor-file {
+  margin: 0;
+}
+.top-bar-wrapper .menu-wrapper .editor-edit {
+  margin: 0;
 }
 
 /*# sourceMappingURL=style.css.map */

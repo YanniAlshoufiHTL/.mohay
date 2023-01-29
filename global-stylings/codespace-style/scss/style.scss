@@ -1,50 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Work+Sans:wght@300&display=swap");
-$top-bar-dark-color: #121212;
-
-* {
-    border: 0;
-    outline: none;
-    user-select: none;
-}
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #fff;
-}
-.top-bar {
-    background-color: #121212;
-    height: 2.5vh;
+.top-bar-wrapper {
     width: 100vw;
-    justify-content: space-evenly;
-    .code-editor-menu {
-        display: flex;
+    height: 2.3vh;
+    background-color: #fff;
+    display: inline-flex;
+
+    .menu-wrapper {
+        display: inline-flex;
+        float: left;
         justify-content: space-evenly;
-        width: 40vw;
-        .editor-file {
-            font-size: 2.5vh;
-        }
-        .editor-Edit {
-            font-size: 2.5vh;
-        }
-        .editor-Find {
-            font-size: 2.5vh;
-        }
-        .editor-file {
-            font-size: 2.5vh;
-        }
-        .editor-project {
-            font-size: 2.5vh;
-        }
-        .editor-help {
-            font-size: 2.5vh;
-        }
-    }
-    .user-profile-picture {
         background-color: red;
-        width: 1.3vw;
-        height: 1.3vh;
-        border-radius: 50%;
+        .editor-file {
+            margin: 0;
+        }
+        .editor-edit {
+            margin: 0;
+        }
     }
 }
