@@ -1,4 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Work+Sans:wght@300&display=swap");
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background-color: #121212;
   color: #d6ddd6;
@@ -75,7 +81,6 @@ main {
   #logo-div {
     font-size: 48px !important;
   }
-
   #nav-div {
     width: 70% !important;
   }
