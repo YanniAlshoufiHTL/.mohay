@@ -6,21 +6,32 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<script type="module" src="../js/nav.js" defer></script>
 
-		<link rel="stylesheet" href="./../global-stylings/documentation-style/CSS/styles.css" />
+		<link rel="stylesheet" href="./../../global-stylings/documentation-style/CSS/styles.css" />
 
-		<title>Document</title>
+		<title>Documentation</title>
 	</head>
 	<body>
-		<nav-bar></nav-bar>
+		<nav>
+			<link rel="stylesheet" href="/global-stylings/css/nav-styling.css" />
+			<div class="wrapper">
+			  <a id="logo-link" href="/">.mohay</a>
+			  <div id="nav-div">
+				<a href="/pages/documentation/documentation.html">Documentation</a>
+				<a href="/pages/about-us.html">About Us</a>
+				<div id="nav-btn-div">
+				  <button id="nav-codespace-btn" class="codespace-btn">Codespace</button>
+				</div>
+			  </div>
+			</div>
+		  </nav>
 
 		<div class="content">
 			<div class="side-bar">
-				<li class="side-bar-elements">Varibles</li>
-				<li class="side-bar-elements">Subtopic 1</li>
-				<li class="side-bar-elements">Subtopic 1</li>
-				<li class="side-bar-elements">Subtopic 1</li>
-				<li class="side-bar-elements">Subtopic 1</li>
-			</div>
+				<li class="side-bar-elements"><a href="./variables.html">Varibles</a></li>
+				<li class="side-bar-elements"><a href="./Constants.html">Constants</a></li>
+				<li class="side-bar-elements"><a href="./shapes.html">Shapes</a></li>
+				<li class="side-bar-elements"><a href="./lines.html">Lines</a></li>
+				</div>
 
 			<div class="main-content">
 				<div class="heading">Variables</div>

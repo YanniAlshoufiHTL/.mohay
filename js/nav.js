@@ -6,7 +6,7 @@ class NavBar extends HTMLElement {
     <div class="wrapper">
       <a id="logo-link" href="/">.mohay</a>
       <div id="nav-div">
-        <a href="/pages/documentation.html">Documentation</a>
+        <a href="/pages/documentation/documentation.html">Documentation</a>
         <a href="/pages/about-us.html">About Us</a>
         <div id="nav-btn-div">
           <button id="nav-codespace-btn" class="codespace-btn">Codespace</button>
