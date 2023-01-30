@@ -1,44 +1,58 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Work+Sans:wght@300&display=swap");
+@import "../../scss/vars.scss";
 $ui-color: #121212;
 $select-ui-color: #77769642;
-$dark-ui: #292a2f;
-$top-bar-height: 2.8vh;
+$dark-ui: #121212;
+$top-bar-height: 50px;
 
 html,
 body {
     margin: 0;
     padding: 0;
 }
+
 .top-bar-wrapper {
-    width: 100vw;
+    padding: calc($top-bar-height/4);
+    display: flex;
+    width: 100%;
     height: $top-bar-height;
     background-color: $dark-ui;
-    user-select: none;
+    font-family: "work sans", sans-serif;
 
     .menu-wrapper {
-        float: left;
-        display: inline-flex;
-        font-size: 2.5vh;
-        width: 50vw;
-        color: #fff;
+        box-sizing: border-box;
+        display: flex;
+        width: 80%;
+        justify-content: space-between;
+        align-items: flex-end;
+        font-size: 2.1vh;
+        color: $primary-dark-color;
+        background-color: #fff;
+
         .menu-element {
+            box-sizing: border-box;
+            user-select: none;
             background-color: $dark-ui;
-            margin: 0px 20px;
-        }
-        :hover {
-            background-color: $select-ui-color;
-            border-radius: 7%;
+            margin: 0px 15px;
+            border: 4px solid $primary-dark-color;
+            border-radius: 16px;
+            padding: 3px 12px;
+            background-color: #ffffff10;
         }
     }
-    .profile-icon {
-        background-color: red;
-        float: right;
-        border-radius: 50%;
-        height: 2.3vh;
-        width: 2.3vh;
+    .profile-icon-wrapper {
+        width: 20%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        .profile-icon {
+            background-color: red;
+            border-radius: 50%;
+            height: 2.3vh;
+            width: 2.3vh;
+        }
     }
 }
 .main-editor-frame {
     background-color: $dark-ui;
-    width: 100vw;
 }
