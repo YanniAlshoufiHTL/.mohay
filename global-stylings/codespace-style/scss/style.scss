@@ -1,47 +1,35 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Work+Sans:wght@300&display=swap");
-$compile-btn-bg: #29ca8e;
+$darker-ui: #121212;
+$dark-ui: #292a2f;
+$top-bar-height: 2.8vh;
 
-* {
-    border: 0;
-    outline: none;
-    user-select: none;
-}
+html,
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: #fff;
+    margin: 0;
+    padding: 0;
 }
-.compile-wrapper {
-    button {
-        font-family: "Work Sans", sans-serif;
-        font-size: 22px;
-        color: #fff;
-        background: $compile-btn-bg;
-        width: 150px;
-        height: 35px;
-        cursor: pointer;
-        border-radius: 3px;
-        box-shadow: 0 8px 5px -5px rgba(0, 0, 0, 0.2);
-        display: grid;
-        place-content: center;
+.top-bar-wrapper {
+    width: 100vw;
+    height: $top-bar-height;
+    background-color: $darker-ui;
+    user-select: none;
+
+    .menu-wrapper {
+        float: left;
+        display: inline-flex;
+        justify-content: space-between;
+        font-size: 2.5vh;
+        width: 20vw;
+        :hover {
+            background-color: $dark-ui;
+            border-radius: 7%;
+        }
     }
-    .loader {
-        pointer-events: none;
-        width: 19px;
-        height: 19px;
+    .profile-icon {
+        background-color: red;
+        float: right;
         border-radius: 50%;
-        border: 3px solid transparent;
-        border-top-color: #fff;
-        animation: loaderanimation 1.3s ease infinite;
-    }
-}
-@keyframes loaderanimation {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
+        height: 2.3vh;
+        width: 2.3vh;
     }
 }

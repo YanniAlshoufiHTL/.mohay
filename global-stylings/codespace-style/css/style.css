@@ -1,48 +1,33 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Work+Sans:wght@300&display=swap");
-* {
-  border: 0;
-  outline: none;
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.top-bar-wrapper {
+  width: 100vw;
+  height: 2.8vh;
+  background-color: #121212;
   user-select: none;
 }
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: #fff;
+.top-bar-wrapper .menu-wrapper {
+  float: left;
+  display: inline-flex;
+  justify-content: space-between;
+  font-size: 2.5vh;
+  width: 20vw;
 }
-
-.compile-wrapper button {
-  font-family: "Work Sans", sans-serif;
-  font-size: 22px;
-  color: #fff;
-  background: #29ca8e;
-  width: 150px;
-  height: 35px;
-  cursor: pointer;
-  border-radius: 3px;
-  box-shadow: 0 8px 5px -5px rgba(0, 0, 0, 0.2);
-  display: grid;
-  place-content: center;
+.top-bar-wrapper .menu-wrapper :hover {
+  background-color: #292a2f;
+  border-radius: 7%;
 }
-.compile-wrapper .loader {
-  pointer-events: none;
-  width: 19px;
-  height: 19px;
+.top-bar-wrapper .profile-icon {
+  background-color: red;
+  float: right;
   border-radius: 50%;
-  border: 3px solid transparent;
-  border-top-color: #fff;
-  animation: loaderanimation 1.3s ease infinite;
-}
-
-@keyframes loaderanimation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  height: 2.3vh;
+  width: 2.3vh;
 }
 
 /*# sourceMappingURL=style.css.map */
