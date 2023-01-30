@@ -2,7 +2,7 @@ class NavBar extends HTMLElement {
 	constructor() {
 		super();
 		this.innerHTML = `<nav>
-    <link rel="stylesheet" href="/global-stylings/css/nav-styling.css" />
+    <link rel="stylesheet" href="${location.origin}/global-stylings/css/nav-styling.css" />
     <div class="wrapper">
       <a id="logo-link" href="/">.mohay</a>
       <div id="nav-div">
