@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Work+Sans:wght@300&display=swap");
+$darker-ui: #121212;
+$dark-ui: #292a2f;
+$top-bar-height: 2.8vh;
+
 html,
 body {
     margin: 0;
@@ -6,26 +10,26 @@ body {
 }
 .top-bar-wrapper {
     width: 100vw;
-    height: 2.3vh;
-    background-color: #fff;
+    height: $top-bar-height;
+    background-color: $darker-ui;
+    user-select: none;
 
     .menu-wrapper {
         float: left;
         display: inline-flex;
         justify-content: space-between;
-        background-color: red;
-        font-size: 2vh;
-        width: 30vw;
-        .editor-file {
-        }
-        .editor-edit {
+        font-size: 2.5vh;
+        width: 20vw;
+        :hover {
+            background-color: $dark-ui;
+            border-radius: 7%;
         }
     }
     .profile-icon {
         background-color: red;
         float: right;
         border-radius: 50%;
-        height: 1.8rem;
-        width: 1.8rem;
+        height: 2.3vh;
+        width: 2.3vh;
     }
 }
