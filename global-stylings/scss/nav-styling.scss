@@ -62,7 +62,7 @@ nav {
 
 			width: 50%;
 
-			a {
+			.nav-a {
 				color: $fg-dark-color;
 				-webkit-transition: color linear 0.09s;
 				-o-transition: color linear 0.09s;
@@ -102,12 +102,14 @@ nav {
 				-ms-flex-align: center;
 				align-items: center;
 
-				button {
+				a {
 					cursor: pointer;
 					-webkit-user-select: none;
 					-moz-user-select: none;
 					-ms-user-select: none;
 					user-select: none;
+
+					text-decoration: none;
 
 					-webkit-transition: background-color 0.2s;
 

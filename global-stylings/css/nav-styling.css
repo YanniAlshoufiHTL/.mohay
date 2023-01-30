@@ -50,7 +50,7 @@ nav > .wrapper #nav-div {
   font-family: "Work Sans", sans-serif;
   width: 50%;
 }
-nav > .wrapper #nav-div a {
+nav > .wrapper #nav-div .nav-a {
   color: #d6ddd6;
   -webkit-transition: color linear 0.09s;
   -o-transition: color linear 0.09s;
@@ -62,10 +62,10 @@ nav > .wrapper #nav-div a {
   -ms-user-select: none;
   user-select: none;
 }
-nav > .wrapper #nav-div a:hover {
+nav > .wrapper #nav-div .nav-a:hover {
   color: #a6a6a6;
 }
-nav > .wrapper #nav-div a:hover::after {
+nav > .wrapper #nav-div .nav-a:hover::after {
   content: " ";
   display: block;
   position: relative;
@@ -85,28 +85,29 @@ nav > .wrapper #nav-div #nav-btn-div {
   -ms-flex-align: center;
   align-items: center;
 }
-nav > .wrapper #nav-div #nav-btn-div button {
+nav > .wrapper #nav-div #nav-btn-div a {
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  text-decoration: none;
   -webkit-transition: background-color 0.2s;
   -o-transition: background-color 0.2s;
   transition: background-color 0.2s;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-nav > .wrapper #nav-div #nav-btn-div button:hover {
+nav > .wrapper #nav-div #nav-btn-div a:hover {
   color: white;
   background-color: #1d7999;
 }
-nav > .wrapper #nav-div #nav-btn-div button:active {
+nav > .wrapper #nav-div #nav-btn-div a:active {
   -webkit-transform: scale(0.98);
   -ms-transform: scale(0.98);
   transform: scale(0.98);
 }
-nav > .wrapper #nav-div #nav-btn-div button:focus {
+nav > .wrapper #nav-div #nav-btn-div a:focus {
   background-color: #1d7999;
   -webkit-box-shadow: 0 0 0 2px #2596be;
   box-shadow: 0 0 0 2px #2596be;
