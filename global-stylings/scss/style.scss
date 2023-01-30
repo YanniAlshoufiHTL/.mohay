@@ -83,24 +83,6 @@ $ad-img-height: calc(100vh - $nav-height);
     );
 }
 
-@-webkit-keyframes scale-x {
-    from {
-        width: 0%;
-    }
-    to {
-        width: 100%;
-    }
-}
-
-@keyframes scale-x {
-    from {
-        width: 0%;
-    }
-    to {
-        width: 100%;
-    }
-}
-
 $first-query-width: 1200px;
 @media (max-width: $first-query-width) {
     #logo-div {
