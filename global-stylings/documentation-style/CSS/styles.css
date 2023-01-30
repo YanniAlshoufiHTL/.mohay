@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Work+Sans:wght@300&display=swap");
 body {
   overflow-x: hidden;
+
   background-color: #121212;
 }
 
@@ -130,8 +131,6 @@ nav > .wrapper #nav-div #nav-btn-div button:focus {
   background-color: rgba(18, 18, 18, 0.3215686275);
   height: calc(100vh - 140px);
   width: 10vw;
-  /*.side-bar-elements:hover {
-  }*/
 }
 
 .content .side-bar .side-bar-elements {
@@ -142,11 +141,13 @@ nav > .wrapper #nav-div #nav-btn-div button:focus {
 }
 
 .content .main-content {
-  font-family: "Work Sans", sans-serif;
-  position: absolute;
+  position: fixed;
   top: 140px;
   left: 10vw;
-  width: 80vw;
+  height: 140px;
+}
+
+.content .main-content .text {
   margin: 2vw;
 }
 
@@ -199,6 +200,18 @@ nav > .wrapper #nav-div #nav-btn-div button:focus {
   padding: 2vw;
   background-color: #15202b;
   color: #d6ddd6;
+} /*# sourceMappingURL=styles.css.map */
+
+.content .main-content .heading {
+  color: #2596be;
+  font-size: 3vw;
+  font-family: "Fredoka One", sans-serif;
+  margin: 2vw 10vw;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transform: translateY(-10%);
 } /*# sourceMappingURL=styles.css.map */
 
 /*# sourceMappingURL=styles.css.map */

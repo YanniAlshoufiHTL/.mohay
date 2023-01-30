@@ -8,18 +8,22 @@ body {
 .top-bar-wrapper {
   width: 100vw;
   height: 2.8vh;
-  background-color: #121212;
+  background-color: #292a2f;
   user-select: none;
 }
 .top-bar-wrapper .menu-wrapper {
   float: left;
   display: inline-flex;
-  justify-content: space-between;
   font-size: 2.5vh;
-  width: 20vw;
+  width: 50vw;
+  color: #fff;
+}
+.top-bar-wrapper .menu-wrapper .menu-element {
+  background-color: #292a2f;
+  margin: 0px 20px;
 }
 .top-bar-wrapper .menu-wrapper :hover {
-  background-color: #292a2f;
+  background-color: rgba(119, 118, 150, 0.2588235294);
   border-radius: 7%;
 }
 .top-bar-wrapper .profile-icon {
@@ -28,6 +32,11 @@ body {
   border-radius: 50%;
   height: 2.3vh;
   width: 2.3vh;
+}
+
+.main-editor-frame {
+  background-color: #292a2f;
+  width: 100vw;
 }
 
 /*# sourceMappingURL=style.css.map */
