@@ -24,90 +24,120 @@
 
     <div class="content">
         <div class="side-bar">
-            <li class="side-bar-elements"><a href="./variables.html">Varibles</a></li>
-            <li class="side-bar-elements"><a href="./Constants.html">Constants</a></li>
-            <li class="side-bar-elements"><a href="./shapes.html">Shapes</a></li>
-            <li class="side-bar-elements"><a href="./lines.html">Lines</a></li>
+            <li class="side-bar-element-wrapper"><a class="side-bar-elements"href="./variables.html">Varibles</a></li>
+            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./Constants.html">Constants</a></li>
+            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./point.html">Points</a></li>
+            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./shapes.html">Shapes</a></li>
+            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./lines.html">Lines</a></li>
+            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./comments.html">Comments</a></li>
+            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./vector.html">Vectors</a></li>
         </div>
 
         <div class="main-content">
             <div class="heading">Shapes</div>
             <div class="part">
-                <p class="small-heading">Constants</p>
+                <p class="small-heading">Rectangles</p>
                 <hr class="text-break" />
                 <p class="text">
-                    Constants are Variables that can only be assigned once and can't change their value
-                    afterwards
+                    Rectangles are created by using the "rect" keyword.
                 </p>
                 <p class="text">
-                    Constants are Variables that can only be assigned once and can't change their value
-                    afterwards
+                    After rect you need to add a <a href="./point.html" class="text-link">point</a> and a width and height.
                 </p>
                 <hr class="text-break" />
                 <div class="code-example-box">
                     <p class="code-example-heading">Example</p>
-                    <div class="code-example">wow a = point 3 3</div>
+                    <div class="code-example">
+                        <p class="code">var r = rect (0, 0) 10 20</p>
+                    </div>
                 </div>
             </div>
 
             <div class="part">
-                <p class="small-heading">Constants</p>
+                <p class="small-heading">Circle</p>
                 <hr class="text-break" />
                 <p class="text">
-                    Constants are Variables that can only be assigned once and can't change their value
-                    afterwards
+                    Circles are created by using the "circle" keyword.
                 </p>
                 <p class="text">
-                    Constants are Variables that can only be assigned once and can't change their value
-                    afterwards
+                    After rect you need to add a <a href="./point.html" class="text-link">point</a> and a radius.
                 </p>
                 <hr class="text-break" />
                 <div class="code-example-box">
                     <p class="code-example-heading">Example</p>
-                    <div class="code-example">wow a = point 3 3</div>
+                    <div class="code-example">
+                        <p class="code">var c = circle (100, 100) 20</p>
+                    </div>
                 </div>
             </div>
-
 
             <div class="part">
-                <p class="small-heading">Constants</p>
+                <p class="small-heading">Arc</p>
                 <hr class="text-break" />
                 <p class="text">
-                    Constants are Variables that can only be assigned once and can't change their value
-                    afterwards
+                    In .mohay you can draw parts of a circle.
                 </p>
                 <p class="text">
-                    Constants are Variables that can only be assigned once and can't change their value
-                    afterwards
+                    This can be done by using the "arc" keyword.
+                </p>
+                <p class="text">
+                    It is followed by a starting point, radius, starting angle and end angle.
                 </p>
                 <hr class="text-break" />
                 <div class="code-example-box">
                     <p class="code-example-heading">Example</p>
-                    <div class="code-example">wow a = point 3 3</div>
+                    <div class="code-example">
+                        <p class="code">var a = arc (3, 3) 10 20° 30°</p>
+                    </div>
                 </div>
             </div>
-
 
             <div class="part">
-                <p class="small-heading">Constants</p>
+                <p class="small-heading">Triangle</p>
                 <hr class="text-break" />
                 <p class="text">
-                    Constants are Variables that can only be assigned once and can't change their value
-                    afterwards
+                    Triangles are created by using the "triangle" keyword.
                 </p>
                 <p class="text">
-                    Constants are Variables that can only be assigned once and can't change their value
-                    afterwards
+                    After triangle you need to add three <a href="./point.html" class="text-link">points</a>.
+                </p>
+                <p class="text">
+                    Those will be the corners of your triangle
                 </p>
                 <hr class="text-break" />
                 <div class="code-example-box">
                     <p class="code-example-heading">Example</p>
-                    <div class="code-example">wow a = point 3 3</div>
+                    <div class="code-example">
+                        <p class="code">var t = triangle (3, 3) (9, 5) (100, 53)</p>
+                    </div>
                 </div>
             </div>
 
+            <div class="part">
+                <p class="small-heading">Polygon</p>
+                <hr class="text-break" />
+                <p class="text">
+                    Polygons are created by using the "polygon" keyword.
+                </p>
+                <p class="text">
+                    There are 2 ways of creating polygons.
+                </p>
+                <p>
+                    <ul>
+                        <li class="text">Either you enter a middle<a href="./point.html" class="text-link">point</a>, number of corners, radius between middlepoint and corners and the rotation.</li>
+                        <li class="text">Or you just enter as many <a href="./point.html" class="text-link">points</a> as you like.</li>
+                    </ul>
+                </p>
+                <hr class="text-break" />
+                <div class="code-example-box">
+                    <p class="code-example-heading">Example</p>
+                    <div class="code-example">
+                        <p class="code">var polygon1 = polygon (1, 1) 6 10 20°</p>
+                        <p class="code">var polygon2 = polygon (1, 1) (4, 10) (8, 16) (10, 100) (49, 28) (47, 19)</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
 </body>
 </html>

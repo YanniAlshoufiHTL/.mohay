@@ -35,5 +35,3 @@ c // rgb, rgba, hex, hsl
 wow RANDOM = 4
 
 :loop { /* ≈ 60 fps */ }
-
-
