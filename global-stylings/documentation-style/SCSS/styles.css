@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Work+Sans:wght@300&display=swap");
 body {
   overflow-x: hidden;
+  background-color: #121212;
 }
 
 .wrapper {
@@ -104,8 +105,7 @@ nav > .wrapper #nav-div #nav-btn-div button:focus {
 }
 
 .content {
-  width: 100vw;
-  height: 100vh;
+  width: 90vw;
   background-color: #121212;
 }
 .content .side-bar {
@@ -115,9 +115,11 @@ nav > .wrapper #nav-div #nav-btn-div button:focus {
   list-style-type: none;
   top: 140px;
   left: 0;
-  background-color: #292a2f;
+  background-color: rgba(18, 18, 18, 0.3215686275);
   height: calc(100vh - 140px);
   width: 10vw;
+  /*.side-bar-elements:hover {
+  }*/
 }
 .content .side-bar .side-bar-elements {
   color: #d6ddd6;
@@ -125,30 +127,55 @@ nav > .wrapper #nav-div #nav-btn-div button:focus {
   margin-top: 10px;
   height: 5vh;
 }
-.content .side-bar .side-bar-elements:hover {
-  color: #a6a6a6;
-  width: 20px;
-}
 .content .main-content {
-  position: fixed;
+  font-family: "Work Sans", sans-serif;
+  position: absolute;
   top: 140px;
   left: 10vw;
-  height: 140px;
-}
-.content .main-content .text {
+  width: 80vw;
   margin: 2vw;
-}
-.content .main-content .text .text-1 {
-  color: #d6ddd6;
 }
 .content .main-content .heading {
   color: #2596be;
-  font-size: 3vw;
+  font-size: 4rem;
+  align-content: left;
   font-family: "Fredoka One", sans-serif;
-  margin: 2vw 10vw;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  transform: translateY(-10%);
+}
+.content .main-content .part .small-heading {
+  color: #d6ddd6;
+  font-size: 25pt;
+  font-weight: 700;
+  margin-left: 1vw;
+}
+.content .main-content .part .text {
+  color: #d6ddd6;
+  margin-left: 1vw;
+  font-size: 13pt;
+  font-weight: 500;
+  padding-bottom: 15px;
+}
+.content .main-content .part .text-break {
+  width: 75vw;
+  margin-bottom: 2vw;
+  margin-left: 1vw;
+}
+.content .main-content .code-example-box {
+  width: 75vw;
+  background-color: #38444d;
+  border-radius: 6px;
+  padding: 0.8vw;
+}
+.content .main-content .code-example-box .code-example-heading {
+  font-size: 20pt;
+  color: #d6ddd6;
+  padding: 0 0.2vw;
+}
+.content .main-content .code-example-box .code-example {
+  padding: 2vw;
+  background-color: #15202b;
+  color: #d6ddd6;
 }/*# sourceMappingURL=styles.css.map */
