@@ -3,11 +3,28 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 body {
   background-color: #121212;
   color: #d6ddd6;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #1a1a1b;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6a6b6b;
+  opacity: 0.1;
 }
 
 .wrapper {

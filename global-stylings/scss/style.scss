@@ -1,85 +1,111 @@
-@import './vars.scss';
+@import "./vars.scss";
 
-// TODO: Try to solve overflow without using `overflow-x: hidden`
+// TODO: Try to solve overflow without using `overflow-x: hidden` ===>>> nooooo!!!!!!!!!!!!!!
 
 html,
 body {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 body {
-	background-color: $bg-dark-color;
-	color: $fg-dark-color;
+    background-color: $bg-dark-color;
+    color: $fg-dark-color;
+}
+
+//fancy scroll bar if we ever need it
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #1a1a1b;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #6a6b6b;
+    opacity: 0.1;
 }
 
 .wrapper {
-	position: relative;
-	left: 10vw;
+    position: relative;
+    left: 10vw;
 
-	width: 80vw;
-	height: 100%;
+    width: 80vw;
+    height: 100%;
 }
 
 .codespace-btn {
-	padding: 1rem;
+    padding: 1rem;
 
-	background-color: $primary-dark-color;
-	color: $fg-dark-color;
+    background-color: $primary-dark-color;
+    color: $fg-dark-color;
 
-	border-radius: 13px;
-	border: none;
+    border-radius: 13px;
+    border: none;
 
-	font-size: 1.5rem;
+    font-size: 1.5rem;
 }
 
 main {
-	position: absolute;
-	z-index: 9;
-	top: $nav-height;
+    position: absolute;
+    z-index: 9;
+    top: $nav-height;
 }
 
 $ad-img-width: 100vw;
 $ad-img-height: calc(100vh - $nav-height);
 
 #bg-main-img {
-	width: $ad-img-width;
-	height: $ad-img-height;
-	-o-object-fit: cover;
-	object-fit: cover;
+    width: $ad-img-width;
+    height: $ad-img-height;
+    -o-object-fit: cover;
+    object-fit: cover;
 
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 
-	user-select: none;
+    user-select: none;
 }
 
 #homepage-overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 100;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 
-	width: $ad-img-width;
-	height: $ad-img-height;
-	background: rgba(0, 0, 0, 0.3);
-	background: -o-radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.681) 88%);
-	background: radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.681) 88%);
+    width: $ad-img-width;
+    height: $ad-img-height;
+    background: rgba(0, 0, 0, 0.3);
+    background: -o-radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(0, 0, 0, 0.681) 88%
+    );
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(0, 0, 0, 0.681) 88%
+    );
 }
 
 $first-query-width: 1200px;
 @media (max-width: $first-query-width) {
-	#logo-div {
-		font-size: calc($first-query-width / (100 / 4)) !important;
-	}
+    #logo-div {
+        font-size: calc($first-query-width / (100 / 4)) !important;
+    }
 
-	#nav-div {
-		width: 70% !important;
-	}
+    #nav-div {
+        width: 70% !important;
+    }
 }
