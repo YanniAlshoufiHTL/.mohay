@@ -12,6 +12,8 @@ body {
 	display: flex;
 	flex-direction: column;
 
+	padding-top: calc($nav-height / 4);
+
 	width: $aside-width;
 	height: calc(100vh - $nav-height - $footer-height);
 
@@ -51,6 +53,8 @@ body {
 	position: absolute;
 	top: $nav-height;
 	right: 0;
+
+	padding-top: calc($nav-height / 4);
 
 	width: calc(100vw - $aside-width);
 

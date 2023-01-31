@@ -13,6 +13,8 @@ polygon p n r a
 polygon p1 p2 p3 …
 dot p
 
+f:c(0, 0, 0):rect (5, 5) 50 50
+
 // Clear
 clear
 c(#333):clear
