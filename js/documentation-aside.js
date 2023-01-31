@@ -3,7 +3,7 @@ class Aside extends HTMLElement {
 		super();
 		this.innerHTML = `<div class="side-bar">
     <li class="side-bar-element-wrapper">
-      <a class="side-bar-elements" href="./variables.html">Varibles</a>
+      <a class="side-bar-elements" href="./variables.html">Variables</a>
     </li>
     <li class="side-bar-element-wrapper">
       <a class="side-bar-elements" href="./Constants.html">Constants</a>

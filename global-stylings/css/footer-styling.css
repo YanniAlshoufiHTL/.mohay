@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Work+Sans:wght@300&display=swap");
+.footer-wrapper {
+  display: flex;
+  width: 100vw;
+  height: 20vh;
+  background-color: #292a2f;
+}
+.footer-wrapper footer {
+  position: inherit;
+  flex: 1;
+}
+
+/*# sourceMappingURL=footer-styling.css.map */

@@ -1,241 +1,126 @@
-@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Work+Sans:wght@300&display=swap");
-
-$primary-dark-color: #2596be;
-$primary-dark-darker-color: #1d7999;
-
-$bg-dark-color: #121212;
-$fg-dark-color: #d6ddd6;
-
-$nav-bg-dark: #292a2f;
-
-$fg-dark-darker-color: #a6a6a6;
-
-$nav-height: 140px;
+@import '../../scss/vars.scss';
 
 body {
-	overflow-x: hidden;
-	background-color: #121212;
+	background-color: $bg-dark-color;
 }
 
-.wrapper {
-	position: relative;
-	left: 10vw;
-
-	width: 80vw;
-	height: 100%;
-}
-
-.codespace-btn {
-	padding: 1rem;
-
-	background-color: $primary-dark-color;
-	color: $fg-dark-color;
-
-	border-radius: 13px;
-	border: none;
-
-	font-size: 1.5rem;
-}
-
-nav {
+.side-bar {
 	position: fixed;
-	top: 0;
+	top: $nav-height;
 	left: 0;
-	z-index: 10;
-	box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 
-	width: 100vw;
-	height: $nav-height;
+	display: flex;
+	flex-direction: column;
 
-	background-color: $nav-bg-dark;
+	width: $aside-width;
+	height: calc(100vh - $nav-height - $footer-height);
 
-	> .wrapper {
+	background-color: rgba($bg-dark-color, 52);
+
+	.side-bar-element-wrapper {
 		display: flex;
-		justify-content: space-between;
 		align-items: center;
-		user-select: none;
+		width: 100%;
 
-		#logo-div {
-			color: $primary-dark-color;
+		.side-bar-elements {
+			width: 100%;
+			margin-left: 1vw;
+			padding: 1vw 0;
 
-			font-size: 4vw;
-			font-family: "Fredoka One", sans-serif;
+			text-align: left;
 
-			user-select: none;
+			text-decoration: none;
 
-			transform: translateY(-10%);
-		}
+			font-size: 14pt;
+			font-family: $primary-font;
 
-		#nav-div {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			font-family: "Work Sans", sans-serif;
+			color: $fg-dark-color;
 
-			width: 50%;
+			transition: padding-left ease-in 0.3s;
 
-			a {
-				color: $fg-dark-color;
-				transition: color linear 0.09s;
+			&:hover {
+				padding-left: 1.5vw;
 
-				text-decoration: none;
-				font-size: 20pt;
-				user-select: none;
-
-				&:hover {
-					color: $fg-dark-darker-color;
-
-					&::after {
-						content: " ";
-						display: block;
-
-						position: relative;
-						animation: scale-x forwards 0.8s;
-						height: 1px;
-						background-color: $fg-dark-darker-color;
-					}
-				}
-			}
-
-			#nav-btn-div {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-
-				button {
-					cursor: pointer;
-					user-select: none;
-
-					transition: background-color 0.2s;
-					box-sizing: border-box;
-
-					&:hover {
-						color: white;
-						background-color: $primary-dark-darker-color;
-					}
-
-					&:active {
-						transform: scale(0.9);
-					}
-
-					&:focus {
-						background-color: $primary-dark-darker-color;
-						box-shadow: 0 0 0 2px $primary-dark-color;
-					}
-				}
+				filter: brightness(0.9);
 			}
 		}
 	}
 }
+
 .content {
-	width: 90vw;
-	background-color: #121212;
+	position: absolute;
+	top: $nav-height;
+	right: 0;
 
-	.side-bar {
-		display: flex;
-		flex-direction: column;
-		position: fixed;
-		margin-top: 5vw;
-		
-		list-style-type: none;
+	width: calc(100vw - $aside-width);
 
-		top: $nav-height;
-		left: 0;
-
-		background-color: #12121252;
-		height: calc(100vh - $nav-height);
-		width: 10vw;  
-		.side-bar-element-wrapper {
-			display: flex;
-			align-items: center;
-			width: 100%;
-			height: 3vw;
-
-			.side-bar-elements {
-				text-decoration: none;
-				color: $fg-dark-color;
-				text-align: right;
-				margin-left: 1vw;
-				font-size: 14pt;
-				font-family: "Work Sans", sans-serif;
-			}
-			.side-bar-elements:hover {
-				padding-left: 1.5vw;
-				transition: padding ease 1s;
-			}
-
-		}
-	}
+	background-color: $bg-dark-color;
 
 	.main-content {
-		font-family: "Work Sans", sans-serif;
-		position: absolute;
-		top: $nav-height;
-		left: 10vw;
-		width: 80vw; 
-		margin: 2vw;
-		
-		.heading {
-			color: $primary-dark-color;
+		width: 100%;
+		font-family: $primary-font;
+	}
 
-			font-size: 4rem;
-			align-content: left;
-			font-family: "Fredoka One", sans-serif;
-			user-select: none;
-		}
+	.footer-wrapper {
+		margin-top: calc($footer-height / 4);
+		transform: translateX(-$aside-width);
+	}
+}
 
-		.part {
+.heading {
+	align-content: left;
 
-			.small-heading {
-				color: $fg-dark-color;
-				font-size: 25pt;
-				font-weight: 700;
-				margin-left: 1vw;
-			} 
-			.text {
-				color: $fg-dark-color;
-				margin-left: 1vw;
-				font-size: 16pt;
-				font-weight: 500;
-				padding-bottom: 15px;
-			
-				.text-link {
-					text-decoration: none;
-					color: $primary-dark-color;
-				}
-			}
+	font-size: 4rem;
+	font-family: $primary-font;
 
-			.text-break {
-				width: 75vw;
-				margin-bottom: 2vw;
-				margin-left: 1vw;
-			}
-		}
+	color: $primary-dark-color;
 
-		.code-example-box {
-			width: 75vw;
+	user-select: none;
+}
 
-			background-color: #38444d;
-			border-radius: 6px;
-			
-			margin-bottom: 10vh;
-			padding: 0.8vw;
+.small-heading {
+	color: $fg-dark-color;
+	font-size: 25pt;
+	font-weight: 700;
+}
 
-			.code-example-heading {
-				font-size: 22pt;
-				color: $fg-dark-color;
-				padding: 0 0.2vw;
-				margin: 2.5vh 0;
-			}
-			.code-example {
-				padding: 2vw;
-				background-color: #15202b;
-				.code {
-					color: $fg-dark-color;
-					font-size: 16pt;
-					margin: 10px;
-				}
-			}
+.text {
+	color: $fg-dark-color;
+	font-size: 16pt;
+	font-weight: 500;
+	padding-bottom: 15px;
+}
+
+.text-link {
+	text-decoration: none;
+	color: $primary-dark-color;
+}
+
+.text-break {
+	margin: 1vw 0;
+	width: 75vw;
+}
+
+.code-example-box {
+	background-color: $nav-bg-dark;
+	border-radius: 6px;
+
+	padding: 0.7vw;
+
+	.code-example-heading {
+		font-size: 22pt;
+		color: $fg-dark-color;
+		padding: 0 0.2vw;
+		margin: 2.5vh 0;
+	}
+
+	.code-example {
+		padding: 2vw;
+		background-color: $bg-dark-color;
+		.code {
+			color: $fg-dark-color;
+			font-size: 16pt;
+			margin: 10px;
 		}
 	}
 }
