@@ -135,14 +135,14 @@ nav {
 		display: flex;
 		flex-direction: column;
 		position: fixed;
-		margin-top: 5vw;
+		padding-top: 5vw;
 		
 		list-style-type: none;
 
 		top: $nav-height;
 		left: 0;
 
-		background-color: #12121252;
+		background-color: #15202b;
 		height: calc(100vh - $nav-height);
 		width: 10vw;  
 		.side-bar-element-wrapper {
@@ -157,13 +157,12 @@ nav {
 				text-align: right;
 				margin-left: 1vw;
 				font-size: 14pt;
+				transition: padding .5s ease-out;
 				font-family: "Work Sans", sans-serif;
 			}
 			.side-bar-elements:hover {
 				padding-left: 1.5vw;
-				transition: padding ease 1s;
 			}
-
 		}
 	}
 
@@ -180,7 +179,8 @@ nav {
 
 			font-size: 4rem;
 			align-content: left;
-			font-family: "Fredoka One", sans-serif;
+			font-family: "Work Sans", sans-serif;
+			font-weight: 900;
 			user-select: none;
 		}
 

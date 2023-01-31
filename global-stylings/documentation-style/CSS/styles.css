@@ -99,11 +99,11 @@ nav > .wrapper #nav-div #nav-btn-div button:focus {
   display: flex;
   flex-direction: column;
   position: fixed;
-  margin-top: 5vw;
+  padding-top: 5vw;
   list-style-type: none;
   top: 140px;
   left: 0;
-  background-color: rgba(18, 18, 18, 0.3215686275);
+  background-color: #15202b;
   height: calc(100vh - 140px);
   width: 10vw;
 }
@@ -119,11 +119,11 @@ nav > .wrapper #nav-div #nav-btn-div button:focus {
   text-align: right;
   margin-left: 1vw;
   font-size: 14pt;
+  transition: padding 0.5s ease-out;
   font-family: "Work Sans", sans-serif;
 }
 .content .side-bar .side-bar-element-wrapper .side-bar-elements:hover {
   padding-left: 1.5vw;
-  transition: padding ease 1s;
 }
 .content .main-content {
   font-family: "Work Sans", sans-serif;
@@ -137,7 +137,8 @@ nav > .wrapper #nav-div #nav-btn-div button:focus {
   color: #2596be;
   font-size: 4rem;
   align-content: left;
-  font-family: "Fredoka One", sans-serif;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 900;
   user-select: none;
 }
 .content .main-content .part .small-heading {
