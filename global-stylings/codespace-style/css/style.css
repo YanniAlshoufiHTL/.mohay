@@ -36,12 +36,12 @@ main.wrapper {
   box-sizing: border-box;
   border: 4px solid #2596be;
   border-radius: 13px;
-  background-color: #00000050;
+  background-color: rgba(0, 0, 0, 0.3137254902);
   transition: background filter 0.1s;
   cursor: pointer;
 }
 #top-bar-wrapper #menu-wrapper .menu-element:hover {
-  background-color: #000000ff;
+  background-color: black;
 }
 #top-bar-wrapper #menu-wrapper .menu-element:active {
   filter: brightness(0.8);
