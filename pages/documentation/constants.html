@@ -1,62 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./../../global-stylings/documentation-style/CSS/styles.css" />
-    <title>Constants | Documentation</title>
-</head>
-<body>
-    <nav>
-        <link rel="stylesheet" href="/global-stylings/css/nav-styling.css" />
-        <div class="wrapper">
-            <a id="logo-link" href="/">.mohay</a>
-            <div id="nav-div">
-                <a href="/pages/documentation/documentation.html">Documentation</a>
-                <a href="/pages/about-us.html">About Us</a>
-                <div id="nav-btn-div">
-                    <button id="nav-codespace-btn" class="codespace-btn">Codespace</button>
-                </div>
-            </div>
-        </div>
-    </nav>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../../global-stylings/css/style.css" />
+		<link rel="stylesheet" href="../../global-stylings/documentation-style/CSS/styles.css" />
 
+		<script type="module" src="../../js/nav.js" defer></script>
+		<script type="module" src="../../js/documentation-aside.js" defer></script>
 
-    <div class="content">
-        <div class="side-bar">
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements"href="./variables.html">Varibles</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./Constants.html">Constants</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./point.html">Points</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./shapes.html">Shapes</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./lines.html">Lines</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./comments.html">Comments</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./vector.html">Vectors</a></li>
-        </div>
+		<title>Constants | Documentation</title>
+	</head>
+	<body>
+		<nav-bar></nav-bar>
 
-        <div class="main-content">
-            <div class="heading">Constants</div>
-            <div class="part">
-                <p class="small-heading">Declaration</p>
-                <hr class="text-break" />
-                <p class="text">
-                    Constants are Declared by using the "wow" keyword.
-                </p>
-                <p class="text">
-                    After "wow" follows the constants name.
-                </p>
-                <p class="text">
-                    Afterwards you place a "=" with the value you want to asign.
-                </p>
-                <hr class="text-break" />
-                <div class="code-example-box">
-                    <p class="code-example-heading">Example</p>
-                    <div class="code-example">
-                        <p class="code">wow a = point 3 3</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
+		<div class="content">
+			<documentation-aside></documentation-aside>
+
+			<div class="content">
+				<div class="main-content">
+					<div class="heading">Constants</div>
+					<div class="part">
+						<p class="small-heading">Declaration</p>
+						<hr class="text-break" />
+						<p class="text">To declare a constant you use the "wow" keyword.</p>
+						<p class="text">
+							Constants are similar to variables, but their value can't be changed .
+						</p>
+						<hr class="text-break" />
+						<p class="small-heading">Naming Convension</p>
+						<p class="text">
+							Constant names should only use upper-case letters and underscores.
+						</p>
+						<hr class="text-break" />
+						<div class="code-example-box">
+							<p class="code-example-heading">Example</p>
+							<div class="code-example">
+								<p class="code">wow E = 2.72</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

@@ -1,66 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./../../global-stylings/documentation-style/CSS/styles.css" />
-    <title>Lines | Documentation</title>
-</head>
-<body>
-    <nav>
-        <link rel="stylesheet" href="/global-stylings/css/nav-styling.css" />
-        <div class="wrapper">
-            <a id="logo-link" href="/">.mohay</a>
-            <div id="nav-div">
-                <a href="/pages/documentation/documentation.html">Documentation</a>
-                <a href="/pages/about-us.html">About Us</a>
-                <div id="nav-btn-div">
-                    <button id="nav-codespace-btn" class="codespace-btn">Codespace</button>
-                </div>
-            </div>
-        </div>
-    </nav>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../../global-stylings/css/style.css" />
+		<link rel="stylesheet" href="./../../global-stylings/documentation-style/CSS/styles.css" />
 
+		<script type="module" src="../../js/nav.js" defer></script>
+		<script type="module" src="../../js/documentation-aside.js" defer></script>
 
-    <div class="content">
-        <div class="side-bar">
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements"href="./variables.html">Varibles</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./Constants.html">Constants</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./point.html">Points</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./shapes.html">Shapes</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./lines.html">Lines</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./comments.html">Comments</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./vector.html">Vectors</a></li>
-        </div>
+		<title>Lines | Documentation</title>
+	</head>
+	<body>
+		<nav-bar></nav-bar>
 
-        <div class="main-content">
-            <div class="heading">Vectors</div>
-            <div class="part">
-                <p class="small-heading">Declaration</p>
-                <hr class="text-break" />
-                <p class="text">
-                    Vectors are declared by using the "vector" keyword.
-                </p>
-                <p class="text">
-                    Afterwards you need to enter two <a href="./point.html" class="text-link">points</a>.
-                </p>
-                <p class="text">
-                    The difference between a <a href="./lines.html" class="text-link">line</a> and a vector is that the vector is displayed with an arrow at the last <a href="./point.html" class="text-link">point</a>.
-                </p>
-                <p class="text">
-                    In the example below the arrowhead would appear at the <a href="./point.html" class="text-link">point</a> (100, 2)
-                </p>
-                <hr class="text-break" />
-                <div class="code-example-box">
-                    <p class="code-example-heading">Example</p>
-                    <div class="code-example">
-                        <p class="code">var v = vector (3, 4) (100, 2)</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+		<div class="content">
+			<documentation-aside></documentation-aside>
 
-</body>
+			<div class="main-content">
+				<div class="heading">Vectors</div>
+				<div class="part">
+					<p class="small-heading">Declaration</p>
+					<hr class="text-break" />
+					<p class="text">Vectors are arrows. These can be used using the 'vector' keyword.</p>
+					<p class="text">
+						Afterwards you need to enter two
+						<a href="./point.html" class="text-link">points</a>.
+					</p>
+					<p class="text">
+						The vector's arrow goes from
+						<a href="./point.html" class="text-link">point</a> 1 to
+						<a href="./point.html" class="text-link">point</a> 2.
+					</p>
+					<p class="text">
+						In the example below the arrow head would appear at the
+						<a href="./point.html" class="text-link">point</a> (100, 2)
+					</p>
+					<hr class="text-break" />
+					<div class="code-example-box">
+						<p class="code-example-heading">Example</p>
+						<div class="code-example">
+							<p class="code">vector (3, 4) (100, 2)</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

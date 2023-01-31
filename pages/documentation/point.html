@@ -1,59 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./../../global-stylings/documentation-style/CSS/styles.css" />
-    <title>Point | Documentation</title>
-</head>
-<body>
-    <nav>
-        <link rel="stylesheet" href="/global-stylings/css/nav-styling.css" />
-        <div class="wrapper">
-            <a id="logo-link" href="/">.mohay</a>
-            <div id="nav-div">
-                <a href="/pages/documentation/documentation.html">Documentation</a>
-                <a href="/pages/about-us.html">About Us</a>
-                <div id="nav-btn-div">
-                    <button id="nav-codespace-btn" class="codespace-btn">Codespace</button>
-                </div>
-            </div>
-        </div>
-    </nav>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../../global-stylings/css/style.css" />
+		<link rel="stylesheet" href="./../../global-stylings/documentation-style/CSS/styles.css" />
 
+		<script type="module" src="../../js/nav.js" defer></script>
+		<script type="module" src="../../js/documentation-aside.js" defer></script>
 
-    <div class="content">
-        <div class="side-bar">
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements"href="./variables.html">Varibles</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./Constants.html">Constants</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./point.html">Points</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./shapes.html">Shapes</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./lines.html">Lines</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./comments.html">Comments</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./vector.html">Vectors</a></li>
-        </div>
+		<title>Point | Documentation</title>
+	</head>
+	<body>
+		<nav-bar></nav-bar>
 
-        <div class="main-content">
-            <div class="heading">Points</div>
-            <div class="part">
-                <p class="small-heading">Using Points</p>
-                <hr class="text-break" />
-                <p class="text">
-                    Points are used as values to enter to Rectangles or Circles to define their starting point
-                </p>
-                <p class="text">
-                    A point can be created by using the "point" keyword followed by x and y cordinates in pixels.
-                </p>
-                <hr class="text-break" />
-                <div class="code-example-box">
-                    <p class="code-example-heading">Example</p>
-                    <div class="code-example">
-                        <p class="code">var p = point 1 1</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
+		<div class="content">
+			<documentation-aside></documentation-aside>
+
+			<div class="main-content">
+				<div class="heading">Points</div>
+				<div class="part">
+					<p class="small-heading">Definition</p>
+					<hr class="text-break" />
+					<p class="text">A point is a two-dimentional dot that doesn't get displayed.</p>
+					<p class="small-heading">Usage</p>
+					<hr class="text-break" />
+					<p class="text">
+						Because of their importance in
+						<a href="../about-us.html" class="text-link">.mohay</a>, points have a special
+						syntax. To create one, type in two brackets with the x and y values inside of them,
+						separated by a comma.
+					</p>
+					<div class="code-example-box">
+						<p class="code-example-heading">Example</p>
+						<div class="code-example">
+							<p class="code">.p = (1, 1)</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

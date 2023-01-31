@@ -1,4 +1,4 @@
-class NavBar extends HTMLElement {
+class Aside extends HTMLElement {
 	constructor() {
 		super();
 		this.innerHTML = `<nav>
@@ -16,4 +16,4 @@ class NavBar extends HTMLElement {
   </nav>`;
 	}
 }
-window.customElements.define('nav-bar', NavBar);
+window.customElements.define('nav-bar', Aside);

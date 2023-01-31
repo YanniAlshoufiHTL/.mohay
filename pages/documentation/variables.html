@@ -1,58 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./../../global-stylings/documentation-style/CSS/styles.css" />
-    <title>Variables | Documentation</title>
-</head>
-<body>
-    <nav>
-        <link rel="stylesheet" href="/global-stylings/css/nav-styling.css" />
-        <div class="wrapper">
-            <a id="logo-link" href="/">.mohay</a>
-            <div id="nav-div">
-                <a href="/pages/documentation/documentation.html">Documentation</a>
-                <a href="/pages/about-us.html">About Us</a>
-                <div id="nav-btn-div">
-                    <button id="nav-codespace-btn" class="codespace-btn">Codespace</button>
-                </div>
-            </div>
-        </div>
-    </nav>
-    
-    <div class="content">
-        <div class="side-bar">
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements"href="./variables.html">Varibles</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./Constants.html">Constants</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./point.html">Points</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./shapes.html">Shapes</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./lines.html">Lines</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./comments.html">Comments</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./vector.html">Vectors</a></li>
-        </div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../../global-stylings/css/style.css" />
+		<link rel="stylesheet" href="./../../global-stylings/documentation-style/CSS/styles.css" />
 
-        <div class="main-content">
-            <div class="heading">Variables</div>
-            <div class="part">
-                <p class="small-heading">Declaration</p>
-                <hr class="text-break" />
-                <p class="text">
-                    Variables are declared with the "var" keyword.
-                </p>
-                <p class="text">
-                    Afterwards follows the variablename.
-                </p>
-                <hr class="text-break" />
-                <div class="code-example-box">
-                    <p class="code-example-heading">Example</p>
-                    <div class="code-example">
-                        <p class="code">var variable = 3</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
+		<script type="module" src="../../js/nav.js" defer></script>
+		<script type="module" src="../../js/documentation-aside.js" defer></script>
+
+		<title>Variables | Documentation</title>
+	</head>
+	<body>
+		<nav-bar></nav-bar>
+
+		<div class="content">
+			<documentation-aside></documentation-aside>
+
+			<div class="main-content">
+				<div class="heading">Variables</div>
+				<div class="part">
+					<p class="small-heading">Declaration</p>
+					<hr class="text-break" />
+					<p class="text">
+						Variables are declared with a period, followed by the variable's name.
+					</p>
+					<hr class="text-break" />
+					<p class="small-heading">Naming Convension</p>
+					<p class="text">Variables names should be camel case.</p>
+					<p class="text">
+						Meaning, you start with a lower-case letter and for each word, you start with an
+						upper-case letter. The first character in the name can only be a letter. The rest
+						of the name is allowed to contain numbers too.
+					</p>
+					<hr class="text-break" />
+					<div class="code-example-box">
+						<p class="code-example-heading">Example</p>
+						<div class="code-example">
+							<p class="code">.userAge1 = 16</p>
+							<p class="code">.userAge2 = 17</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

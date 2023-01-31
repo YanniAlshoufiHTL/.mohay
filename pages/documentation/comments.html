@@ -1,61 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./../../global-stylings/documentation-style/CSS/styles.css" />
-    <title>Comments | Documentation</title>
-</head>
-<body>
-    <nav>
-        <link rel="stylesheet" href="/global-stylings/css/nav-styling.css" />
-        <div class="wrapper">
-            <a id="logo-link" href="/">.mohay</a>
-            <div id="nav-div">
-                <a href="/pages/documentation/documentation.html">Documentation</a>
-                <a href="/pages/about-us.html">About Us</a>
-                <div id="nav-btn-div">
-                    <button id="nav-codespace-btn" class="codespace-btn">Codespace</button>
-                </div>
-            </div>
-        </div>
-    </nav>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../../global-stylings/css/style.css" />
+		<link rel="stylesheet" href="./../../global-stylings/documentation-style/CSS/styles.css" />
 
+		<script type="module" src="../../js/nav.js" defer></script>
+		<script type="module" src="../../js/documentation-aside.js" defer></script>
 
-    <div class="content">
-        <div class="side-bar">
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements"href="./variables.html">Varibles</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./Constants.html">Constants</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./point.html">Points</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./shapes.html">Shapes</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./lines.html">Lines</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./comments.html">Comments</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./vector.html">Vectors</a></li>
-        </div>
+		<title>Comments | Documentation</title>
+	</head>
+	<body>
+		<nav-bar></nav-bar>
 
-        <div class="main-content">
-            <div class="heading">Comments</div>
-            <div class="part">
-                <p class="small-heading">How to use</p>
-                <hr class="text-break" />
-                <p class="text">
-                    There are 2 different ways of commenting code.
-                </p>
-                    <ol>
-                        <li class="text">/* Code */</li>
-                        <li class="text">// Code</li>
-                    </ol>
-                <hr class="text-break" />
-                <div class="code-example-box">
-                    <p class="code-example-heading">Example</p>
-                    <div class="code-example">
-                        <p class="code">/* wow a = point 3 3 */ </p>
-                        <p class="code">// wow a = point 3 3</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
+		<div class="content">
+			<documentation-aside></documentation-aside>
+
+			<div class="main-content">
+				<div class="heading">Comments</div>
+				<div class="part">
+					<p class="small-heading">How to use</p>
+					<hr class="text-break" />
+					<p class="text">There are 2 different ways of commenting code.</p>
+					<ol>
+						<li class="text">/* Code */</li>
+						<li class="text">// Code</li>
+					</ol>
+					<hr class="text-break" />
+					<div class="code-example-box">
+						<p class="code-example-heading">Example</p>
+						<div class="code-example">
+							<p class="code">/* wow a = point 3 3 */</p>
+							<p class="code">// wow a = point 3 3</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

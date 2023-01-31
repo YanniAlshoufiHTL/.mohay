@@ -4,34 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="../../global-stylings/css/style.css" />
     <link rel="stylesheet" href="./../../global-stylings/documentation-style/CSS/styles.css" />
+    
+		<script type="module" src="../../js/nav.js" defer></script>
+		<script type="module" src="../../js/documentation-aside.js" defer></script>
+
     <title>Shapes | Documentation</title>
 </head>
 <body>
-    <nav>
-        <link rel="stylesheet" href="/global-stylings/css/nav-styling.css" />
-        <div class="wrapper">
-          <a id="logo-link" href="/">.mohay</a>
-          <div id="nav-div">
-            <a href="/pages/documentation/documentation.html">Documentation</a>
-            <a href="/pages/about-us.html">About Us</a>
-            <div id="nav-btn-div">
-              <button id="nav-codespace-btn" class="codespace-btn">Codespace</button>
-            </div>
-          </div>
-        </div>
-      </nav>
+  <nav-bar></nav-bar>
 
     <div class="content">
-        <div class="side-bar">
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements"href="./variables.html">Varibles</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./Constants.html">Constants</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./point.html">Points</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./shapes.html">Shapes</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./lines.html">Lines</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./comments.html">Comments</a></li>
-            <li class="side-bar-element-wrapper"><a class="side-bar-elements" href="./vector.html">Vectors</a></li>
-        </div>
+        <documentation-aside></documentation-aside>
 
         <div class="main-content">
             <div class="heading">Shapes</div>
@@ -48,7 +33,7 @@
                 <div class="code-example-box">
                     <p class="code-example-heading">Example</p>
                     <div class="code-example">
-                        <p class="code">var r = rect (0, 0) 10 20</p>
+                        <p class="code">.r = rect (0, 0) 10 20</p>
                     </div>
                 </div>
             </div>
@@ -66,7 +51,7 @@
                 <div class="code-example-box">
                     <p class="code-example-heading">Example</p>
                     <div class="code-example">
-                        <p class="code">var c = circle (100, 100) 20</p>
+                        <p class="code">.c = circle (100, 100) 20</p>
                     </div>
                 </div>
             </div>
@@ -87,7 +72,7 @@
                 <div class="code-example-box">
                     <p class="code-example-heading">Example</p>
                     <div class="code-example">
-                        <p class="code">var a = arc (3, 3) 10 20° 30°</p>
+                        <p class="code">.a = arc (3, 3) 10 20° 30°</p>
                     </div>
                 </div>
             </div>
@@ -108,7 +93,7 @@
                 <div class="code-example-box">
                     <p class="code-example-heading">Example</p>
                     <div class="code-example">
-                        <p class="code">var t = triangle (3, 3) (9, 5) (100, 53)</p>
+                        <p class="code">.t = triangle (3, 3) (9, 5) (100, 53)</p>
                     </div>
                 </div>
             </div>
@@ -132,8 +117,8 @@
                 <div class="code-example-box">
                     <p class="code-example-heading">Example</p>
                     <div class="code-example">
-                        <p class="code">var polygon1 = polygon (1, 1) 6 10 20°</p>
-                        <p class="code">var polygon2 = polygon (1, 1) (4, 10) (8, 16) (10, 100) (49, 28) (47, 19)</p>
+                        <p class="code">.polygon1 = polygon (1, 1) 6 10 20°</p>
+                        <p class="code">.polygon2 = polygon (1, 1) (4, 10) (8, 16) (10, 100) (49, 28) (47, 19)</p>
                     </div>
                 </div>
             </div>
