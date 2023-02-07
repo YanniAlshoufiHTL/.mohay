@@ -10,7 +10,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../styles/variables.scss';
+@import '../styles/global.scss';
 
 $ad-img-width: 100vw;
 $ad-img-height: calc(100vh - $nav-height);
@@ -18,9 +18,8 @@ $ad-img-height: calc(100vh - $nav-height);
 #bg-main-img {
   width: $ad-img-width;
   height: $ad-img-height;
-  object-fit: cover;
 
-  user-select: none;
+  object-fit: cover;
 }
 
 #homepage-overlay {
