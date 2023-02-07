@@ -1,0 +1,86 @@
+@import './variables.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: $bg-dark-color;
+  color: $fg-dark-color;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6a6b6b;
+  opacity: 0.1;
+}
+
+.wrapper {
+  position: relative;
+  left: 10vw;
+
+  width: 80vw;
+  height: 100%;
+}
+
+.codespace-btn {
+  padding: 1rem;
+
+  background-color: $primary-dark-color;
+  color: $fg-dark-color;
+
+  border-radius: 13px;
+  border: none;
+
+  font-size: 1.5rem;
+}
+
+main {
+  position: absolute;
+  z-index: 9;
+  top: $nav-height;
+}
+
+$ad-img-width: 100vw;
+$ad-img-height: calc(100vh - $nav-height);
+
+#bg-main-img {
+  width: $ad-img-width;
+  height: $ad-img-height;
+  object-fit: cover;
+
+  user-select: none;
+}
+
+#homepage-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  user-select: none;
+
+  width: $ad-img-width;
+  height: $ad-img-height;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+$first-query-width: 1200px;
+@media (max-width: $first-query-width) {
+  #logo-div {
+    font-size: calc($first-query-width / (100 / 4)) !important;
+  }
+
+  #nav-div {
+    width: 70% !important;
+  }
+}
