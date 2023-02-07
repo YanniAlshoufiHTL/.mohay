@@ -1,7 +1,6 @@
 <template>
-  <div>
-    <h1>Home</h1>
-  </div>
+  <img src="../assets/bg-main.jpg" alt="Background Image" id="bg-main-img" />
+  <div id="homepage-overlay"></div>
 </template>
 
 <script>
@@ -10,4 +9,30 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+@import '../styles/variables.scss';
+
+$ad-img-width: 100vw;
+$ad-img-height: calc(100vh - $nav-height);
+
+#bg-main-img {
+  width: $ad-img-width;
+  height: $ad-img-height;
+  object-fit: cover;
+
+  user-select: none;
+}
+
+#homepage-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  user-select: none;
+
+  width: $ad-img-width;
+  height: $ad-img-height;
+  background: rgba(0, 0, 0, 0.3);
+}
+</style>

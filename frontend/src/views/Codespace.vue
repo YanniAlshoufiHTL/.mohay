@@ -1,5 +1,5 @@
 <template>
-  <main class="wrapper">
+  <div id="codespace-wrapper">
     <div id="top-bar-wrapper">
       <div id="menu-wrapper">
         <div class="menu-element">File</div>
@@ -30,7 +30,7 @@
         </div>
       </div>
     </div>
-  </main>
+  </div>
 </template>
 
 <script>
@@ -50,9 +50,12 @@ $top-bar-elements-width: 750px;
 $bar-element-border-weight: 4px;
 
 $main-wrapper-width: 95vw;
-main.wrapper {
-  width: $main-wrapper-width;
+
+#codespace-wrapper {
+  position: relative;
   left: calc((100vw - $main-wrapper-width) / 2);
+
+  width: $main-wrapper-width;
 }
 
 #top-bar-wrapper {

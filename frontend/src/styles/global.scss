@@ -49,38 +49,3 @@ main {
   z-index: 9;
   top: $nav-height;
 }
-
-$ad-img-width: 100vw;
-$ad-img-height: calc(100vh - $nav-height);
-
-#bg-main-img {
-  width: $ad-img-width;
-  height: $ad-img-height;
-  object-fit: cover;
-
-  user-select: none;
-}
-
-#homepage-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  user-select: none;
-
-  width: $ad-img-width;
-  height: $ad-img-height;
-  background: rgba(0, 0, 0, 0.3);
-}
-
-$first-query-width: 1200px;
-@media (max-width: $first-query-width) {
-  #logo-div {
-    font-size: calc($first-query-width / (100 / 4)) !important;
-  }
-
-  #nav-div {
-    width: 70% !important;
-  }
-}

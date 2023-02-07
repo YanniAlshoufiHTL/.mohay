@@ -154,4 +154,15 @@ nav {
     width: 100%;
   }
 }
+
+$first-query-width: 1200px;
+@media (max-width: $first-query-width) {
+  #logo-div {
+    font-size: calc($first-query-width / (100 / 4)) !important;
+  }
+
+  #nav-div {
+    width: 70% !important;
+  }
+}
 </style>
