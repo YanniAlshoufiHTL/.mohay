@@ -3,7 +3,7 @@
     <div class="wrapper">
       <router-link id="logo-link" :to="{ name: 'Home' }">.mohay</router-link>
       <div id="nav-div">
-        <router-link class="nav-link" :to="{ name: 'Documentation' }">
+        <router-link class="nav-link" :to="{ name: 'Documentation', params: { id: 'Home' } }">
           Documentation
         </router-link>
         <router-link class="nav-link" :to="{ name: 'AboutUs' }"> About Us </router-link>

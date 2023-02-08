@@ -13,8 +13,13 @@ const routes = [
   },
   {
     path: '/documentation',
+    redirect: '/documentation/Home',
+  },
+  {
+    path: '/documentation/:id',
     name: 'Documentation',
     component: Documentation,
+    props: true,
   },
   {
     path: '/about-us',
