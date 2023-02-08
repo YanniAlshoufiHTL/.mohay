@@ -9,7 +9,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../styles/global.scss';
 
 $ad-img-width: 100vw;

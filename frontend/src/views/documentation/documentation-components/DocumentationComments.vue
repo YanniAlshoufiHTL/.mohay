@@ -4,8 +4,8 @@
 
 <script>
 export default {
-  name: 'AboutUs',
+  name: 'DocumentationComments',
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss"></style>
