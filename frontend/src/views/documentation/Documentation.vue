@@ -1,21 +1,43 @@
 <template>
   <div class="content">
     <SideBar />
-    <h1>{{ id }}</h1>
+    <component :is="currentComponent()" v-bind:component="currentComponent()"></component>
   </div>
 </template>
 
 <script>
 import SideBar from './SideBar.vue';
+import DocumentationComments from './documentation-components/DocumentationComments.vue';
+import DocumentationConstants from './documentation-components/DocumentationConstants.vue';
+import DocumentationLines from './documentation-components/DocumentationLines.vue';
+import DocumentationPoints from './documentation-components/DocumentationPoints.vue';
+import DocumentationShapes from './documentation-components/DocumentationShapes.vue';
+import DocumentationVariables from './documentation-components/DocumentationVariables.vue';
+import DocumentationVectors from './documentation-components/DocumentationVectors.vue';
 
 export default {
   props: ['id'],
+  data() {
+    return {
+      currentComponent: () =>
+        this.$store.state.documentationPages.find(e => e.name == this.id).component.name,
+    };
+  },
   name: 'Documentation',
-  components: { SideBar },
+  components: {
+    SideBar,
+    DocumentationComments,
+    DocumentationConstants,
+    DocumentationLines,
+    DocumentationPoints,
+    DocumentationShapes,
+    DocumentationVariables,
+    DocumentationVectors,
+  },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '../../styles/global.scss';
 
 body {
@@ -23,9 +45,8 @@ body {
 }
 
 .content {
-  position: fixed;
-  right: 0;
-
+  position: relative;
+  left: $aside-width;
   padding-top: calc($nav-height / 4);
 
   width: calc(100vw - $aside-width);
@@ -35,11 +56,6 @@ body {
   .main-content {
     width: 100%;
     font-family: $primary-font;
-  }
-
-  .footer-wrapper {
-    margin-top: calc($footer-height / 4);
-    transform: translateX(-$aside-width);
   }
 }
 
@@ -75,6 +91,10 @@ body {
 .text-break {
   margin: 1vw 0;
   width: 75vw;
+}
+
+.ordered-list {
+  list-style-position: inside;
 }
 
 .code-example-box {

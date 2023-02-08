@@ -11,12 +11,12 @@ export default createStore({
   state() {
     return {
       documentationPages: [
-        { name: 'Variables', component: DocumentationVariables },
+        { name: 'Comments', component: DocumentationComments },
         { name: 'Constants', component: DocumentationConstants },
+        { name: 'Lines', component: DocumentationLines },
         { name: 'Points', component: DocumentationPoints },
         { name: 'Shapes', component: DocumentationShapes },
-        { name: 'Lines', component: DocumentationLines },
-        { name: 'Comments', component: DocumentationComments },
+        { name: 'Variables', component: DocumentationVariables },
         { name: 'Vectors', component: DocumentationVectors },
       ],
     };
