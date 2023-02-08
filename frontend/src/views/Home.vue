@@ -13,7 +13,7 @@ export default {
 @import '../styles/global.scss';
 
 $ad-img-width: 100vw;
-$ad-img-height: calc(99vh - $nav-height);
+$ad-img-height: calc(99.5vh - $nav-height);
 
 #bg-main-img {
   width: $ad-img-width;
