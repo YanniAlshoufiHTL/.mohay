@@ -28,6 +28,8 @@ export default {
   top: $nav-height;
   left: 0;
 
+  z-index: 99;
+
   display: flex;
   flex-direction: column;
 

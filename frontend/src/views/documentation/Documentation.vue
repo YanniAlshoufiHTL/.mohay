@@ -1,12 +1,15 @@
 <template>
-  <div class="content">
+  <div>
     <SideBar />
-    <component :is="currentComponent()" v-bind:component="currentComponent()"></component>
+    <component :is="currentComponent()" v-bind:component="currentComponent()" />
+    <Footer />
   </div>
 </template>
 
 <script>
 import SideBar from './SideBar.vue';
+import Footer from '../../components/Footer.vue';
+import DocumentationHome from './documentation-components/DocumentationHome.vue';
 import DocumentationComments from './documentation-components/DocumentationComments.vue';
 import DocumentationConstants from './documentation-components/DocumentationConstants.vue';
 import DocumentationLines from './documentation-components/DocumentationLines.vue';
@@ -26,6 +29,8 @@ export default {
   name: 'Documentation',
   components: {
     SideBar,
+    Footer,
+    DocumentationHome,
     DocumentationComments,
     DocumentationConstants,
     DocumentationLines,
@@ -54,9 +59,19 @@ body {
   background-color: $bg-dark-color;
 
   .main-content {
-    width: 100%;
+    width: 90%;
     font-family: $primary-font;
   }
+}
+
+.heading,
+.small-heading,
+.text,
+.text-link,
+.text-break,
+.ordered-list,
+.code-example-box {
+  margin-bottom: 20px;
 }
 
 .heading {
@@ -90,7 +105,6 @@ body {
 
 .text-break {
   margin: 1vw 0;
-  width: 75vw;
 }
 
 .ordered-list {
@@ -101,7 +115,7 @@ body {
   background-color: $nav-bg-dark;
   border-radius: 6px;
 
-  padding: 0.7vw;
+  padding: 15px;
 
   .code-example-heading {
     font-size: 22pt;
