@@ -33,10 +33,6 @@ $ad-img-height: calc(99.5vh - $nav-height);
   width: $ad-img-width;
   height: $ad-img-height;
   background: rgb(255, 255, 255);
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(0, 0, 0, 0.7861519607843137) 100%
-  );
+  background: radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
 }
 </style>
