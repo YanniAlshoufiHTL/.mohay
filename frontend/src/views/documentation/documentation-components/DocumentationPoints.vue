@@ -12,9 +12,9 @@
 
         <p class="text">
           Because of their importance in
-          <a href="../../index.html" class="text-link">.mohay</a>, points have a special
-          syntax. To create one, type in two brackets with the x and y values inside of them,
-          separated by a comma.
+          <router-link class="text-link" :to="{ name: 'Home' }">.mohay</router-link>, points
+          have a special syntax. To create one, type in two brackets with the x and y values
+          inside of them, separated by a comma.
         </p>
 
         <div class="code-example-box">
@@ -29,8 +29,13 @@
 </template>
 
 <script>
+import Home from '@/views/Home.vue';
+
 export default {
   name: 'DocumentationPoints',
+  components: {
+    Home,
+  },
 };
 </script>
 

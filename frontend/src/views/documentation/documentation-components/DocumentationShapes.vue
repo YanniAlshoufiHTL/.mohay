@@ -9,8 +9,13 @@
         <p class="text">To create rectangles, you use the "rect" keyword.</p>
         <p class="text">
           After 'rect' you need to add the starting
-          <a href="./point.html" class="text-link">point</a> and the width & height of the
-          rectangle.
+          <router-link
+            class="text-link"
+            :to="{ name: 'Documentation', params: { id: 'Points' } }"
+          >
+            point
+          </router-link>
+          and the width & height of the rectangle.
         </p>
 
         <div class="code-example-box">
@@ -30,8 +35,14 @@
           of it I want to see on swami figure out intuitively what time what's happening
         </p>
         <p class="text">
-          After rect you need to add a <a href="./point.html" class="text-link">point</a> and a
-          radius.
+          After rect you need to add a
+          <router-link
+            class="text-link"
+            :to="{ name: 'Documentation', params: { id: 'Points' } }"
+          >
+            point
+          </router-link>
+          and a radius.
         </p>
 
         <div class="code-example-box">
@@ -67,7 +78,13 @@
         <p class="text">Triangles are created by using the "triangle" keyword.</p>
         <p class="text">
           After triangle you need to add three
-          <a href="./point.html" class="text-link">points</a>.
+          <router-link
+            class="text-link"
+            :to="{ name: 'Documentation', params: { id: 'Points' } }"
+          >
+            points
+          </router-link>
+          .
         </p>
         <p class="text">Those will be the corners of your triangle</p>
 
@@ -89,12 +106,24 @@
         <div>
           <ul>
             <li class="text">
-              Either you enter a middle<a href="./point.html" class="text-link">point</a>,
-              number of corners, radius between middlepoint and corners and the rotation.
+              Either you enter a middle
+              <router-link
+                class="text-link"
+                :to="{ name: 'Documentation', params: { id: 'Points' } }"
+              >
+                point
+              </router-link>
+              , number of corners, radius between middlepoint and corners and the rotation.
             </li>
             <li class="text">
-              Or you just enter as many <a href="./point.html" class="text-link">points</a> as
-              you like.
+              Or you just enter as many
+              <router-link
+                class="text-link"
+                :to="{ name: 'Documentation', params: { id: 'Points' } }"
+              >
+                points
+              </router-link>
+              as you like.
             </li>
           </ul>
         </div>
@@ -114,8 +143,13 @@
 </template>
 
 <script>
+import DocumentationPoints from './DocumentationPoints.vue';
+
 export default {
   name: 'DocumentationShapes',
+  components: {
+    DocumentationPoints,
+  },
 };
 </script>
 

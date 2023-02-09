@@ -9,16 +9,39 @@
         <p class="text">Vectors are arrows. These can be used using the 'vector' keyword.</p>
         <p class="text">
           Afterwards you need to enter two
-          <a href="./point.html" class="text-link">points</a>.
+          <router-link
+            class="text-link"
+            :to="{ name: 'Documentation', params: { id: 'Points' } }"
+          >
+            points
+          </router-link>
         </p>
         <p class="text">
           The vector's arrow goes from
-          <a href="./point.html" class="text-link">point</a> 1 to
-          <a href="./point.html" class="text-link">point</a> 2.
+          <router-link
+            class="text-link"
+            :to="{ name: 'Documentation', params: { id: 'Points' } }"
+          >
+            point
+          </router-link>
+          1 to
+          <router-link
+            class="text-link"
+            :to="{ name: 'Documentation', params: { id: 'Points' } }"
+          >
+            point
+          </router-link>
+          2.
         </p>
         <p class="text">
           In the example below the arrow head would appear at the
-          <a href="./point.html" class="text-link">point</a> (100, 2)
+          <router-link
+            class="text-link"
+            :to="{ name: 'Documentation', params: { id: 'Points' } }"
+          >
+            point
+          </router-link>
+          (100, 2)
         </p>
 
         <div class="code-example-box">
@@ -33,8 +56,13 @@
 </template>
 
 <script>
+import DocumentationPoints from './DocumentationPoints.vue';
+
 export default {
   name: 'DocumentationVectors',
+  components: {
+    DocumentationPoints,
+  },
 };
 </script>
 

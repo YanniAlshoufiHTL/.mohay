@@ -107,7 +107,8 @@ body {
   margin: 1vw 0;
 }
 
-.ordered-list {
+ol,
+ul {
   list-style-position: inside;
 }
 
