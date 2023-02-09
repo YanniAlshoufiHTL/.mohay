@@ -14,3 +14,7 @@ Yanni Alshoufi: Main page essence milestone almost done
 
 Moritz Bernhofer: Merged Moritz-branch to main because he didn't know
 branches can be updated from main.
+
+### --> 09.02.23
+
+Yanni Alshoufi: Fully Implemented View with a Better Structure
