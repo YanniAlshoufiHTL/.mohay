@@ -4,7 +4,7 @@
 
 ## Participants
 
-This Project is being fully developed—Frontend and Backend—by Yane Al Shoufi, Moriz Bernhofer and Luca Haas.
+This Project is being fully developed—Frontend and Backend—by Yane Al Shoufi, Moritz Bernhofer and Luca Haas.
 
 ## Idea
 
