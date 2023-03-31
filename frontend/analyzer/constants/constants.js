@@ -1,14 +1,10 @@
-class constant{
-    constructor(name, value, line){
-        this.name = name;
+class constant {
+    static InitConstant(value, line, scopestart, scopeend) {
+        this.type = "constant";
         this.value = value;
-        this.type = "constant";
         this.line = line;
-    }
-    constructor(name, line){
-        this.name = name;
-        this.value = null;
-        this.type = "constant";
-        this.line = line;
+        this.scopestart = scopestart;
+        this.scopeend = scopeend;
+        return this;
     }
 }
