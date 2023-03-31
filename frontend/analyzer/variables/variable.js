@@ -18,8 +18,8 @@ class variable {
         this.scopeend = scopeend;
         return this;
     }
-    static InitWithPoint(point, line, scopestart, scopeend) {
-        this.name = null;
+    static InitWithPoint(name, point, line, scopestart, scopeend) {
+        this.name = name;
         this.value = point;
         this.type = "variable";
         this.contain = "point";
@@ -28,8 +28,8 @@ class variable {
         this.scopeend = scopeend;
         return this;
     }
-    static InitWithVector(vector, line, scopestart, scopeend) {
-        this.name = null;
+    static InitWithVector(name, vector, line, scopestart, scopeend) {
+        this.name = name;
         this.value = vector;
         this.type = "variable";
         this.contain = "vector";
@@ -41,7 +41,7 @@ class variable {
     declare(value, type = null) {
         this.value = value;
         if (type !== null) {
-            this.contain = type;
+            this.contain = contain;
         }
     }
 }
