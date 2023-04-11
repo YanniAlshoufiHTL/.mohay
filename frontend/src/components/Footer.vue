@@ -18,14 +18,14 @@ export default {
   left: 0;
   z-index: 100;
 
-  margin-top: calc($footer-height / 2);
+  margin-top: calc(var(--footer-height) / 2);
 
   width: 100vw;
-  height: $footer-height;
+  height: var(--footer-height);
 
-  background-color: $nav-bg-dark;
+  background-color: var(--nav-bg);
 
-  box-shadow: 0 -30px 50px 20px black;
+  box-shadow: 0 -30px 50px 20px var(--nav-bg);
 
   footer {
     position: inherit;

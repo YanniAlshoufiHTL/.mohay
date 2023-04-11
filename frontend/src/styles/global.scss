@@ -1,4 +1,4 @@
-@import './variables.scss';
+@use './variables.scss' as *;
 
 * {
   margin: 0;
@@ -6,8 +6,8 @@
 }
 
 body {
-  background-color: $bg-dark-color;
-  color: $fg-dark-color;
+  background-color: var(--bg-color);
+  color: var(--fg-color);
 
   overflow-x: hidden;
 }
@@ -37,8 +37,8 @@ body {
 .codespace-btn {
   padding: 1rem;
 
-  background-color: $primary-dark-color;
-  color: $fg-dark-color;
+  background-color: var(--primary-color);
+  color: var(--fg-color);
 
   border-radius: 13px;
   border: none;
@@ -49,5 +49,5 @@ body {
 main {
   position: absolute;
   z-index: 9;
-  top: $nav-height;
+  top: var(--nav-height);
 }

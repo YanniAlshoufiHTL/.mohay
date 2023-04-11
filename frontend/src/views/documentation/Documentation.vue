@@ -46,21 +46,21 @@ export default {
 @import '../../styles/global.scss';
 
 body {
-  background-color: $bg-dark-color;
+  background-color: var(--bg-color);
 }
 
 .content {
   position: relative;
-  left: $aside-width;
-  padding-top: calc($nav-height / 4);
+  left: var(--aside-width);
+  padding-top: calc(var(--nav-height) / 4);
 
-  width: calc(100vw - $aside-width);
+  width: calc(100vw - var(--aside-width));
 
-  background-color: $bg-dark-color;
+  background-color: var(--bg-color);
 
   .main-content {
     width: 90%;
-    font-family: $primary-font;
+    font-family: var(--primary-font);
   }
 }
 
@@ -78,21 +78,21 @@ body {
   align-content: left;
 
   font-size: 4rem;
-  font-family: $primary-font;
+  font-family: var(--headings-font);
 
-  color: $primary-dark-color;
+  color: var(--primary-color);
 
   user-select: none;
 }
 
 .small-heading {
-  color: $fg-dark-color;
+  color: var(--fg-color);
   font-size: 25pt;
   font-weight: 700;
 }
 
 .text {
-  color: $fg-dark-color;
+  color: var(--fg-color);
   font-size: 16pt;
   font-weight: 500;
   padding-bottom: 15px;
@@ -100,7 +100,7 @@ body {
 
 .text-link {
   text-decoration: none;
-  color: $primary-dark-color;
+  color: var(--primary-color);
 }
 
 .text-break {
@@ -113,23 +113,23 @@ ul {
 }
 
 .code-example-box {
-  background-color: $nav-bg-dark;
+  background-color: var(--nav-bg);
   border-radius: 6px;
 
   padding: 15px;
 
   .code-example-heading {
     font-size: 22pt;
-    color: $fg-dark-color;
+    color: var(--fg-color);
     padding: 0 0.2vw;
     margin: 2.5vh 0;
   }
 
   .code-example {
     padding: 2vw;
-    background-color: $bg-dark-color;
+    background-color: bg-color;
     .code {
-      color: $fg-dark-color;
+      color: var(--fg-color);
       font-size: 16pt;
       margin: 10px;
     }

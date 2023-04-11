@@ -60,14 +60,14 @@ $main-wrapper-width: 95vw;
 
 #top-bar-wrapper {
   position: relative;
-  top: calc($nav-height / 10);
+  top: calc(var(--nav-height) / 10);
 
   display: flex;
   width: 100%;
   height: $top-bar-height;
 
-  background-color: $bg-dark-color;
-  font-family: $primary-font;
+  background-color: var(--bg-color);
+  font-family: var(--primary-font);
 
   #menu-wrapper {
     display: flex;
@@ -79,7 +79,7 @@ $main-wrapper-width: 95vw;
 
     font-size: 1.2rem;
 
-    color: $primary-dark-color;
+    color: var(--primary-color);
 
     .menu-element {
       min-width: 110px;
@@ -90,7 +90,7 @@ $main-wrapper-width: 95vw;
       user-select: none;
       box-sizing: border-box;
 
-      border: $bar-element-border-weight solid $primary-dark-color;
+      border: $bar-element-border-weight solid var(--primary-color);
       border-radius: 13px;
 
       background-color: #00000050;
@@ -117,7 +117,7 @@ $main-wrapper-width: 95vw;
       box-sizing: border-box;
 
       border-radius: 50%;
-      border: $bar-element-border-weight solid $primary-dark-color;
+      border: $bar-element-border-weight solid var(--primary-color);
       height: calc($top-bar-height * 0.9);
       width: calc($top-bar-height * 0.9);
     }
@@ -133,12 +133,12 @@ $frame-gap: 30px;
   gap: $frame-gap;
 
   height: calc(
-    100vh - $nav-height - $top-bar-height - (100vw - $main-wrapper-width) / 2 -
-      calc($nav-height / 10) - (100vw - $main-wrapper-width) / 4
+    100vh - var(--nav-height) - $top-bar-height - (100vw - $main-wrapper-width) / 2 -
+      calc(var(--nav-height) / 10) - (100vw - $main-wrapper-width) / 4
   );
   width: $main-wrapper-width;
 
-  background-color: $bg-dark-color;
+  background-color: var(--bg-color);
 
   #non-editor-frame-section {
     flex: 1;
@@ -149,7 +149,7 @@ $frame-gap: 30px;
 
     > * {
       width: 100%;
-      background-color: $nav-bg-dark;
+      background-color: var(--nav-bg);
     }
 
     #frame-run-window {
@@ -168,7 +168,7 @@ $frame-gap: 30px;
 
     #frame-editor {
       flex: 1;
-      background-color: $nav-bg-dark;
+      background-color: var(--nav-bg);
 
       font-family: monospace;
       font-size: 1rem;
