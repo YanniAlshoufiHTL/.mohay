@@ -19,6 +19,6 @@ export default {
 @import './styles/global.scss';
 
 * {
-  font-family: $primary-font;
+  font-family: --primary-font;
 }
 </style>
