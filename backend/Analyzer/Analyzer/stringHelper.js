@@ -3,3 +3,10 @@ function getStringBetween(str, startChar, endChar) {
     const match = regex.exec(str);
     return match ? match[1] : null;
 }
+function getRestOfString(str, substr) {
+    const substrIndex = str.indexOf(substr);
+    if (substrIndex === -1) {
+        return "";
+    }
+    return str.substring(substrIndex + substr.length);
+}

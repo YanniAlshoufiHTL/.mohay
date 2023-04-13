@@ -1,36 +1,48 @@
-let globalfilename = null;
-let variables = [];
-let constants = [];
-let shapes = [];
-let errors = [];
+let globalfilename;
+let variables;
+let constants;
+let shapes;
+let errors;
 
-class Analyzer {
-    constructor() {
-        this.analyzer = new Analyzer();
-    }
-    analyze(code, filename) {
-        let line = 0;
-        globalfilename = filename;
+function analyze(code, filename) {
+    let codeline = 0;
+    globalfilename = filename;
+    variables = [];
+    constants = [];
+    shapes = [];
+    errors = [];
 
-        // analyze the code
-        for (line of code) {
-            // analyze the line
-            line.trim();
-            if (line.startsWith(".")) {
-                //datatype
-                let error = checkSyntaxVariable(line);
-                if (error != null) {
-                    errors.push(
-                        error + "\n" + "at line ${line}" + "in file ${globalfilename}"
-                    );
-                } else {
-                    let name = getStringBetween(line, ".", "=");
-                    let value = getStringBetween(line, "=", "\n");
-                    let variable = new variable(name, value);
-                }
+    // analyze the code
+    for (line of code.split("\n")) {
+        // analyze the line
+        line.trim();
+        console.log(line);
+        if (line.startsWith(".")) {
+            //datatype
+            let error = checkSyntaxVariable(line);
+            if (error != null) {
+                errors.push(
+                    new String(
+                        error +
+                            "at line " +
+                            codeline +
+                            "in file " +
+                            globalfilename
+                    )
+                );
+            } else {
+                let name = getStringBetween(line, ".", "=");
+                let value = getRestOfString(line, "rect");
+                let rect = new variable(name, value);
+                variables.push(rect);
             }
-            line++;
         }
-        return errors.length > 0 ? errors : "analyzed successfully";
+        codeline++;
     }
+    return errors.length > 0 ? errors : "analyzed successfully";
+}
+function sendDivContent() {
+    var divContent = document.getElementById("myDiv").innerHTML;
+    let data = analyze(divContent, "test.mohay");
+    console.log(data);
 }
