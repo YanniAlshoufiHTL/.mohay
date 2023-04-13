@@ -19,9 +19,9 @@ class rect {
             errors.push(
                 error + "\n" + "at line ${line}" + "in file ${globalfilename}"
             );
-        }
-        else{
-
+        } else {
+            this.sizeX = new int(size[0]);
+            this.sizeY = new int(size[1]);
         }
     }
 }
