@@ -4,7 +4,10 @@ let constants;
 let shapes;
 let errors;
 
-function analyze(code, filename) {
+function analyze() {
+    let code = document.getElementById("myDiv").textContent;
+    let filename = "test.mohay";
+
     let codeline = 0;
     globalfilename = filename;
     variables = [];
@@ -16,7 +19,6 @@ function analyze(code, filename) {
     for (line of code.split("\n")) {
         // analyze the line
         line.trim();
-        console.log(line);
         if (line.startsWith(".")) {
             //datatype
             let error = checkSyntaxVariable(line);
@@ -31,14 +33,16 @@ function analyze(code, filename) {
                     )
                 );
             } else {
-                let name = getStringBetween(line, ".", "=");
+                let name = getStringBetween(line, ".", "=").trim();
                 let value = getRestOfString(line, "rect");
-                let rect = new variable(name, value);
-                variables.push(rect);
+                let type = getStringBetween(line, "=", "(").trim();
+                let datatype = new variable(name, type, value);
+                variables.push(datatype);
             }
         }
         codeline++;
     }
+    console.table(variables);
     return errors.length > 0 ? errors : "analyzed successfully";
 }
 function sendDivContent() {

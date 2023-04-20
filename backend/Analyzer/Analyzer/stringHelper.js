@@ -10,3 +10,6 @@ function getRestOfString(str, substr) {
     }
     return str.substring(substrIndex + substr.length);
 }
+function isNumeric(str) {
+    return !isNaN(parseFloat(str)) && isFinite(str);
+}
