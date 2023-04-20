@@ -5,15 +5,19 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Analyzer</title>
+
         <script src="analyzer.js" defer></script>
-        <script src="stringHelper.js" defer></script>
         <script src="variable.js" defer></script>
-        <script src="type/float.js" defer></script>
-        <script src="type/int.js" defer></script>
+        <script src="stringHelper.js" defer></script>
+
+        <script src="type/numericValue.js" defer></script>
         <script src="type/point.js" defer></script>
+
+        <script src="shape/circle.js" defer></script>
+        <script src="shape/rect.js" defer></script>
     </head>
     <body>
         <div contenteditable="true" id="myDiv">.p = rect (10,10) 10 10</div>
-        <button onclick="sendDivContent()">Send content</button>
+        <button onclick="analyze()">Send content</button>
     </body>
 </html>

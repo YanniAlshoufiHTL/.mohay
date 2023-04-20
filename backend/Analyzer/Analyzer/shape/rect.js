@@ -1,27 +1,37 @@
 class rect {
     constructor(value) {
-        // required (pointX, pointY) + x + y
-        let point = getStringBetween(value, "(", ")");
-        value = value.replace(`(${point})`, "");
-        let size = split(value.trim(), ",");
+        value = value.trim();
 
-        let error = checkSyntaxPoint(point);
+        let pointValue = getStringBetween(value, "(", ")");
+        let sizeValue = getRestOfString(value, ")");
+        let error = point.checkSyntaxPoint(pointValue);
+
         if (error != null) {
             errors.push(
                 error + "\n" + "at line ${line}" + "in file ${globalfilename}"
             );
         } else {
-            this.point = new point(point);
+            pointValue = pointValue.split(",");
+
+            this.point = new point(
+                new numeric(pointValue[0]),
+                new numeric(pointValue[1])
+            );
         }
 
-        error = checkSyntaxSize(size);
+        error = numeric.checkSyntaxSize(sizeValue);
         if (error != null) {
             errors.push(
-                error + "\n" + "at line ${line}" + "in file ${globalfilename}"
+                error +
+                    "\n" +
+                    "at at line ${line}" +
+                    "in file ${globalfilename}"
             );
         } else {
-            this.sizeX = new int(size[0]);
-            this.sizeY = new int(size[1]);
+            sizeValue = sizeValue.toString().trim().split(" ");
+
+            this.sizeX = new numeric(sizeValue[0]);
+            this.sizeY = new numeric(sizeValue[1]);
         }
     }
 }
