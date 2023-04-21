@@ -5,8 +5,11 @@ let shapes;
 let errors;
 
 function analyze() {
-    let code = document.getElementById("myDiv").textContent;
+    let code = document.getElementById("myDiv").innerText;
     let filename = "test.mohay";
+
+    code = code.split("\n");
+    console.table(code.filter((a) => a != ""));
 
     let codeline = 0;
     globalfilename = filename;
