@@ -9,7 +9,8 @@ function analyze() {
     let filename = "test.mohay";
 
     code = code.split("\n");
-    console.table(code.filter((a) => a != ""));
+    code.filter((a) => a != "");
+    code = code.map((str) => str.trim());
 
     let codeline = 0;
     globalfilename = filename;
@@ -19,9 +20,8 @@ function analyze() {
     errors = [];
 
     // analyze the code
-    for (line of code.split("\n")) {
+    for (line of code) {
         // analyze the line
-        line.trim();
         if (line.startsWith(".")) {
             //datatype
             let error = checkSyntaxVariable(line);
@@ -39,13 +39,29 @@ function analyze() {
                 let name = getStringBetween(line, ".", "=").trim();
                 let value = getRestOfString(line, "rect");
                 let type = getStringBetween(line, "=", "(").trim();
-                let datatype = new variable(name, type, value);
+
+                let datatype = new variable(name, type, value, codeline);
                 variables.push(datatype);
             }
+        } else {
+            errors.push(
+                new String(
+                    "Invalid line " +
+                        "at line " +
+                        codeline +
+                        " in file " +
+                        globalfilename
+                )
+            );
         }
         codeline++;
     }
-    console.table(variables);
+
+    if (variables.length > 0) {
+        console.table(variables);
+    }
+
+    console.table(errors);
     return errors.length > 0 ? errors : "analyzed successfully";
 }
 function sendDivContent() {

@@ -1,13 +1,19 @@
 function checkSyntaxVariable(line) {
+    let error;
     //not checking for "." because this method only gets called after "."
     if (!line.includes("=")) {
-        return "not valid Syntax for variable"; //not valid Syntax
+        error = "not valid Syntax for variable "; //not valid Syntax
     }
+    console.log(getRestOfString(line, "="));
+    debugger;
+
+    return error;
 }
 class variable {
-    constructor(name, type, value) {
+    constructor(name, type, value, line) {
         this.name = name;
         this.type = type;
+        this.line = line;
 
         switch (type) {
             case "rect":
