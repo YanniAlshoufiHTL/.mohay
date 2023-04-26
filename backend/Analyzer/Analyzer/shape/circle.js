@@ -1,4 +1,4 @@
-class cirlce {
+class circle {
     constructor(value) {
         // required (pointX, pointY) + x + y
         let point = getStringBetween(value, "(", ")");

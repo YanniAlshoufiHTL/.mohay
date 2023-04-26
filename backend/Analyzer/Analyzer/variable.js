@@ -5,7 +5,6 @@ function checkSyntaxVariable(line) {
         error = "not valid Syntax for variable "; //not valid Syntax
     }
     console.log(getRestOfString(line, "="));
-    debugger;
 
     return error;
 }
@@ -17,13 +16,12 @@ class variable {
 
         switch (type) {
             case "rect":
-                console.log("entring rect");
                 this.value = new rect(value);
                 break;
             case "circle":
-                console.log("point");
                 this.value = new circle(getStringBetween(value, "point", "\n"));
                 break;
+
             default:
                 errors.push(
                     new String(
