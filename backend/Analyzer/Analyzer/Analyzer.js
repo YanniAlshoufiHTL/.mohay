@@ -19,7 +19,7 @@ function analyze(filename) {
             if (tokenType === "error") {
                 erros.push(token);
             }
-            linetokens.push([token, tokenType]);
+            linetokens.push({ token, tokenType });
         }
         let lineResult = checkline(linetokens);
         tokens.push([linetokens, lineResult]);

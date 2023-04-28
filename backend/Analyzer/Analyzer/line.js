@@ -1,6 +1,7 @@
 function checkline(line) {
     const tokenTypes = line.map((item) => item.tokenType);
     let result = "error";
+    debugger;
 
     let posiblelines = [];
     posiblelines = addPosibleLines();
@@ -23,14 +24,7 @@ function addPosibleLines() {
         "numeric",
     ]);
 
-    result.push([
-        "variable",
-        "expression",
-        "circle",
-        "position",
-        "numeric",
-        "numeric",
-    ]);
+    result.push(["variable", "expression", "circle", "position", "numeric"]);
 
     result.push(["variable"]);
 
@@ -39,6 +33,7 @@ function addPosibleLines() {
     return result;
 }
 function isSubArrayInMainArray(mainArray, subArray) {
+    debugger;
     return mainArray.some(
         (array) =>
             array.length === subArray.length &&
