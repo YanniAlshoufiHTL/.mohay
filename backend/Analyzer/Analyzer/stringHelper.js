@@ -13,3 +13,11 @@ function getRestOfString(str, substr) {
 function isNumeric(str) {
     return !isNaN(parseFloat(str)) && isFinite(str);
 }
+function getStringTillChar(str, char) {
+    const index = str.indexOf(char);
+    if (index === -1) {
+        return str;
+    } else {
+        return str.slice(0, index);
+    }
+}

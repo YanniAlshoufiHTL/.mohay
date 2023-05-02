@@ -20,8 +20,19 @@ function getTokenType(token) {
         case token === "line":
             result = "line";
             break;
+        case token === "arc":
+            break;
+        case token === "triangle":
+            result = "triangle";
+            break;
+        case token === "polygone":
+            result = "polygone";
+            break;
         case isPosition(token):
             result = "position";
+            break;
+        case isAngle(token):
+            result = "angle";
             break;
         default:
             result = "error";
@@ -44,5 +55,18 @@ function isPosition(token) {
         }
     }
 
+    return result;
+}
+function isAngle(token) {
+    let result = false;
+
+    let deg = token[token.length - 1];
+    let value = getStringTillChar(token, "°");
+
+    if (deg === "°") {
+        if (isNumeric(value)) {
+            result = true;
+        }
+    }
     return result;
 }
