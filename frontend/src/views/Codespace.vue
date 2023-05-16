@@ -84,6 +84,7 @@ $main-wrapper-width: 95vw;
     .menu-element {
       min-width: 110px;
       text-align: center;
+      font-weight: bold;
 
       padding: 3px 12px;
 
@@ -93,12 +94,12 @@ $main-wrapper-width: 95vw;
       border: $bar-element-border-weight solid var(--primary-color);
       border-radius: 13px;
 
-      background-color: #00000050;
+      background-color: var(--fg-darker-color);
       transition: background filter 0.1s;
       cursor: pointer;
 
       &:hover {
-        background-color: #000000ff;
+        background-color: rgba(var(--fg-darker-color-rgb), .5);
       }
 
       &:active {

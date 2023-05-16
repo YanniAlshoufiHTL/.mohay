@@ -8,6 +8,12 @@
 <script>
 import NavigationBar from './components/NavigationBar.vue';
 
+document.body.classList.add(
+  window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+    ? 'dark'
+    : 'light'
+);
+
 export default {
   components: {
     NavigationBar,
@@ -19,6 +25,6 @@ export default {
 @import './styles/global.scss';
 
 * {
-  font-family: --primary-font;
+  font-family: var(--primary-font);
 }
 </style>

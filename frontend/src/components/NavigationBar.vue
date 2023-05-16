@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../styles/variables.scss';
+@import '../styles/global.scss';
 
 nav {
   position: fixed;
@@ -44,7 +44,7 @@ nav {
     user-select: none;
 
     #logo-link {
-      color: var(--primary-color);
+      color: var(--logo-color);
 
       font-size: 4vw;
       font-family: 'Fredoka One', sans-serif;
@@ -61,8 +61,6 @@ nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-
-      font-family: 'Work Sans', sans-serif;
 
       width: 50%;
 
@@ -101,14 +99,12 @@ nav {
 
           text-decoration: none;
 
-          background-color: var(--primary-color);
-
           transition: background-color 0.2s;
           box-sizing: border-box;
 
           &:hover {
-            color: white;
-            background-color: var(--primary-darker-color);
+            // color: white;
+            background-color: var(--btn-codespace-bg-hover);
           }
 
           &:active {
@@ -116,17 +112,9 @@ nav {
           }
 
           &:focus {
-            background-color: var(--primary-darker-color);
+            background-color: var(--btn-codespace-bg);
             box-shadow: 0 0 0 2px var(--primary-color);
           }
-        }
-
-        .router-link-active {
-          color: var(--fg-color);
-        }
-
-        .router-link-exact-active {
-          color: var(--fg-color);
         }
       }
     }
@@ -154,11 +142,11 @@ nav {
 $first-query-width: 1200px;
 @media (max-width: $first-query-width) {
   #logo-div {
-    font-size: calc($first-query-width / (100 / 4)) !important;
+    font-size: calc($first-query-width / (100 / 4));
   }
 
   #nav-div {
-    width: 70% !important;
+    width: 70%;
   }
 }
 </style>
