@@ -14,6 +14,9 @@ function getTokenType(token) {
         case token === "rect":
             result = "rectangle";
             break;
+        case token === "wow":
+            result = "constant";
+            break;
         case token === "circle":
             result = "circle";
             break;
@@ -31,8 +34,17 @@ function getTokenType(token) {
         case isPosition(token):
             result = "position";
             break;
+        case isName(token):
+            result = "name";
+            break;
         case isAngle(token):
             result = "angle";
+            break;
+        case token === "vector":
+            result = "vector";
+            break;
+        case "line":
+            result = "line";
             break;
         default:
             result = "error";
@@ -69,4 +81,7 @@ function isAngle(token) {
         }
     }
     return result;
+}
+function isName(token) {
+    return isUppercaseOrUnderscore(token);
 }

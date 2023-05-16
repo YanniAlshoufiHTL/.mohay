@@ -21,3 +21,6 @@ function getStringTillChar(str, char) {
         return str.slice(0, index);
     }
 }
+function isUppercaseOrUnderscore(str) {
+    return /^[A-Z_]+$/.test(str);
+}

@@ -5,7 +5,7 @@ function checkline(line) {
     let posiblelines = [];
     posiblelines = addPossibleLines();
 
-    if (isSubArrayInMainArray(posiblelines, tokenTypes)) {
+    if (isSubarray(posiblelines, tokenTypes)) {
         result = "correct";
     }
 
@@ -20,6 +20,7 @@ const PossibleLines = {
         "numeric",
         "numeric",
     ],
+    CONSTANT: ["constant", "name", "expression", "numeric"],
     ARC: [
         "variable",
         "expression",
@@ -40,8 +41,7 @@ const PossibleLines = {
         "position",
         "position",
     ],
-    POLYGONE1: ["variable", "expression", "polygone", "position"],
-    POLYGONE2: [
+    POLYGONE: [
         "variable",
         "expression",
         "polygone",
@@ -50,55 +50,63 @@ const PossibleLines = {
         "numeric",
         "angle",
     ],
+    VECTOR: ["vector", "position", "position"],
+    LINE: ["variable", "expression", "line", "position", "position"],
+    POINT: ["variable", "expression", "position"],
 };
 
 function addPossibleLines() {
-    let result = [];
+    const result = [];
 
-    result.push(Object.values(PossibleLines.RECT));
-    result.push(Object.values(PossibleLines.ARC));
-    result.push(Object.values(PossibleLines.CIRCLE));
-    result.push(Object.values(PossibleLines.VAR));
-    result.push(Object.values(PossibleLines.DECLARE));
-    result.push(Object.values(PossibleLines.TRIANGLE));
-    result.push(Object.values(PossibleLines.POLYGONE1));
+    Object.keys(PossibleLines).forEach((key) => {
+        result.push(Object.values(PossibleLines[key]));
+    });
 
     return result;
 }
-function isSubArrayInMainArray(mainArray, subArray) {
-    if (typeof subArray === "string") {
-        for (let i = 0; i < mainArray.length; i++) {
-            const currentArray = mainArray[i];
-            if (currentArray.some((item) => item.token === subArray)) {
-                return true;
-            }
-        }
-        return false;
-    }
+
+function isSubarray(mainArray, subArray) {
+    let result = false;
+
     for (let i = 0; i < mainArray.length; i++) {
-        const currentArray = mainArray[i];
-        if (currentArray.length < subArray.length) {
-            continue;
-        }
-        let isEqual = true;
-        for (let j = 0; j < subArray.length; j++) {
-            if (
-                subArray[j].tokenType === "position" &&
-                currentArray[j].tokenType === "position"
-            ) {
-                continue;
+        if (
+            Array.isArray(mainArray[i]) &&
+            mainArray[i].length === subArray.length
+        ) {
+            let isMatch = true;
+            for (let j = 0; j < mainArray[i].length; j++) {
+                if (mainArray[i][j] !== subArray[j]) {
+                    isMatch = false;
+                    break;
+                }
             }
-            if (
-                currentArray[j].tokenType !== subArray[j].tokenType ||
-                currentArray[j].token !== subArray[j].token
-            ) {
-                isEqual = false;
-                break;
+            if (isMatch) {
+                result = true;
             }
-        }
-        if (isEqual) {
-            return true;
         }
     }
-    return false;
+    //check for exception
+
+    if (result === false) {
+        result = checkException(subArray);
+    }
+
+    return result;
+}
+function checkException(subArray) {
+    let result = false;
+
+    if (
+        subArray.length >= 5 &&
+        subArray.includes("error") === false &&
+        subArray[0] === "variable" &&
+        subArray[1] === "expression" &&
+        subArray[2] === "polygone" &&
+        subArray[3] === "position" &&
+        subArray[4] === "position"
+    ) {
+        result = true;
+    }
+
+    return result;
 }
