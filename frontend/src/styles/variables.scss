@@ -1,17 +1,59 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Work+Sans:wght@300&display=swap');
 
-$primary-dark-color: #2596be;
-$primary-dark-darker-color: #1d7999;
+:root {
+  --primary-color: #2596be;
+  --primary-darker-color: #1d7999;
 
-$bg-dark-color: #121212;
-$fg-dark-color: #d6ddd6;
+  --bg-color: #121212;
+  --fg-color: #d6ddd6;
+  --nav-bg: #292a2f;
 
-$nav-bg-dark: #292a2f;
+  --fg-darker-color-rgb: 166, 166, 166;
+  --fg-darker-color: rgb(var(--fg-darker-color-rgb));
 
-$fg-dark-darker-color: #a6a6a6;
+  --nav-height: 140px;
+  --aside-width: 200px;
+  --footer-height: 40vh;
 
-$nav-height: 140px;
-$aside-width: 200px;
-$footer-height: 40vh;
+  --primary-font: 'Work Sans', sans-serif;
+  --headings-font: 'Fredoka One', sans-serif;
+}
 
-$primary-font: 'Work Sans', sans-serif;
+body.dark {
+  --primary-color: #2596be;
+  --primary-darker-color: #1d7999;
+
+  --logo-color: #2596be;
+
+  --btn-codespace-bg: var(--primary-darker-color);
+  --btn-codespace-fg: #d6ddd6;
+  --btn-codespace-bg-hover: #2596be;
+
+  --bg-color: #121212;
+  --fg-color: #d6ddd6;
+
+  --nav-bg: #292a2f;
+
+  --fg-darker-color-rgb: 41, 42, 47;
+  --fg-darker-color: rgb(var(--fg-darker-color-rgb));
+}
+
+
+body.light {
+  --primary-color: #2596be;
+  --primary-darker-color: #196984;
+
+  --logo-color: white;
+  
+  --btn-codespace-fg: white;
+  --btn-codespace-bg: black;
+  --btn-codespace-bg-hover: #1d7999;
+
+  --bg-color: rgb(255, 255, 255);
+  --fg-color: #ffffff;
+
+  --nav-bg: #2596be;
+
+  --fg-darker-color-rgb: 238, 238, 238;
+  --fg-darker-color: rgb(var(--fg-darker-color-rgb));
+}

@@ -18,15 +18,13 @@
 </template>
 
 <script>
-import HomeView from '@/views/Home.vue';
-
 export default {
   name: 'NaviagionBar',
 };
 </script>
 
 <style lang="scss">
-@import '../styles/variables.scss';
+@import '../styles/global.scss';
 
 nav {
   position: fixed;
@@ -35,20 +33,18 @@ nav {
   z-index: 10;
 
   width: 100vw;
-  height: $nav-height;
+  height: var(--nav-height);
 
-  background-color: $nav-bg-dark;
+  background-color: var(--nav-bg);
 
   > .wrapper {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     justify-content: space-between;
     align-items: center;
     user-select: none;
 
     #logo-link {
-      color: $primary-dark-color;
+      color: var(--logo-color);
 
       font-size: 4vw;
       font-family: 'Fredoka One', sans-serif;
@@ -66,12 +62,10 @@ nav {
       justify-content: space-between;
       align-items: center;
 
-      font-family: 'Work Sans', sans-serif;
-
       width: 50%;
 
       .nav-link {
-        color: $fg-dark-color;
+        color: var(--fg-color);
         transition: color linear 0.09s;
 
         text-decoration: none;
@@ -80,7 +74,7 @@ nav {
         user-select: none;
 
         &:hover {
-          color: $fg-dark-darker-color;
+          color: var(--fg-darker-color);
 
           &::after {
             content: ' ';
@@ -89,7 +83,7 @@ nav {
             display: block;
             animation: scale-x forwards 0.8s;
             height: 1px;
-            background-color: $fg-dark-darker-color;
+            background-color: var(--fg-darker-color);
           }
         }
       }
@@ -105,14 +99,12 @@ nav {
 
           text-decoration: none;
 
-          background-color: $primary-dark-color;
-
           transition: background-color 0.2s;
           box-sizing: border-box;
 
           &:hover {
-            color: white;
-            background-color: $primary-dark-darker-color;
+            // color: white;
+            background-color: var(--btn-codespace-bg-hover);
           }
 
           &:active {
@@ -120,17 +112,9 @@ nav {
           }
 
           &:focus {
-            background-color: $primary-dark-darker-color;
-            box-shadow: 0 0 0 2px $primary-dark-color;
+            background-color: var(--btn-codespace-bg);
+            box-shadow: 0 0 0 2px var(--primary-color);
           }
-        }
-
-        .router-link-active {
-          color: $fg-dark-color;
-        }
-
-        .router-link-exact-active {
-          color: $fg-dark-color;
         }
       }
     }
@@ -158,11 +142,11 @@ nav {
 $first-query-width: 1200px;
 @media (max-width: $first-query-width) {
   #logo-div {
-    font-size: calc($first-query-width / (100 / 4)) !important;
+    font-size: calc($first-query-width / (100 / 4));
   }
 
   #nav-div {
-    width: 70% !important;
+    width: 70%;
   }
 }
 </style>
