@@ -1,6 +1,4 @@
-Syntax by Moritz Bernhofer
-
-Comments are just stardard <
+Comments are just stardard
 // this line is ingored
 
 /* 
