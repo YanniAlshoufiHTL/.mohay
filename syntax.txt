@@ -1,23 +1,15 @@
-/* Methods: */
+Syntax by Moritz Bernhofer
 
-// Lines
-line p1 p2
-vector p1 p2
+Comments are just stardard <
+// this line is ingored
 
-// Shapes
-rect p w h
-circle p r
-arc p r a1 a2
-triangle p1 p2 p3
-polygon p n r a
-polygon p1 p2 p3 …
-dot p
+/* 
+    this is also ignored
+*/ 
 
-f:c(0, 0, 0):rect (5, 5) 50 50
+----------------------
 
-// Clear
-clear
-c(#333):clear
+Constants 
 
 // f == fill
 // s == stroke
@@ -36,15 +28,87 @@ c(#333):clear
 	f:rect p 4 4
 	s:c(3, 24, 25):rect p 4 4
 */
+=======
+wow any = {any shape, string, numeric, variable}
 
-c // rgb, rgba, hex, hsl
+any is just a string (ASCI)
 
-/* Special Syntax */
+Convention
 
-// Variables and Points
-.point = (0, 0)
+Constant names should only use upper-case letters and underscores.
 
-// Constants
-wow RANDOM = 4
+----------------------
 
 :loop { /* ≈ 60 fps */ }
+=======
+Lines 
+
+.any = line (1, 1) (1, 1)
+
+or just
+
+line (1, 1) (1, 1)
+
+----------------------
+
+Points 
+
+.any = point (1, 1)
+
+point (1, 1)
+
+----------------------
+
+Rectangle
+
+.any = rect (1, 1) 10 10
+
+rect (1, 1) 10 10
+
+----------------------
+
+Circle
+
+.any = circle (1, 1) 10
+
+circle (1, 1) 10
+
+----------------------
+
+Arc 
+
+.any = arc (1, 1) 10 20° 30°
+
+arc (1, 1) 10 20° 30°
+
+----------------------
+
+Polygon
+
+.any = polygon (1, 1) 10 10 20°
+
+polygon (1, 1) 10 10 20°
+
+----------------------
+
+Variable
+
+.any = {any shape, string, numeric, variable}
+
+Convention
+
+Variables names should be camel case.
+
+Meaning, you start with a lower-case letter and for each word, you start with an upper-case letter. The first character in the name can only be a letter. The rest of the name is allowed to contain numbers too.
+
+----------------------
+
+.any = vector (1, 1) (1, 1)
+
+vector (1, 1) (1, 1)
+
+----------------------
+
+Coloring
+
+fgc({rgb, rgba, })
