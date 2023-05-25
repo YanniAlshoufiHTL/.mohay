@@ -37,6 +37,18 @@ function getTokenType(token) {
         case isName(token):
             result = "name";
             break;
+        case isAngle(token):
+            result = "angle";
+            break;
+        case token === "vector":
+            result = "vector";
+            break;
+        case "line":
+            result = "line";
+            break;
+        default:
+            result = "error";
+            break;
         case isFillColor(token):
             result = "fill:color";
             break;
@@ -51,18 +63,6 @@ function getTokenType(token) {
             break;
         case isFillStrokeColor(token):
             result = "fill:stroke:color";
-            break;
-        case isAngle(token):
-            result = "angle";
-            break;
-        case token === "vector":
-            result = "vector";
-            break;
-        case "line":
-            result = "line";
-            break;
-        default:
-            result = "error";
             break;
     }
 
