@@ -9,6 +9,7 @@ function analyze(filename) {
 
     for (let i = 0; i < lines.length; i++) {
         let line = lines[i];
+        line = deleteCharBetween(line, "(", ")", " ");
         let lineTokens = line.split(" ");
         lineTokens = lineTokens.filter((item) => item !== "");
 

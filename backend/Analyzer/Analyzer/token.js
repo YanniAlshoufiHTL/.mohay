@@ -37,6 +37,21 @@ function getTokenType(token) {
         case isName(token):
             result = "name";
             break;
+        case isFillColor(token):
+            result = "fill:color";
+            break;
+        case isBgColor(token):
+            result = "bg:color";
+            break;
+        case isStrokeColor(token):
+            result = "stroke:color";
+            break;
+        case isStrokeFillColor(token):
+            result = "stroke:fill:color";
+            break;
+        case isFillStrokeColor(token):
+            result = "fill:stroke:color";
+            break;
         case isAngle(token):
             result = "angle";
             break;
@@ -84,4 +99,17 @@ function isAngle(token) {
 }
 function isName(token) {
     return isUppercaseOrUnderscore(token);
+}
+function isFillColor(token) {
+    // f:c(any color type)
+    let value = getStringTillChar(token, "(");
+
+    if (value == "f:c") {
+        let format = isValidColor(token);
+        if (format != "Invalid") {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
