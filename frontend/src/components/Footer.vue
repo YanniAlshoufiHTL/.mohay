@@ -23,9 +23,9 @@ export default {
   width: 100vw;
   height: var(--footer-height);
 
-  background-color: var(--nav-bg);
+  background-color: var(--footer-bg-color);
 
-  box-shadow: 0 -30px 50px 20px var(--nav-bg);
+  box-shadow: 0 -30px 50px 20px var(--footer-shadow-color);
 
   footer {
     position: inherit;

@@ -35,7 +35,7 @@ nav {
   width: 100vw;
   height: var(--nav-height);
 
-  background-color: var(--nav-bg);
+  background-color: var(--nav-bg-color);
 
   > .wrapper {
     display: flex;
@@ -65,7 +65,7 @@ nav {
       width: 50%;
 
       .nav-link {
-        color: var(--fg-color);
+        color: var(--nav-fg-color);
         transition: color linear 0.09s;
 
         text-decoration: none;
@@ -74,7 +74,7 @@ nav {
         user-select: none;
 
         &:hover {
-          color: var(--fg-darker-color);
+          color: var(--nav-hover-color);
 
           &::after {
             content: ' ';
@@ -83,7 +83,7 @@ nav {
             display: block;
             animation: scale-x forwards 0.8s;
             height: 1px;
-            background-color: var(--fg-darker-color);
+            background-color: var(--nav-hover-color);
           }
         }
       }
@@ -93,6 +93,7 @@ nav {
         justify-content: center;
         align-items: center;
 
+        // TODO: MAKE SURE CODESPACE BUTTON STYLING IS AT ONE PLACE!
         #btn-link {
           cursor: pointer;
           user-select: none;
@@ -103,8 +104,8 @@ nav {
           box-sizing: border-box;
 
           &:hover {
-            // color: white;
-            background-color: var(--btn-codespace-bg-hover);
+            color: var(--codespace-btn-fg-color);
+            background-color: var(--codespace-btn-hover-color);
           }
 
           &:active {
@@ -112,8 +113,8 @@ nav {
           }
 
           &:focus {
-            background-color: var(--btn-codespace-bg);
-            box-shadow: 0 0 0 2px var(--primary-color);
+            background-color: var(--codespace-btn-focus-color);
+            box-shadow: 0 0 0 2px var(--codespace-btn-shadow-color);
           }
         }
       }

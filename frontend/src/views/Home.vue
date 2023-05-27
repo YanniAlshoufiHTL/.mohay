@@ -32,7 +32,7 @@ $ad-img-height: calc(99.5vh - var(--nav-height));
 
   width: $ad-img-width;
   height: $ad-img-height;
-  background: rgb(255, 255, 255);
-  background: radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+  background: var(--overlay-center-color);
+  background: radial-gradient(circle, var(--overlay-center-color) 0%, var(--overlay-corner-color) 100%);
 }
 </style>

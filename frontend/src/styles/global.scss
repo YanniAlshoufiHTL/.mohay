@@ -6,8 +6,8 @@
 }
 
 body {
-  background-color: var(--bg-color);
-  color: var(--fg-color);
+  background-color: var(--body-bg-color);
+  color: var(--body-fg-color);
 
   overflow-x: hidden;
 }
@@ -18,11 +18,11 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1a1b;
+  background: var(--scrollbar-track-bg-color);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #6a6b6b;
+  background: var(--scrollbar-thumb-bg-color);
   opacity: 0.1;
 }
 
@@ -37,8 +37,8 @@ body {
 .codespace-btn {
   padding: 1rem;
 
-  background-color: var(--btn-codespace-bg);
-  color: var(--btn-codespace-fg);
+  background-color: var(--codespace-btn-bg-color);
+  color: var(--codespace-btn-fg-color);
 
   border-radius: 13px;
   border: none;

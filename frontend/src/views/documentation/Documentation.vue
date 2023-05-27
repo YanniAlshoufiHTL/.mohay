@@ -45,10 +45,6 @@ export default {
 <style lang="scss">
 @import '../../styles/global.scss';
 
-body {
-  background-color: var(--bg-color);
-}
-
 .content {
   position: relative;
   left: var(--aside-width);
@@ -56,7 +52,7 @@ body {
 
   width: calc(100vw - var(--aside-width));
 
-  background-color: var(--bg-color);
+  background-color: var(--documentation-bg-color);
 
   .main-content {
     width: 90%;
@@ -78,21 +74,22 @@ body {
   align-content: left;
 
   font-size: 4rem;
-  font-family: var(--headings-font);
+  letter-spacing: -2px;
+  font-family: var(--primary-font);
 
-  color: var(--primary-color);
+  color: var(--documentation-heading-color);
 
   user-select: none;
 }
 
 .small-heading {
-  color: var(--fg-color);
+  color: var(--documentation-subheading-color);
   font-size: 25pt;
   font-weight: 700;
 }
 
 .text {
-  color: var(--fg-color);
+  color: var(--documentation-fg-color);
   font-size: 16pt;
   font-weight: 500;
   padding-bottom: 15px;
@@ -100,7 +97,7 @@ body {
 
 .text-link {
   text-decoration: none;
-  color: var(--primary-color);
+  color: var(--documentation-link-color);
 }
 
 .text-break {
@@ -113,23 +110,22 @@ ul {
 }
 
 .code-example-box {
-  background-color: var(--nav-bg);
+  background-color: var(--documentation-codebox-bg-color);
   border-radius: 6px;
 
   padding: 15px;
 
   .code-example-heading {
     font-size: 22pt;
-    color: var(--fg-color);
+    color: var(--documentation-codebox-heading-color);
     padding: 0 0.2vw;
     margin: 2.5vh 0;
   }
 
   .code-example {
     padding: 2vw;
-    background-color: bg-color;
     .code {
-      color: var(--fg-color);
+      color: var(--documentation-codebox-fg-color);
       font-size: 16pt;
       margin: 10px;
     }

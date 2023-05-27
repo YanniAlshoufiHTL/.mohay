@@ -62,7 +62,7 @@ $main-wrapper-width: 95vw;
 
     font-size: 1.2rem;
 
-    color: var(--primary-color);
+    color: var(--codespace-menu-bar-fg-color);
 
     .menu-element {
       min-width: 110px;
@@ -74,15 +74,15 @@ $main-wrapper-width: 95vw;
       user-select: none;
       box-sizing: border-box;
 
-      border: $bar-element-border-weight solid var(--primary-color);
+      border: $bar-element-border-weight solid var(--codespace-menu-btn-border-color);
       border-radius: 13px;
 
-      background-color: var(--fg-darker-color);
+      background-color: var(--codespace-menu-btn-bg-color);
       transition: background filter 0.1s;
       cursor: pointer;
 
       &:hover {
-        background-color: rgba(var(--fg-darker-color-rgb), .5);
+        background-color: var(--codespace-menu-btn-bg-hover-color);
       }
 
       &:active {
@@ -99,9 +99,10 @@ $main-wrapper-width: 95vw;
 
     .profile-icon {
       box-sizing: border-box;
+      background-color: var(--codespace-account-circle-bg-color);
 
       border-radius: 50%;
-      border: $bar-element-border-weight solid var(--primary-color);
+      border: $bar-element-border-weight solid var(--codespace-account-circle-border-color);
       height: calc($top-bar-height * 0.9);
       width: calc($top-bar-height * 0.9);
     }

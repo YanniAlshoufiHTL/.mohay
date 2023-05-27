@@ -35,10 +35,10 @@ export default {
 
   padding-top: calc(var(--nav-height) / 4);
 
-  width: --aside-width;
+  width: var(--aside-width);
   height: calc(100vh - var(--nav-height) - var(--footer-height));
 
-  background-color: rgba(var(--bg-color), 52);
+  background-color: var(--aside-bg-color);
 }
 
 .side-bar-element-wrapper {
@@ -60,7 +60,7 @@ export default {
     font-size: 14pt;
     font-family: var(--primary-font);
 
-    color: var(--fg-color);
+    color: var(--aside-fg-color);
 
     transition: padding-left ease-in 0.3s;
 
