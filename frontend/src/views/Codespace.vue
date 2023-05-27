@@ -13,23 +13,6 @@
         <div class="profile-icon"></div>
       </div>
     </div>
-
-    <div id="main-editor-frame">
-      <div id="non-editor-frame-section">
-        <div id="frame-run-window"></div>
-        <div id="frame-explorer-window"></div>
-      </div>
-      <div id="frame-editor-section">
-        <div id="frame-editor" contenteditable>
-          .p1 = (20, 30)<br />
-          .p2 = (100, 200)<br />
-          <br />
-          c(#f93)<br />
-          <br />
-          f:s:c(255, 150, 30, 50):rect .p1 .p2
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 

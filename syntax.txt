@@ -103,9 +103,6 @@ s:c(colorCode)
 f:c(colorCode)
 //setting the global fill color to the colorCode
 
-bg:c(colorCode)
-//setting the global background color to the colorCode
-
 coloring for only one shape =>
 
 s:c(colorCode):any or shape ....
