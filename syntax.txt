@@ -11,7 +11,7 @@ Comments are just stardard <
 
 Constants 
 
-wow any = {any shape, string, numeric, variable}
+wow any = {any shape, string, numeric, variable};
 
 any is just a string (ASCI)
 
@@ -23,61 +23,61 @@ Constant names should only use upper-case letters and underscores.
 
 Lines 
 
-.any = line (1, 1) (1, 1)
+.any = line (1, 1) (1, 1);
 
 or just
 
-line (1, 1) (1, 1)
+line (1, 1) (1, 1);
 
 ----------------------
 
 Points 
 
-.any = point (1, 1)
+.any = point (1, 1);
 
-point (1, 1)
+point (1, 1);
 
 ----------------------
 
 Rectangle
 
-.any = rect (1, 1) 10 10
+.any = rect (1, 1) 10 10;
 
-rect (1, 1) 10 10
+rect (1, 1) 10 10;
 
 ----------------------
 
 Circle
 
-.any = circle (1, 1) 10
+.any = circle (1, 1) 10;
 
-circle (1, 1) 10
+circle (1, 1) 10;
 
 ----------------------
 
 Arc 
 
-.any = arc (1, 1) 10 20° 30°
+.any = arc (1, 1) 10 20° 30°;
 
-arc (1, 1) 10 20° 30°
+arc (1, 1) 10 20° 30°;
 
 ----------------------
 
 Polygon
 
-.any = polygon (1, 1) 10 10 20°
+.any = polygon (1, 1) 10 10 20°;
 
-polygon (1, 1) 10 10 20°
+polygon (1, 1) 10 10 20°;
 
 another way for the polygon
 
-polygon (1, 2) (3, 4) (5, 9) (1, 3) there can be 100 of points
+polygon (1, 2) (3, 4) (5, 9) (1, 3); there can be 100 of points
 
 ----------------------
 
 Variable
 
-.any = {any shape, string, numeric, variable}
+.any = {any shape, string, numeric, variable};
 
 Convention
 
@@ -87,9 +87,9 @@ Meaning, you start with a lower-case letter and for each word, you start with an
 
 ----------------------
 
-.any = vector (1, 1) (1, 1)
+.any = vector (1, 1) (1, 1);
 
-vector (1, 1) (1, 1)
+vector (1, 1) (1, 1);
 
 ----------------------
 
@@ -97,20 +97,18 @@ Coloring
 
 colorCode can be => HEX, HSL, HSLA, HSV, RGB, RGBA
 
-s:c(colorCode)
+s:c(colorCode);
 // setting the global stroke color to the colorCode
 
-f:c(colorCode)
+f:c(colorCode);
 //setting the global fill color to the colorCode
-
 coloring for only one shape =>
 
-s:c(colorCode):any or shape ....
-//any is a variable .any 
+s:c(colorCode) .any or shape ....;
 //changes the stroke of any or circle no matter what the global stroke is
 //global stroke is not changed
 
-s:c(colorCode):f:c(colorCode):any or shape ...
+s:c(colorCode):f:c(colorCode) .any or shape ...;
 //chages the stroke and fill
 //same as before
 
@@ -118,7 +116,7 @@ s:c(colorCode):f:c(colorCode):any or shape ...
 
 General Modifiers
 
-loop(60)
+loop(60);
 //sets the fps of the canvas
 //fps => frames per second
 
