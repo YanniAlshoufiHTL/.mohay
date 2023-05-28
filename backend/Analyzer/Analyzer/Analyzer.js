@@ -154,7 +154,6 @@ function checkForConstant(line, row) {
     }
     //todo same with variable
 }
-
 function checkForLine(line, row) {
     let tokens = line.split(" ");
 
@@ -195,7 +194,6 @@ function checkForLine(line, row) {
         return false;
     }
 }
-
 function checkForPoint(line, row) {
     let tokens = line.split(" ");
 
@@ -222,13 +220,278 @@ function checkForPoint(line, row) {
     if (tokens[2] !== ";") {
         errors.push({
             row: row,
+            char: indexOf(tokens[1]),
+            message: "Missing ;",
+        });
+        return false;
+    }
+}
+function checkForRect(line, row) {
+    let tokens = line.split(" ");
+
+    //tokens[0] is rect
+
+    if (tokens.length !== 6) {
+        errors.push({
+            row: row,
+            char: indexOf(tokens[0]),
+            message: "Invalid rect declaration",
+        });
+        return false;
+    }
+
+    if (isPosition(tokens[1]) === false) {
+        errors.push({
+            row: row,
+            char: indexOf(tokens[1]),
+            message: "Invalid position",
+        });
+        return false;
+    }
+
+    if (isNumeric(tokens[2]) === false) {
+        errors.push({
+            row: row,
+            char: indexOf(tokens[2]),
+            message: "Invalid number",
+        });
+        return false;
+    }
+
+    if (isNumeric(tokens[3]) === false) {
+        errors.push({
+            row: row,
+            char: indexOf(tokens[3]),
+            message: "Invalid number",
+        });
+        return false;
+    }
+
+    if (tokens[4] !== ";") {
+        errors.push({
+            row: row,
+            char: indexOf(tokens[3]),
+            message: "Missing ;",
+        });
+        return false;
+    }
+}
+function checkForCircle(line, row) {
+    let tokens = line.split(" ");
+
+    //tokens[0] is circle
+
+    if (tokens.length !== 5) {
+        errors.push({
+            row: row,
+            char: indexOf(tokens[0]),
+            message: "Invalid circle declaration",
+        });
+        return false;
+    }
+
+    if (isPosition(tokens[1]) === false) {
+        errors.push({
+            row: row,
+            char: indexOf(tokens[1]),
+            message: "Invalid position",
+        });
+        return false;
+    }
+
+    if (isNumeric(tokens[2]) === false) {
+        errors.push({
+            row: row,
+            char: indexOf(tokens[2]),
+            message: "Invalid number",
+        });
+        return false;
+    }
+
+    if (tokens[3] !== ";") {
+        errors.push({
+            row: row,
             char: indexOf(tokens[2]),
             message: "Missing ;",
         });
         return false;
     }
 }
+function checkForArc(line, row) {
+    let tokens = line.split(" ");
 
+    //tokens[0] is arc
+
+    if (tokens.length !== 7) {
+        errors.push({
+            row: row,
+            char: indexOf(tokens[0]),
+            message: "Invalid arc declaration",
+        });
+        return false;
+    }
+
+    if (isPosition(tokens[1]) === false) {
+        errors.push({
+            row: row,
+            char: indexOf(tokens[1]),
+            message: "Invalid position",
+        });
+        return false;
+    }
+
+    if (isNumeric(tokens[2]) === false) {
+        errors.push({
+            row: row,
+            char: indexOf(tokens[2]),
+            message: "Invalid number",
+        });
+        return false;
+    }
+
+    if (isAngle(tokens[3]) === false) {
+        errors.push({
+            row: row,
+            char: indexOf(tokens[3]),
+            message: "Invalid angle",
+        });
+        return false;
+    }
+
+    if (isAngle(tokens[4]) === false) {
+        errors.push({
+            row: row,
+            char: indexOf(tokens[4]),
+            message: "Invalid angle",
+        });
+        return false;
+    }
+
+    if (tokens[5] !== ";") {
+        errors.push({
+            row: row,
+            char: indexOf(tokens[3]),
+            message: "Missing ;",
+        });
+        return false;
+    }
+}
+function checkForPolygon(line, row) {
+    let tokens = line.split(" ");
+
+    //tokens[0] is polygone
+    //there a to type of polygones
+
+    if (tokens.length === 5) {
+        //first case
+        // position numeric numeric angle ;
+        if (isPosition(tokens[1]) === false) {
+            errors.push({
+                row: row,
+                char: indexOf(tokens[1]),
+                message: "Invalid position",
+            });
+            return false;
+        }
+
+        if (isNumeric(tokens[2]) === false) {
+            errors.push({
+                row: row,
+                char: indexOf(tokens[2]),
+                message: "Invalid number",
+            });
+            return false;
+        }
+
+        if (isNumeric(tokens[3]) === false) {
+            errors.push({
+                row: row,
+                char: indexOf(tokens[3]),
+                message: "Invalid number",
+            });
+            return false;
+        }
+
+        if (isAngle(tokens[4]) === false) {
+            errors.push({
+                row: row,
+                char: indexOf(tokens[4]),
+                message: "Invalid angle",
+            });
+            return false;
+        }
+
+        if (tokens[5] !== ";") {
+            errors.push({
+                row: row,
+                char: indexOf(tokens[4]),
+                message: "Missing ;",
+            });
+            return false;
+        }
+    } else if (tokens.length > 5) {
+        //second case
+        // position position position position ... ;
+        for (let i = 1; i < tokens.length; i++) {
+            if (isPosition(tokens[i]) === false) {
+                errors.push({
+                    row: row,
+                    char: indexOf(tokens[i]),
+                    message: "Invalid position",
+                });
+                return false;
+            }
+        }
+    } else {
+        errors.push({
+            row: row,
+            char: indexOf(tokens[0]),
+            message: "Invalid polygone declaration",
+        });
+        return false;
+    }
+}
+function checkForVector(line, row) {
+    let tokens = line.split(" ");
+
+    //tokens[0] is vector
+
+    if (tokens.length !== 4) {
+        errors.push({
+            row: row,
+            char: indexOf(tokens[0]),
+            message: "Invalid vector declaration",
+        });
+        return false;
+    }
+
+    if (isPosition(tokens[1]) === false) {
+        errors.push({
+            row: row,
+            char: indexOf(tokens[1]),
+            message: "Invalid position",
+        });
+        return false;
+    }
+
+    if (isPosition(tokens[2]) === false) {
+        errors.push({
+            row: row,
+            char: indexOf(tokens[2]),
+            message: "Invalid position",
+        });
+        return false;
+    }
+
+    if (tokens[3] !== ";") {
+        errors.push({
+            row: row,
+            char: indexOf(tokens[3]),
+            message: "Missing ;",
+        });
+        return false;
+    }
+}
 //data
 const PossibleLines = {
     RECT: ["rectangle", "position", "numeric", "numeric", ";"],
@@ -255,4 +518,36 @@ function isPosition(token) {
     }
 
     return result;
+}
+function isAngle(token) {
+    let result = false;
+
+    let deg = token[token.length - 1];
+    let value = getStringTillChar(token, "°");
+
+    if (deg === "°") {
+        if (isNumeric(value)) {
+            result = true;
+        }
+    }
+    return result;
+}
+function isName(token) {
+    return isUppercaseOrUnderscore(token);
+}
+function isFillColor(token) {
+    // f:c(any color type)
+    let value = getStringTillChar(token, "(");
+
+    if (value == "f:c") {
+        let format = isValidColor(token);
+        if (format != "Invalid") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+function isNumeric(str) {
+    return !isNaN(parseFloat(str)) && isFinite(str);
 }
