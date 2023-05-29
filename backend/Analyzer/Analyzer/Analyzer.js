@@ -1,10 +1,11 @@
+let errors = [];
+let warnings = [];
+
 function analyze() {
     var code = document.getElementById("myDiv").innerText;
 
-    var errors = [];
-    var warnings = [];
-
     let lines = code.split(";");
+
     lines = Preprocess(lines);
 
     for (let i = 0; i < lines.length; i++) {
@@ -12,13 +13,16 @@ function analyze() {
 
         let identity = indentify(line, i);
     }
+
+    console.log(errors);
 }
 
 function Preprocess(lines) {
-    lines = lines.fulter((item) => item != "");
+    lines = lines.filter((item) => item != "");
 
     for (let i = 0; i < lines.length; i++) {
         lines[i] = deleteCharBetween(lines[i], "(", ")", " ");
+        lines[i] += " ;";
     }
 
     return lines;
@@ -26,7 +30,6 @@ function Preprocess(lines) {
 
 function indentify(line, row) {
     // line stuff stuff stuff data;
-    line = line.slice(0, -1); //remove ending ;
 
     let tokes = validate(line, row);
 }
@@ -34,7 +37,7 @@ function indentify(line, row) {
 function validate(line, row) {
     switch (true) {
         case line.startsWith("."):
-            checkForVarialbe(line, row);
+            checkForVariable(line, row);
             break;
         case line.startsWith("wow"):
             checkForConstant(line, row);
@@ -69,6 +72,7 @@ function validate(line, row) {
 
 function checkForVariable(line, row) {
     let tokens = line.split(" ");
+    tokens = tokens.filter((token) => token !== "");
 
     if (tokens.length < 3) {
         errors.push({
@@ -82,7 +86,7 @@ function checkForVariable(line, row) {
     if (tokens[1] !== "=") {
         errors.push({
             row: row,
-            char: indexOf(tokens[1]),
+            char: tokens.indexOf(tokens[1]),
             message: "Invalid variable declaration",
         });
         return false;
@@ -90,6 +94,7 @@ function checkForVariable(line, row) {
 
     //now everything till = is valid
     line = line.substring(line.indexOf("=") + 1);
+    line = line.trim();
 
     switch (true) {
         case tokens[2].startsWith("."):
@@ -97,7 +102,7 @@ function checkForVariable(line, row) {
             if (tokens.length !== 4) {
                 errors.push({
                     row: row,
-                    char: indexOf(tokens[2]),
+                    char: tokens.indexOf(tokens[2]),
                     message: "Invalid cast of variable",
                 });
                 return false;
@@ -140,6 +145,7 @@ function checkForVariable(line, row) {
 
 function checkForConstant(line, row) {
     let tokens = line.split(" ");
+    tokens = tokens.filter((token) => token !== "");
 
     if (tokens.length < 2) {
         errors.push({
@@ -156,12 +162,13 @@ function checkForConstant(line, row) {
 }
 function checkForLine(line, row) {
     let tokens = line.split(" ");
+    tokens = tokens.filter((token) => token !== "");
 
     //tokens[0] is line
     if (tokens.length !== 4) {
         errors.push({
             row: row,
-            char: indexOf(tokens[0]),
+            char: tokens.indexOf(tokens[0]),
             message: "Invalid line declaration",
         });
         return false;
@@ -170,7 +177,7 @@ function checkForLine(line, row) {
     if (isPosition(tokens[1] === false)) {
         errors.push({
             row: row,
-            char: indexOf(tokens[1]),
+            char: tokens.indexOf(tokens[1]),
             message: "Invalid position",
         });
         return false;
@@ -179,7 +186,7 @@ function checkForLine(line, row) {
     if (isPosition(tokens[2]) === false) {
         errors.push({
             row: row,
-            char: indexOf(tokens[2]),
+            char: tokens.indexOf(tokens[2]),
             message: "Invalid position",
         });
         return false;
@@ -188,7 +195,7 @@ function checkForLine(line, row) {
     if (tokens[3] !== ";") {
         errors.push({
             row: row,
-            char: indexOf(tokens[2]),
+            char: tokens.indexOf(tokens[2]),
             message: "Missing ;",
         });
         return false;
@@ -196,13 +203,14 @@ function checkForLine(line, row) {
 }
 function checkForPoint(line, row) {
     let tokens = line.split(" ");
+    tokens = tokens.filter((token) => token !== "");
 
     //tokens[0] is point
 
     if (tokens.length !== 3) {
         errors.push({
             row: row,
-            char: indexOf(tokens[0]),
+            char: tokens.indexOf(tokens[0]),
             message: "Invalid point declaration",
         });
         return false;
@@ -211,7 +219,7 @@ function checkForPoint(line, row) {
     if (isPosition(tokens[1]) === false) {
         errors.push({
             row: row,
-            char: indexOf(tokens[1]),
+            char: tokens.indexOf(tokens[1]),
             message: "Invalid position",
         });
         return false;
@@ -220,7 +228,7 @@ function checkForPoint(line, row) {
     if (tokens[2] !== ";") {
         errors.push({
             row: row,
-            char: indexOf(tokens[1]),
+            char: tokens.indexOf(tokens[1]),
             message: "Missing ;",
         });
         return false;
@@ -228,13 +236,15 @@ function checkForPoint(line, row) {
 }
 function checkForRect(line, row) {
     let tokens = line.split(" ");
+    tokens = tokens.filter((token) => token !== "");
 
     //tokens[0] is rect
+    console.log(tokens);
 
-    if (tokens.length !== 6) {
+    if (tokens.length !== 5) {
         errors.push({
             row: row,
-            char: indexOf(tokens[0]),
+            char: tokens.indexOf(tokens[0]),
             message: "Invalid rect declaration",
         });
         return false;
@@ -243,7 +253,7 @@ function checkForRect(line, row) {
     if (isPosition(tokens[1]) === false) {
         errors.push({
             row: row,
-            char: indexOf(tokens[1]),
+            char: tokens.indexOf(tokens[1]),
             message: "Invalid position",
         });
         return false;
@@ -252,7 +262,7 @@ function checkForRect(line, row) {
     if (isNumeric(tokens[2]) === false) {
         errors.push({
             row: row,
-            char: indexOf(tokens[2]),
+            char: tokens.indexOf(tokens[2]),
             message: "Invalid number",
         });
         return false;
@@ -261,7 +271,7 @@ function checkForRect(line, row) {
     if (isNumeric(tokens[3]) === false) {
         errors.push({
             row: row,
-            char: indexOf(tokens[3]),
+            char: tokens.indexOf(tokens[3]),
             message: "Invalid number",
         });
         return false;
@@ -270,7 +280,7 @@ function checkForRect(line, row) {
     if (tokens[4] !== ";") {
         errors.push({
             row: row,
-            char: indexOf(tokens[3]),
+            char: tokens.indexOf(tokens[3]),
             message: "Missing ;",
         });
         return false;
@@ -278,13 +288,14 @@ function checkForRect(line, row) {
 }
 function checkForCircle(line, row) {
     let tokens = line.split(" ");
+    tokens = tokens.filter((token) => token !== "");
 
     //tokens[0] is circle
 
     if (tokens.length !== 5) {
         errors.push({
             row: row,
-            char: indexOf(tokens[0]),
+            char: tokens.indexOf(tokens[0]),
             message: "Invalid circle declaration",
         });
         return false;
@@ -293,7 +304,7 @@ function checkForCircle(line, row) {
     if (isPosition(tokens[1]) === false) {
         errors.push({
             row: row,
-            char: indexOf(tokens[1]),
+            char: tokens.indexOf(tokens[1]),
             message: "Invalid position",
         });
         return false;
@@ -302,7 +313,7 @@ function checkForCircle(line, row) {
     if (isNumeric(tokens[2]) === false) {
         errors.push({
             row: row,
-            char: indexOf(tokens[2]),
+            char: tokens.indexOf(tokens[2]),
             message: "Invalid number",
         });
         return false;
@@ -311,7 +322,7 @@ function checkForCircle(line, row) {
     if (tokens[3] !== ";") {
         errors.push({
             row: row,
-            char: indexOf(tokens[2]),
+            char: tokens.indexOf(tokens[2]),
             message: "Missing ;",
         });
         return false;
@@ -319,13 +330,14 @@ function checkForCircle(line, row) {
 }
 function checkForArc(line, row) {
     let tokens = line.split(" ");
+    tokens = tokens.filter((token) => token !== "");
 
     //tokens[0] is arc
 
     if (tokens.length !== 7) {
         errors.push({
             row: row,
-            char: indexOf(tokens[0]),
+            char: tokens.indexOf(tokens[0]),
             message: "Invalid arc declaration",
         });
         return false;
@@ -334,7 +346,7 @@ function checkForArc(line, row) {
     if (isPosition(tokens[1]) === false) {
         errors.push({
             row: row,
-            char: indexOf(tokens[1]),
+            char: tokens.indexOf(tokens[1]),
             message: "Invalid position",
         });
         return false;
@@ -343,7 +355,7 @@ function checkForArc(line, row) {
     if (isNumeric(tokens[2]) === false) {
         errors.push({
             row: row,
-            char: indexOf(tokens[2]),
+            char: tokens.indexOf(tokens[2]),
             message: "Invalid number",
         });
         return false;
@@ -352,7 +364,7 @@ function checkForArc(line, row) {
     if (isAngle(tokens[3]) === false) {
         errors.push({
             row: row,
-            char: indexOf(tokens[3]),
+            char: tokens.indexOf(tokens[3]),
             message: "Invalid angle",
         });
         return false;
@@ -361,7 +373,7 @@ function checkForArc(line, row) {
     if (isAngle(tokens[4]) === false) {
         errors.push({
             row: row,
-            char: indexOf(tokens[4]),
+            char: tokens.indexOf(tokens[4]),
             message: "Invalid angle",
         });
         return false;
@@ -370,7 +382,7 @@ function checkForArc(line, row) {
     if (tokens[5] !== ";") {
         errors.push({
             row: row,
-            char: indexOf(tokens[3]),
+            char: tokens.indexOf(tokens[3]),
             message: "Missing ;",
         });
         return false;
@@ -378,6 +390,7 @@ function checkForArc(line, row) {
 }
 function checkForPolygon(line, row) {
     let tokens = line.split(" ");
+    tokens = tokens.filter((token) => token !== "");
 
     //tokens[0] is polygone
     //there a to type of polygones
@@ -388,7 +401,7 @@ function checkForPolygon(line, row) {
         if (isPosition(tokens[1]) === false) {
             errors.push({
                 row: row,
-                char: indexOf(tokens[1]),
+                char: tokens.indexOf(tokens[1]),
                 message: "Invalid position",
             });
             return false;
@@ -397,7 +410,7 @@ function checkForPolygon(line, row) {
         if (isNumeric(tokens[2]) === false) {
             errors.push({
                 row: row,
-                char: indexOf(tokens[2]),
+                char: tokens.indexOf(tokens[2]),
                 message: "Invalid number",
             });
             return false;
@@ -406,7 +419,7 @@ function checkForPolygon(line, row) {
         if (isNumeric(tokens[3]) === false) {
             errors.push({
                 row: row,
-                char: indexOf(tokens[3]),
+                char: tokens.indexOf(tokens[3]),
                 message: "Invalid number",
             });
             return false;
@@ -415,7 +428,7 @@ function checkForPolygon(line, row) {
         if (isAngle(tokens[4]) === false) {
             errors.push({
                 row: row,
-                char: indexOf(tokens[4]),
+                char: tokens.indexOf(tokens[4]),
                 message: "Invalid angle",
             });
             return false;
@@ -424,7 +437,7 @@ function checkForPolygon(line, row) {
         if (tokens[5] !== ";") {
             errors.push({
                 row: row,
-                char: indexOf(tokens[4]),
+                char: tokens.indexOf(tokens[4]),
                 message: "Missing ;",
             });
             return false;
@@ -436,7 +449,7 @@ function checkForPolygon(line, row) {
             if (isPosition(tokens[i]) === false) {
                 errors.push({
                     row: row,
-                    char: indexOf(tokens[i]),
+                    char: tokens.indexOf(tokens[i]),
                     message: "Invalid position",
                 });
                 return false;
@@ -445,7 +458,7 @@ function checkForPolygon(line, row) {
     } else {
         errors.push({
             row: row,
-            char: indexOf(tokens[0]),
+            char: tokens.indexOf(tokens[0]),
             message: "Invalid polygone declaration",
         });
         return false;
@@ -453,13 +466,14 @@ function checkForPolygon(line, row) {
 }
 function checkForVector(line, row) {
     let tokens = line.split(" ");
+    tokens = tokens.filter((token) => token !== "");
 
     //tokens[0] is vector
 
     if (tokens.length !== 4) {
         errors.push({
             row: row,
-            char: indexOf(tokens[0]),
+            char: tokens.indexOf(tokens[0]),
             message: "Invalid vector declaration",
         });
         return false;
@@ -468,7 +482,7 @@ function checkForVector(line, row) {
     if (isPosition(tokens[1]) === false) {
         errors.push({
             row: row,
-            char: indexOf(tokens[1]),
+            char: tokens.indexOf(tokens[1]),
             message: "Invalid position",
         });
         return false;
@@ -477,7 +491,7 @@ function checkForVector(line, row) {
     if (isPosition(tokens[2]) === false) {
         errors.push({
             row: row,
-            char: indexOf(tokens[2]),
+            char: tokens.indexOf(tokens[2]),
             message: "Invalid position",
         });
         return false;
@@ -486,7 +500,7 @@ function checkForVector(line, row) {
     if (tokens[3] !== ";") {
         errors.push({
             row: row,
-            char: indexOf(tokens[3]),
+            char: tokens.indexOf(tokens[3]),
             message: "Missing ;",
         });
         return false;
