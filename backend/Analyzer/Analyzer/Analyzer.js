@@ -12,10 +12,10 @@ function analyze() {
 
     lines = Preprocess(lines);
 
-    for (let i = 0; i < lines.length; i++) {
-        let line = lines[i];
+    console.log(lines);
 
-        let identity = indentify(line, i);
+    for (let i = 0; i < lines.length; i++) {
+        validate(lines[i], i);
     }
 
     console.log(errors);
@@ -23,8 +23,6 @@ function analyze() {
 
 function Preprocess(lines) {
     lines = lines.filter((item) => item != "");
-
-    console.log(lines);
 
     for (let i = 0; i < lines.length; i++) {
         //replace any tabs or lines brakes
@@ -34,15 +32,7 @@ function Preprocess(lines) {
         lines[i] = lines[i].replace(/\s{2,}/g, " ");
     }
 
-    console.log(lines);
-
     return lines;
-}
-
-function indentify(line, row) {
-    // line stuff stuff stuff data;
-
-    let tokes = validate(line, row);
 }
 
 function validate(line, row) {
@@ -158,7 +148,7 @@ function checkForConstant(line, row) {
     let tokens = line.split(" ");
     tokens = tokens.filter((token) => token !== "");
 
-    if (tokens.length < 2) {
+    if (tokens.length !== 5) {
         errors.push({
             row: row,
             index: "0",
@@ -167,9 +157,23 @@ function checkForConstant(line, row) {
         return false;
     }
 
-    if (tokens[1] !== "=") {
+    if (isNumeric(tokens[3] === true)) {
+        errors.push({
+            row: row,
+            index: tokens.indexOf(tokens[3]),
+            message: "Invalid numeric value",
+        });
+        return false;
     }
-    //todo same with variable
+
+    if (tokens[4] !== ";") {
+        errors.push({
+            row: row,
+            index: tokens.indexOf(tokens[4]),
+            message: "Missing ;",
+        });
+        return false;
+    }
 }
 function checkForLine(line, row) {
     let tokens = line.split(" ");
@@ -251,7 +255,6 @@ function checkForRect(line, row) {
     tokens = tokens.filter((token) => token !== "");
 
     //tokens[0] is rect
-    console.log(tokens);
 
     if (tokens.length !== 5) {
         errors.push({
@@ -402,8 +405,8 @@ function checkForPolygon(line, row) {
     let tokens = line.split(" ");
     tokens = tokens.filter((token) => token !== "");
 
-    //tokens[0] is polygone
-    //there a to type of polygones
+    //tokens[0] is polygon
+    //there a to type of polygons
 
     let _case = "standart";
 
@@ -413,10 +416,7 @@ function checkForPolygon(line, row) {
         }
     }
 
-    console.log(_case);
-    console.log(tokens);
-
-    if (_case == "standart" && tokens.length === 5) {
+    if (_case == "standart" && tokens.length === 6) {
         //first case
         // position numeric numeric angle ;
         if (isPosition(tokens[1]) === false) {
@@ -463,11 +463,11 @@ function checkForPolygon(line, row) {
             });
             return false;
         }
-    } else if (_case === "non-standart" && tokens.length > 5) {
+    } else if (_case === "non-standart" && tokens.length > 4) {
         //second case
         // position position position position ... ;
         for (let i = 1; i < tokens.length; i++) {
-            if (isPosition(tokens[i]) === false) {
+            if (isPosition(tokens[i]) === false && tokens[i] !== ";") {
                 errors.push({
                     row: row,
                     index: tokens.indexOf(tokens[i]),
@@ -480,7 +480,7 @@ function checkForPolygon(line, row) {
         errors.push({
             row: row,
             index: tokens.indexOf(tokens[0]),
-            message: "Invalid polygone declaration",
+            message: "Invalid polygon declaration",
         });
         return false;
     }
@@ -490,6 +490,8 @@ function checkForVector(line, row) {
     tokens = tokens.filter((token) => token !== "");
 
     //tokens[0] is vector
+
+    console.log(tokens);
 
     if (tokens.length !== 4) {
         errors.push({
@@ -532,7 +534,7 @@ const PossibleLines = {
     RECT: ["rectangle", "position", "numeric", "numeric", ";"],
     ARC: ["arc", "position", "numeric", "skalar", "skalar", ";"],
     CIRCLE: ["circle", "position", "numeric", ";"],
-    POLYGONE: ["polygone", "position", "numeric", "numeric", "angle", ";"],
+    POLYGON: ["polygon", "position", "numeric", "numeric", "angle", ";"],
     VECTOR: ["vector", "position", "position", ";"],
     LINE: ["position", "position", ";"],
     POINT: ["position", ";"],
