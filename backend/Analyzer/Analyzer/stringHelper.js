@@ -25,22 +25,25 @@ function isUppercaseOrUnderscore(str) {
     return /^[A-Z_]+$/.test(str);
 }
 function deleteCharBetween(str, startChar, endChar, charToDelete) {
-    const startIndex = str.indexOf(startChar);
-    const endIndex = str.indexOf(endChar);
+    let startIndex = str.indexOf(startChar);
+    let endIndex = str.indexOf(endChar);
 
-    if (startIndex === -1 || endIndex === -1) {
-        return str;
+    while (startIndex !== -1 && endIndex !== -1) {
+        let charToDeleteIndex = str.indexOf(charToDelete, startIndex + 1);
+        while (charToDeleteIndex !== -1 && charToDeleteIndex < endIndex) {
+            const charsBefore = str.slice(0, charToDeleteIndex);
+            const charsAfter = str.slice(charToDeleteIndex + 1);
+            str = charsBefore + charsAfter;
+
+            endIndex -= 1;
+            charToDeleteIndex = str.indexOf(charToDelete, startIndex + 1);
+        }
+
+        startIndex = str.indexOf(startChar, startIndex + 1);
+        endIndex = str.indexOf(endChar, endIndex + 1);
     }
 
-    const charToDeleteIndex = str.indexOf(charToDelete, startIndex + 1);
-    if (charToDeleteIndex === -1 || charToDeleteIndex >= endIndex) {
-        return str;
-    }
-
-    const charsBefore = str.slice(0, charToDeleteIndex);
-    const charsAfter = str.slice(charToDeleteIndex + 1);
-
-    return charsBefore + charsAfter;
+    return str;
 }
 function isValidColor(colorString) {
     // HEX format: #RRGGBB or #RGB
