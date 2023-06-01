@@ -97,10 +97,10 @@ Coloring
 
 colorCode can be => HEX, HSL, HSLA, HSV, RGB, RGBA
 
-s:c(colorCode);
+s:c(colorCode):
 // setting the global stroke color to the colorCode
 
-f:c(colorCode);
+f:c(colorCode):
 //setting the global fill color to the colorCode
 coloring for only one shape =>
 

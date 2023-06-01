@@ -8,11 +8,9 @@ function analyze() {
 
     var code = document.getElementById("myDiv").innerText;
 
-    let lines = code.split(";");
+    let lines = splitStringWithChar(code, ";");
 
     lines = Preprocess(lines);
-
-    console.log(lines);
 
     for (let i = 0; i < lines.length; i++) {
         validate(lines[i], i);
@@ -28,8 +26,10 @@ function Preprocess(lines) {
         //replace any tabs or lines brakes
         lines[i] = lines[i].replace(/\t/g, " ");
         lines[i] = deleteCharBetween(lines[i], "(", ")", " ");
-        lines[i] += " ;";
         lines[i] = lines[i].replace(/\s{2,}/g, " ");
+        if (lines[i][lines[i].length - 1] === ";") {
+            lines[i] = lines[i].replace(";", " ;");
+        }
     }
 
     return lines;
@@ -155,6 +155,14 @@ function checkForConstant(line, row) {
             message: "Invalid constant declaration",
         });
         return false;
+    }
+
+    if (isName(tokens[1]) === false) {
+        errors.push({
+            row: row,
+            index: tokens.indexOf(tokens[1]),
+            message: "Invalid constant name",
+        });
     }
 
     if (isNumeric(tokens[3] === true)) {
@@ -570,7 +578,7 @@ function isAngle(token) {
     return result;
 }
 function isName(token) {
-    return isUppercaseOrUnderscore(token);
+    return /^[a-zA-Z]+$/.test(token);
 }
 function isFillColor(token) {
     // f:c(any color type)

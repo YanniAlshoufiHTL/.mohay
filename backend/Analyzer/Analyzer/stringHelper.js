@@ -87,3 +87,15 @@ function isValidColor(colorString) {
     // Invalid color format
     return "Invalid";
 }
+
+function splitStringWithChar(string, splitChar) {
+    const splitIndex = string.indexOf(splitChar);
+
+    if (splitIndex === -1) {
+        return [string];
+    } else {
+        const beforeSplit = string.substring(0, splitIndex + 1); // Include splitChar
+        const afterSplit = string.substring(splitIndex + 1);
+        return [beforeSplit, afterSplit];
+    }
+}
