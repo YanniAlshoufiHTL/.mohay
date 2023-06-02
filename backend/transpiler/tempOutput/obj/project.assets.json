@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {}
+    "net7.0": {
+      "transpiler.Logic/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/transpiler.Logic.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/transpiler.Logic.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "transpiler.Logic/1.0.0": {
+      "type": "project",
+      "path": "../transpiler.Logic/transpiler.Logic.csproj",
+      "msbuildProject": "../transpiler.Logic/transpiler.Logic.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net7.0": []
+    "net7.0": [
+      "transpiler.Logic >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\flyti\\.nuget\\packages\\": {},
@@ -39,7 +58,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\flyti\\Documents\\GitHubONLY\\.mohay\\backend\\transpiler\\transpiler.Logic\\transpiler.Logic.csproj": {
+              "projectPath": "C:\\Users\\flyti\\Documents\\GitHubONLY\\.mohay\\backend\\transpiler\\transpiler.Logic\\transpiler.Logic.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
