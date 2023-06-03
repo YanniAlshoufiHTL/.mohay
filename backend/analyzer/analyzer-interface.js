@@ -39,11 +39,13 @@ function analyze(code) {
     if (line[0] === "$")
       return "TODO: MAKE THIS RETURN ERROR!";
 
-    console.log(line);
+    let syntaxObjectLine = getSyntaxObjectLine(line);
   }
 
   return result;
 }
+
+window.analyze = analyze;
 
 /* example result: { ["inline": ["//", "// <text>", "//", "<text>"] }
  * if multiple lines are affected, the following is a valid response using "$nextLine"
@@ -83,10 +85,10 @@ function getSyntaxObjectLine(line) {
         //
         // console.log(firstWordOfLine === keyword);
 
-        if (line.split(" ")[0] === keyword) {
+        if (line.split(" ")[0] === keyword || line[0] === "." && keyword === ".") {
           console.log("PINGO!");
           console.table("Keyword: " + keyword)
-          console.table(Object.entries(languageSyntax[key])[0]);
+          console.table(Object.entries(languageSyntax[key])[index]);
         }
       }
     }
@@ -94,6 +96,3 @@ function getSyntaxObjectLine(line) {
 
   return result;
 }
-
-
-getSyntaxObjectLine('wow YANNI = "Yanni"');

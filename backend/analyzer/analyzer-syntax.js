@@ -23,7 +23,7 @@
 export let languageSyntax = {
   declarations: {
     "constants": ["wow" , "wow <name> = <expr>", "<name>", "=", "<expr>"],
-    "variables": [".", ".<><name> = <expr>", ".<><name>", "=", "<expr>"],
+    "variables": [".", ".<><name> = <expr>", ".", "<><name>", "=", "<expr>"],
   },
 
   predefinedFunctions: {
