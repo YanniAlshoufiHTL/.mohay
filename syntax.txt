@@ -1,7 +1,7 @@
 Syntax by Moritz Bernhofer
 
-Comments are just stardard <
-// this line is ingored
+Comments are just standard
+// this line is ignored
 
 /* 
     this is also ignored
@@ -13,7 +13,7 @@ Constants
 
 wow any = {any shape, string, numeric, variable};
 
-any is just a string (ASCI)
+any is just a string (ASCII)
 
 Convention
 
