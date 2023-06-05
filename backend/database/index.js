@@ -13,9 +13,21 @@ const pool = mysql
 async function addFile(email, hashCode, fileName, fileCode) {
     if (await login(email, hashCode) === "success") {
         const userData = await getUser(email);
-        await pool.query(`UPDATE users SET files = '${userData.files}${userData === '' ? '' : ','}${fileName}:${fileCode}' WHERE email = '${email}';`);
+        if (getSemiColonAmount(fileName, userData == -1)) {
+            await pool.query(`UPDATE users SET fileNames = '${fileName},${userData.fileNames}' WHERE email = '${email}';`);
+            await pool.query(`UPDATE users SET fileCode = '${fileCode},${userData.fileCode}' WHERE email = '${email}';`);
+        }
     }
 }
+
+async function getFile(email, hashCode, fileName) {
+    if (await login(email, hashCode) === "success") {
+        const userData = await getUser(email);
+
+    }
+}
+
+
 
 async function modifyFile(email, hashCode, fileName, newFileCode) {
 
@@ -23,7 +35,7 @@ async function modifyFile(email, hashCode, fileName, newFileCode) {
 
 async function resetTable() {
     await pool.query("DROP TABLE users;");
-    await pool.query("CREATE TABLE users (email VARCHAR(255) PRIMARY KEY, userName VARCHAR(255), hashCode VARCHAR(255), files LONGTEXT);");
+    await pool.query("CREATE TABLE users (email VARCHAR(255) PRIMARY KEY, userName VARCHAR(255), hashCode VARCHAR(255), fileNames VARCHAR(255), fileCode LONGTEXT);");
 }
 
 async function getUser(email) {
@@ -54,7 +66,7 @@ async function addUser(email, userName, hashCode) {
     if (emailLegit && userAvailible === undefined) {
         await pool.query(
             `
-            INSERT INTO users(email, userName, hashCode, files) VALUES('${email}', '${userName}', '${hashCode}', '');
+            INSERT INTO users(email, userName, hashCode, fileNames, fileCode) VALUES('${email}', '${userName}', '${hashCode}', '', '');
             `
         );
         return "success";
@@ -74,7 +86,35 @@ async function checkEmail(email) {
     return atUsed && !error;
 }
 
-await addFile('lucahaas07@gmx.at', 'lucahaas07@gmx.at', 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', 'abcde');
+async function getSemiColonAmount(fileName, userData) {
+    let charTheSame = true;
+    let result = 0;
+    console.log(userData.fileNames.length);
+    for (let i = 0; i < userData.fileNames.length; i++) {
+        for (let j = 0; j < fileName.length && charTheSame; j++) {
+            console.log(`${i + j}:${userData.fileNames.length}`);
+            if (i + j >= userData.fileNames.length) { return -1; }
+            if (userData.fileNames[i + j] !== fileName[j]) {
+                charTheSame = false;
+            }
+            if (userData.fileNames[i] === ',') {
+                result++;
+            }
+            if (j == fileName.length - 1 && charTheSame) {
+                return result;
+            }
+        }
+        charTheSame = true;
+    }
+    return -1;
+}
+
+//await resetTable();
+//await addUser('lucahaas07@gmx.at', 'Luca Haas', 'lucahaas07@gmx.at');
+//await addFile('lucahaas07@gmx.at', 'lucahaas07@gmx.at', 'file2', 'abcde');
+const userData = await getUser('lucahaas07@gmx.at');
+console.log(userData);
+console.log(await getSemiColonAmount('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', userData));
 
 const users = await getUsers();
 console.log(users);
