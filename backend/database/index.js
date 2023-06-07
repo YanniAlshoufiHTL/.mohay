@@ -10,41 +10,37 @@ const pool = mysql
     })
     .promise();
 
-async function addFile(email, hashCode, fileName, fileCode) {
-    if (await login(email, hashCode) === "success") {
-        const userData = await getUser(email);
-        if (getSemiColonAmount(fileName, userData == -1)) {
-            await pool.query(`UPDATE users SET fileNames = '${fileName},${userData.fileNames}' WHERE email = '${email}';`);
-            await pool.query(`UPDATE users SET fileCode = '${fileCode},${userData.fileCode}' WHERE email = '${email}';`);
-        }
-    }
-}
-
-async function getFile(email, hashCode, fileName) {
-    if (await login(email, hashCode) === "success") {
-        const userData = await getUser(email);
-
-    }
-}
-
-
-
-async function modifyFile(email, hashCode, fileName, newFileCode) {
-
-}
-
+// Table functions
 async function resetTable() {
-    await pool.query("DROP TABLE users;");
-    await pool.query("CREATE TABLE users (email VARCHAR(255) PRIMARY KEY, userName VARCHAR(255), hashCode VARCHAR(255), fileNames VARCHAR(255), fileCode LONGTEXT);");
+    await dropTable();
+    await createTable();
 }
 
-async function getUser(email) {
-    const [rows] = await pool.query(
-        `
-            SELECT * FROM users WHERE email = '${email}';
-            `
+async function createTable() {
+    await pool.query(
+        "CREATE TABLE IF NOT EXISTS users (email VARCHAR(255) PRIMARY KEY, userName VARCHAR(255), hashCode VARCHAR(255), fileNames VARCHAR(255), fileCode LONGTEXT);"
     );
-    return rows[0];
+}
+
+async function dropTable() {
+    await pool.query("DROP TABLE IF EXISTS users;");
+}
+
+// User functions
+async function addUser(email, userName, hashCode) {
+    const user = await getUser(email);
+    const emailLegit = await isEmailAllowed(email);
+    if (emailLegit && user === undefined)
+        return insertUser(email, userName, hashCode);
+    else if (!emailLegit)
+        return "email in wrong format";
+    else
+        return "email already used";
+}
+
+async function insertUser(email, userName, hashCode) {
+    await pool.query(`INSERT INTO users(email, userName, hashCode, fileNames, fileCode) VALUES('${email}', '${userName}', '${hashCode}', '', '');`);
+    return "success";
 }
 
 async function getUsers() {
@@ -52,29 +48,23 @@ async function getUsers() {
     return rows;
 }
 
+async function getUser(email) {
+    const [rows] = await pool.query(`SELECT * FROM users WHERE email = '${email}';`);
+    return rows[0];
+}
+
+// Login functions
 async function login(email, hashCode) {
+    let result = "wrong password";
     const user = await getUser(email);
-    if (user !== undefined && user.hashCode === hashCode) {
-        return "success";
-    } else if (user === undefined) return "no user with this email";
-    else return "wrong password";
+    if (user !== undefined && user.hashCode === hashCode)
+        result = "success";
+    else if (user === undefined)
+        result = "no user with this email";
+    return result;
 }
 
-async function addUser(email, userName, hashCode) {
-    const userAvailible = await getUser(email);
-    const emailLegit = checkEmail(email);
-    if (emailLegit && userAvailible === undefined) {
-        await pool.query(
-            `
-            INSERT INTO users(email, userName, hashCode, fileNames, fileCode) VALUES('${email}', '${userName}', '${hashCode}', '', '');
-            `
-        );
-        return "success";
-    } else if (emailLegit) return "email in wrong format";
-    else return "email already used";
-}
-
-async function checkEmail(email) {
+async function isEmailAllowed(email) {
     let atUsed = false;
     let error = false;
     for (let i = 0; i < email.length; i++) {
@@ -82,39 +72,115 @@ async function checkEmail(email) {
         if (element === "@" && !atUsed) atUsed = true;
         else if (element === "@" && atUsed) error = true;
     }
-    console.log(atUsed && !error);
     return atUsed && !error;
 }
 
-async function getSemiColonAmount(fileName, userData) {
-    let charTheSame = true;
-    let result = 0;
-    console.log(userData.fileNames.length);
-    for (let i = 0; i < userData.fileNames.length; i++) {
-        for (let j = 0; j < fileName.length && charTheSame; j++) {
-            console.log(`${i + j}:${userData.fileNames.length}`);
-            if (i + j >= userData.fileNames.length) { return -1; }
-            if (userData.fileNames[i + j] !== fileName[j]) {
-                charTheSame = false;
-            }
-            if (userData.fileNames[i] === ',') {
-                result++;
-            }
-            if (j == fileName.length - 1 && charTheSame) {
-                return result;
-            }
-        }
-        charTheSame = true;
+// File functions
+async function addFile(email, hashCode, fileName, fileCode) {
+    if ((await login(email, hashCode)) === "success") {
+        const userData = await getUser(email);
+        const fileExists = await isFileExisting(userData, fileName);
+        if (fileExists[0]) return "Filename already taken";
+        await updateFileData('fileNames', `${fileName},${userData.fileNames}`, email);
+        await updateFileData('fileCode', `${fileCode},${userData.fileCode}`, email);
+        return "success";
     }
-    return -1;
+    return "wrong userdata";
+}
+// fix terminal current try
+async function deleteFile(email, hashCode, fileName) {
+    if ((await login(email, hashCode)) === "success") {
+        const userData = await getUser(email);
+        const fileExists = await isFileExisting(userData, fileName);
+
+        if (fileExists.length == 1) return "File not found";
+
+        const fileData = await deleteElementFromFilesArray(userData, fileExists[1]);
+        await updateFileData('fileNames', fileData[0].toString(), email);
+        await updateFileData('fileCode', fileData[1].toString(), email);
+        return "success";
+    }
+    return "wrong userdata";
 }
 
-//await resetTable();
-//await addUser('lucahaas07@gmx.at', 'Luca Haas', 'lucahaas07@gmx.at');
-//await addFile('lucahaas07@gmx.at', 'lucahaas07@gmx.at', 'file2', 'abcde');
-const userData = await getUser('lucahaas07@gmx.at');
-console.log(userData);
-console.log(await getSemiColonAmount('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', userData));
+async function deleteElementFromFilesArray(userData, index) {
+    let fileNames = userData.fileNames.split(",");
+    let fileCode = userData.fileCode.split(",");
+    fileNames.splice(index);
+    fileCode.splice(index);
+    return [fileNames, fileCode];
+}
+
+async function modfyFileName(email, hashCode, fileName, newFileName) {
+    if ((await login(email, hashCode)) === "success") {
+        const userData = await getUser(email);
+        const fileExists = await isFileExisting(userData, fileName);
+        if (fileExists.length == 1) return "File not found";
+
+        const fileNames = userData.fileNames.split(",");
+
+        fileNames[fileExists[1]] = newFileName;
+        await pool.query(
+            `UPDATE users SET fileNames = '${fileNames.toString()}' WHERE email = '${email}';`
+        );
+        return "success";
+    }
+    return "wrong userdata";
+}
+
+async function modifyFileCode(email, hashCode, fileName, newFileCode) {
+    if ((await login(email, hashCode)) === "success") {
+        const userData = await getUser(email);
+        const fileExists = await isFileExisting(userData, fileName);
+        if (fileExists.length == 1) return "File not found";
+        const fileCode = userData.fileCode.split(",");
+        fileCode[fileExists[1]] = newFileCode;
+        await pool.query(
+            `UPDATE users SET fileCode = '${fileCode.toString()}' WHERE email = '${email}';`
+        );
+        return "success";
+    }
+    return "wrong userdata";
+}
+
+async function isFileExisting(userData, fileName) {
+    const fileNames = userData.fileNames.split(",");
+    for (let i = 0; i < fileNames.length; i++) {
+        if (fileNames[i] === fileName) return [true, i];
+    }
+    return [false];
+}
+
+async function getFile(email, hashCode, fileName) {
+    if ((await login(email, hashCode)) === "success") {
+        const userData = await getUser(email);
+        const fileExists = await isFileExisting(userData, fileName);
+        if (fileExists.length == 1) return "File not found";
+
+        const fileCode = userData.fileCode.split(",");
+        return fileCode[fileExists[1]];
+    }
+    return "wrong userdata";
+}
+
+async function updateFileData(coloumName, fileData, email) {
+    await pool.query(
+        `UPDATE users SET ${coloumName} = '${fileData}' WHERE email = '${email}';`
+    );
+}
+
+/*
+await deleteFile('lucahaas07@gmx.at', 'lucahaas07@gmx.at', 'file1');
+console.log(await modifyFile('lucahaas07@gmx.at', 'lucahaas07@gmx.at', 'file4', 'kajsdlfkjalksdfj'));
+console.log(await modfyFileName('lucahaas07@gmx.at', 'lucahaas07@gmx.at', 'file1', 'file4'));
+console.log(await addFile('lucahaas07@gmx.at', 'lucahaas07@gmx.at', 'file1', 'lkfajksdjfklasj'));
+console.log(await getFile('lucahaas07@gmx.at', 'lucahaas07@gmx.at', 'file1'));
+await dropTable();
+await createTable();
+await addUser('lucahaas07@gmx.at', 'Luca Haas', 'lucahaas07@gmx.at');
+*/
+
+await deleteFile('lucahaas07@gmx.at', 'lucahaas07@gmx.at', 'emil2');
 
 const users = await getUsers();
 console.log(users);
