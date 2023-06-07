@@ -111,18 +111,14 @@ async function deleteElementFromFilesArray(userData, index) {
     return [fileNames, fileCode];
 }
 
-async function modfyFileName(email, hashCode, fileName, newFileName) {
+async function modifyFileName(email, hashCode, fileName, newFileName) {
     if ((await login(email, hashCode)) === "success") {
         const userData = await getUser(email);
         const fileExists = await isFileExisting(userData, fileName);
         if (fileExists.length == 1) return "File not found";
-
         const fileNames = userData.fileNames.split(",");
-
         fileNames[fileExists[1]] = newFileName;
-        await pool.query(
-            `UPDATE users SET fileNames = '${fileNames.toString()}' WHERE email = '${email}';`
-        );
+        await updateFileData('fileNames', fileNames.toString(), email);
         return "success";
     }
     return "wrong userdata";
@@ -135,10 +131,19 @@ async function modifyFileCode(email, hashCode, fileName, newFileCode) {
         if (fileExists.length == 1) return "File not found";
         const fileCode = userData.fileCode.split(",");
         fileCode[fileExists[1]] = newFileCode;
-        await pool.query(
-            `UPDATE users SET fileCode = '${fileCode.toString()}' WHERE email = '${email}';`
-        );
+        await updateFileData('fileCode', fileCode.toString(), email);
         return "success";
+    }
+    return "wrong userdata";
+}
+
+async function getFile(email, hashCode, fileName) {
+    if ((await login(email, hashCode)) === "success") {
+        const userData = await getUser(email);
+        const fileExists = await isFileExisting(userData, fileName);
+        if (fileExists.length == 1) return "File not found";
+        const fileCode = userData.fileCode.split(",");
+        return fileCode[fileExists[1]];
     }
     return "wrong userdata";
 }
@@ -151,36 +156,8 @@ async function isFileExisting(userData, fileName) {
     return [false];
 }
 
-async function getFile(email, hashCode, fileName) {
-    if ((await login(email, hashCode)) === "success") {
-        const userData = await getUser(email);
-        const fileExists = await isFileExisting(userData, fileName);
-        if (fileExists.length == 1) return "File not found";
-
-        const fileCode = userData.fileCode.split(",");
-        return fileCode[fileExists[1]];
-    }
-    return "wrong userdata";
-}
-
 async function updateFileData(coloumName, fileData, email) {
     await pool.query(
         `UPDATE users SET ${coloumName} = '${fileData}' WHERE email = '${email}';`
     );
 }
-
-/*
-await deleteFile('lucahaas07@gmx.at', 'lucahaas07@gmx.at', 'file1');
-console.log(await modifyFile('lucahaas07@gmx.at', 'lucahaas07@gmx.at', 'file4', 'kajsdlfkjalksdfj'));
-console.log(await modfyFileName('lucahaas07@gmx.at', 'lucahaas07@gmx.at', 'file1', 'file4'));
-console.log(await addFile('lucahaas07@gmx.at', 'lucahaas07@gmx.at', 'file1', 'lkfajksdjfklasj'));
-console.log(await getFile('lucahaas07@gmx.at', 'lucahaas07@gmx.at', 'file1'));
-await dropTable();
-await createTable();
-await addUser('lucahaas07@gmx.at', 'Luca Haas', 'lucahaas07@gmx.at');
-*/
-
-await deleteFile('lucahaas07@gmx.at', 'lucahaas07@gmx.at', 'emil2');
-
-const users = await getUsers();
-console.log(users);
