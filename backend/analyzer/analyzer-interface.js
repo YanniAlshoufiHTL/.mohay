@@ -70,39 +70,3 @@ function analyze(code) {
 }
 
 window.analyze = analyze;
-
-/**
- * @method
- * @param {string} name
- * @returns {boolean}
- */
-function isNameAllowed(name) {
-    return name !== "" && typeof(name) === "string" && /^[a-zA-Z_]*$/.test(name);
-}
-
-import { assert_eq } from './assert.js';
-
-/**
- * @method
- * @returns {void}
- */
-function tests() {
-    const mohayVarNamingTests = () => {
-        console.log("Unit testing...");
-        assert_eq(isNameAllowed("correctName"), true);
-        assert_eq(isNameAllowed("correct_name"), true);
-        assert_eq(isNameAllowed("Correct_Name"), true);
-
-        assert_eq(isNameAllowed("incorrect Name"), false);
-        assert_eq(isNameAllowed("incorrect-Name"), false);
-        assert_eq(isNameAllowed("%ASasfjv89jl;a/;"), false);
-        assert_eq(isNameAllowed(""), false);
-        assert_eq(isNameAllowed(null), false);
-        assert_eq(isNameAllowed(5), false);
-        assert_eq(isNameAllowed(true), false);
-    };
-
-    // mohayVarNamingTests();
-}
-
-tests();

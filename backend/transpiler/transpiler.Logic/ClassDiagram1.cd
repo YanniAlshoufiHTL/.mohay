@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="transpiler.Logic.Composite_classes.Arc" BaseTypeListCollapsed="true">
+    <Position X="16" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAQAAIQAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Composite classes\Arc.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="transpiler.Logic.Composite_classes.Circle" BaseTypeListCollapsed="true">
+    <Position X="18" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAQAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Composite classes\Circle.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="transpiler.Logic.Composite_classes.Polygone_Position" BaseTypeListCollapsed="true">
+    <Position X="13.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Composite classes\Polygone_Position.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="transpiler.Logic.Composite_classes.Rect" BaseTypeListCollapsed="true">
+    <Position X="20.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAACAAAAAAAAAYAAAAAA=</HashCode>
+      <FileName>Composite classes\Rect.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="transpiler.Logic.Composite_interfaces.IConstant" Collapsed="true">
+    <Position X="6.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Composite interfaces\IConstant.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="transpiler.Logic.Composite_interfaces.IExpression" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Composite interfaces\IExpression.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="transpiler.Logic.Composite_interfaces.IKeyword" Collapsed="true">
+    <Position X="13.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Composite interfaces\IKeyword.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="transpiler.Logic.Composite_interfaces.INumeric" Collapsed="true">
+    <Position X="4.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Composite interfaces\INumeric.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="transpiler.Logic.Composite_interfaces.IPosition" Collapsed="true">
+    <Position X="9" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>Composite interfaces\IPosition.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="transpiler.Logic.Composite_interfaces.IString" Collapsed="true">
+    <Position X="11.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Composite interfaces\IString.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="transpiler.Logic.Composite_interfaces.IVariable" Collapsed="true">
+    <Position X="15.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Composite interfaces\IVariable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
