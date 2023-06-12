@@ -1,5 +1,3 @@
-import { languageSyntax } from "./analyzer-syntax.js";
-
 /*
  * analyze function (takes String, outputs object)
  *
