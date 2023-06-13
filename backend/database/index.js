@@ -1,163 +1,73 @@
-import mysql from "mysql2";
+const express = require("express");
+const database = require("./database");
 
-const pool = mysql
-    .createPool({
-        host: "localhost",
-        port: "3306",
-        user: "root",
-        password: "",
-        database: "mohay",
-    })
-    .promise();
+const app = express();
+const PORT = 8080;
 
-// Table functions
-async function resetTable() {
-    await dropTable();
-    await createTable();
-}
+app.use(express.json());
 
-async function createTable() {
-    await pool.query(
-        "CREATE TABLE IF NOT EXISTS users (email VARCHAR(255) PRIMARY KEY, userName VARCHAR(255), hashCode VARCHAR(255), fileNames VARCHAR(255), fileCode LONGTEXT);"
-    );
-}
+app.get('/login', async (req, res) => {
+    const { email } = req.body;
+    const { password } = req.body;
+    const result = await database.login(email, password);
+    const userData = await database.getUser(email);
+    res.status(202).send({
+        loginState: userData.loginState
+    });
+});
 
-async function dropTable() {
-    await pool.query("DROP TABLE IF EXISTS users;");
-}
+app.get('/logout', async (req, res) => {
+    const { email } = req.body;
+    const { password } = req.body;
+    const result = await database.logout(email, password);
+    const userData = await database.getUser(email);
+    res.status(202).send({
+        loginState: userData.loginState
+    });
+});
 
-// User functions
-async function addUser(email, userName, hashCode) {
-    const user = await getUser(email);
-    const emailLegit = await isEmailAllowed(email);
-    if (emailLegit && user === undefined)
-        return insertUser(email, userName, hashCode);
-    else if (!emailLegit)
-        return "email in wrong format";
-    else
-        return "email already used";
-}
-
-async function insertUser(email, userName, hashCode) {
-    await pool.query(`INSERT INTO users(email, userName, hashCode, fileNames, fileCode) VALUES('${email}', '${userName}', '${hashCode}', '', '');`);
-    return "success";
-}
-
-async function getUsers() {
-    const [rows] = await pool.query("SELECT * FROM users;");
-    return rows;
-}
-
-async function getUser(email) {
-    const [rows] = await pool.query(`SELECT * FROM users WHERE email = '${email}';`);
-    return rows[0];
-}
-
-// Login functions
-async function login(email, hashCode) {
-    let result = "wrong password";
-    const user = await getUser(email);
-    if (user !== undefined && user.hashCode === hashCode)
-        result = "success";
-    else if (user === undefined)
-        result = "no user with this email";
-    return result;
-}
-
-async function isEmailAllowed(email) {
-    let atUsed = false;
-    let error = false;
-    for (let i = 0; i < email.length; i++) {
-        const element = email[i];
-        if (element === "@" && !atUsed) atUsed = true;
-        else if (element === "@" && atUsed) error = true;
+app.get('/getMohayCode', async (req, res) => {
+    const { email } = req.body;
+    const { fileName } = req.body;
+    const fileCode = await database.getFile(email, fileName);
+    if (fileCode === "wrong userdata") {
+        res.status(401).send(fileCode);
     }
-    return atUsed && !error;
+    console.log(fileCode);
+    res.status(202).send({
+        fileCode: fileCode
+    });
+});
+/* TODO: Need to return transpiled code */
+app.get('/addMohayFile', async (req, res) => {
+    const { email } = req.body;
+    const { fileName } = req.body;
+    const { fileCode } = req.body;
+    await database.addFile(email, fileName, fileCode);
+    const result = analizeCode();
+    res.status(202).send(fileCode);
+});
+
+function analizeCode() {
+    return "";
 }
 
-// File functions
-async function addFile(email, hashCode, fileName, fileCode) {
-    if ((await login(email, hashCode)) === "success") {
-        const userData = await getUser(email);
-        const fileExists = await isFileExisting(userData, fileName);
-        if (fileExists[0]) return "Filename already taken";
-        await updateFileData('fileNames', `${fileName},${userData.fileNames}`, email);
-        await updateFileData('fileCode', `${fileCode},${userData.fileCode}`, email);
-        return "success";
-    }
-    return "wrong userdata";
-}
-// fix terminal current try
-async function deleteFile(email, hashCode, fileName) {
-    if ((await login(email, hashCode)) === "success") {
-        const userData = await getUser(email);
-        const fileExists = await isFileExisting(userData, fileName);
+app.get('/modifyMohayFileCode', async (req, res) => {
+    const { email } = req.body;
+    const { fileName } = req.body;
+    const { fileCode } = req.body;
+    await database.modifyFileCode(email, fileName, fileCode);
+    res.status(202).send(fileCode);
+})
 
-        if (fileExists.length == 1) return "File not found";
+app.get('/modifyMohayFileName', async (req, res) => {
+    const { email } = req.body;
+    const { fileName } = req.body;
+    const { newFileName } = req.body;
+    await database.modifyFileName(email, fileName, newFileName);
+    res.status(202).send(newFileName);
+})
 
-        const fileData = await deleteElementFromFilesArray(userData, fileExists[1]);
-        await updateFileData('fileNames', fileData[0].toString(), email);
-        await updateFileData('fileCode', fileData[1].toString(), email);
-        return "success";
-    }
-    return "wrong userdata";
-}
-
-async function deleteElementFromFilesArray(userData, index) {
-    let fileNames = userData.fileNames.split(",");
-    let fileCode = userData.fileCode.split(",");
-    fileNames.splice(index);
-    fileCode.splice(index);
-    return [fileNames, fileCode];
-}
-
-async function modifyFileName(email, hashCode, fileName, newFileName) {
-    if ((await login(email, hashCode)) === "success") {
-        const userData = await getUser(email);
-        const fileExists = await isFileExisting(userData, fileName);
-        if (fileExists.length == 1) return "File not found";
-        const fileNames = userData.fileNames.split(",");
-        fileNames[fileExists[1]] = newFileName;
-        await updateFileData('fileNames', fileNames.toString(), email);
-        return "success";
-    }
-    return "wrong userdata";
-}
-
-async function modifyFileCode(email, hashCode, fileName, newFileCode) {
-    if ((await login(email, hashCode)) === "success") {
-        const userData = await getUser(email);
-        const fileExists = await isFileExisting(userData, fileName);
-        if (fileExists.length == 1) return "File not found";
-        const fileCode = userData.fileCode.split(",");
-        fileCode[fileExists[1]] = newFileCode;
-        await updateFileData('fileCode', fileCode.toString(), email);
-        return "success";
-    }
-    return "wrong userdata";
-}
-
-async function getFile(email, hashCode, fileName) {
-    if ((await login(email, hashCode)) === "success") {
-        const userData = await getUser(email);
-        const fileExists = await isFileExisting(userData, fileName);
-        if (fileExists.length == 1) return "File not found";
-        const fileCode = userData.fileCode.split(",");
-        return fileCode[fileExists[1]];
-    }
-    return "wrong userdata";
-}
-
-async function isFileExisting(userData, fileName) {
-    const fileNames = userData.fileNames.split(",");
-    for (let i = 0; i < fileNames.length; i++) {
-        if (fileNames[i] === fileName) return [true, i];
-    }
-    return [false];
-}
-
-async function updateFileData(coloumName, fileData, email) {
-    await pool.query(
-        `UPDATE users SET ${coloumName} = '${fileData}' WHERE email = '${email}';`
-    );
-}
+app.listen(PORT, () => {
+    console.log("wow");
+});
