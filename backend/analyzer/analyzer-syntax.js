@@ -74,7 +74,7 @@ let parameterlessAttributes = {};
  * @returns {boolean}
  */
 function isNameAllowed(name) {
-    return name !== "" && typeof(name) === "string" && /^[a-zA-Z_]*$/.test(name);
+    return name !== "" && typeof name === "string" && /^[a-zA-Z_]*$/.test(name);
 }
 
 /**
@@ -83,7 +83,9 @@ function isNameAllowed(name) {
  * @returns {boolean}
  */
 function isNumericExpression(expression) {
-    return /[0123456789\-\*\+\/]/.test(expression);
+    return typeof expression === "string" &&
+        expression !== "" &&
+        (expression.trim() === "NaN" || isFinite(expression) || /^((- *)|(-))?Infinity+$/g.test(expression.trim()));
 }
 
 /**
@@ -109,7 +111,7 @@ function tests() {
     console.log("\n\n\n\n\nUnit testing...\n");
 
     const mohayVarNamingTests = () => {
-        console.log("\n\nVariable Naming Tests...\n");
+        console.log("\n\n\n\n\nVariable Naming Tests...\n\n\n");
 
         assert_eq(isNameAllowed("correctName"), true, "correctName");
         assert_eq(isNameAllowed("correct_name"), true, "correct_name");
@@ -125,7 +127,7 @@ function tests() {
     };
 
     const mohayNumericExpressionTests = () => {
-        console.log("\n\nNummeric Expression Tests...\n");
+        console.log("\n\n\n\n\nNummeric Expression Tests...\n\n\n");
 
         assert_eq(isNumericExpression("5"), true, "5");
         assert_eq(isNumericExpression("13"), true, "13");
@@ -141,13 +143,13 @@ function tests() {
         assert_eq(isNumericExpression("Infinity"), true, "Infinity");
         assert_eq(isNumericExpression("- Infinity"), true, "- Infinity");
         assert_eq(isNumericExpression("   - Infinity "), true, "   - Infinity ");
-        assert_eq(isNumericExpression("   -    0 "), true, "   -    0 ");
 
         assert_eq(isNumericExpression(""), false, "empty string");
+        assert_eq(isNumericExpression("   -    0 "), false, "   -    0 ");
         assert_eq(isNumericExpression("4,5"), false, "4,5");
-
         assert_eq(isNumericExpression("Inf"), false, "Inf");
         assert_eq(isNumericExpression("infinity"), false, "infinity");
+        assert_eq(isNumericExpression("infinity-"), false, "infinity");
         assert_eq(isNumericExpression("--"), false, "--");
         assert_eq(isNumericExpression("++4"), false, "++4");
         assert_eq(isNumericExpression("asdf"), false, "asdf");
@@ -160,7 +162,7 @@ function tests() {
     }
 
     const mohayStringExpressionTests = () => {
-        console.log("\n\nString Expression Tests...\n");
+        console.log("\n\n\n\n\nString Expression Tests...\n\n\n");
 
         assert_eq(isStringExpression('"normal string"'), true);
         assert_eq(isStringExpression('  "normal string but with too many spaces" '), true);
