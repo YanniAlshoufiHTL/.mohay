@@ -1,5 +1,3 @@
-import { languageSyntax } from "./analyzer-syntax.js";
-
 /*
  * analyze function (takes String, outputs object)
  *
@@ -16,83 +14,57 @@ import { languageSyntax } from "./analyzer-syntax.js";
  *
  *  errors: […], // example for error: { message: "Unknown symbol 'f'.", row: 3, col_start: 10, col_end: 15 }
  * }
- *
  */
 
 function analyze(code) {
-  let result = {
-    codeCorrect: false,
-    
-    keywords: [],
-    expressions: [],
+    let result = {
+        codeCorrect: false,
 
-    variables: [],
-    constants: [],
-    functions: [],
+        keywords: [],
+        expressions: [],
 
-    errors: [],
-  };
+        variables: [],
+        constants: [],
+        functions: [],
 
-  let lines = code.split(/\r?\n/);
+        errors: [],
+    };
 
-  for (let line of lines) {
-    if (line[0] === "$")
-      return "TODO: MAKE THIS RETURN ERROR!";
+    let lines = code.split(/\r?\n/);
 
-    let syntaxObjectLine = getSyntaxObjectLine(line);
-  }
+    for (let line of lines) {
+        line = line.trim();
 
-  return result;
+        if (line[0] === "$")
+          return "TODO: MAKE THIS RETURN ERROR!";
+
+        for (const key in languageSyntax) {
+            for (const [index, [innerKey, innerValue]] of Object.entries(Object.entries(languageSyntax[key]))) {
+                let keyword = innerValue[0];
+
+                if (keyword && keyword !== "" && innerKey[0] !== "$") {
+                    const splitLine = line.split(" ");
+                    const firstWordOfLine = splitLine[0];
+
+                    if (firstWordOfLine === keyword || line[0] === "." && keyword === ".") {
+                        let syntaxLine = Object.entries(languageSyntax[key])[index];
+                        let symanticSyntaxLine = syntaxLine[1];
+
+                        symanticSyntaxLine[1] = symanticSyntaxLine[1].split("").map((value, idx) => value == "|" ? symanticSyntaxLine[0] : value).join("");
+
+                        // split both next to each other
+                        const splitSyntax = symanticSyntaxLine[1].split(" ");
+                        const splitConcrete = line.split(" ");
+
+                        console.log(splitSyntax);
+                        console.log(splitConcrete);
+                    }
+                }
+            }
+        }
+    }
+
+    return result;
 }
 
 window.analyze = analyze;
-
-/* example result: { ["inline": ["//", "// <text>", "//", "<text>"] }
- * if multiple lines are affected, the following is a valid response using "$nextLine"
- * { "$nextLine": 10, ["/*", "/* <mtext> *\/", "/*", "<ml>", "<text>", "<ml>", "*\/"] }
- *
- * if no result was found, the function returns undefined
- */
-
-/*
- let bar = undefined;
-
-  for (const [index, [innerKey, innerValue]] of Object.entries(Object.entries(languageSyntax[key]))) {
-    if (Object.entries(languageSyntax[key])[index][0] === "$common" && +index === 0) {
-      bar = innerValue;
-    } else {
-
-    }
-  }
-*/
-
-function getSyntaxObjectLine(line) {
-  let result = {}
-
-  for (const key in languageSyntax) {
-    for (const [index, [innerKey, innerValue]] of Object.entries(Object.entries(languageSyntax[key]))) {
-
-      let keyword = innerValue[0];
-      if (keyword && keyword !== "" && innerKey[0] !== "$") {
-        let firstWordOfLine = line.split(" ")[0];
-        //
-        // console.log("\n" + firstWordOfLine);
-        // console.log(keyword);
-        //
-        // for (let i = 0; i < keyword.length && firstWordOfLine.length; i++) {
-        //   console.log(keyword.codePointAt(i), firstWordOfLine.codePointAt(i));
-        // }
-        //
-        // console.log(firstWordOfLine === keyword);
-
-        if (line.split(" ")[0] === keyword || line[0] === "." && keyword === ".") {
-          console.log("PINGO!");
-          console.table("Keyword: " + keyword)
-          console.table(Object.entries(languageSyntax[key])[index]);
-        }
-      }
-    }
-  }
-
-  return result;
-}

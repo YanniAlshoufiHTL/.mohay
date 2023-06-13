@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Analyzer</title>
 
-    <script src="./analyzer-syntax.js" type="module" defer></script>
-    <script src="./analyzer-interface.js" type="module" defer></script>
+    <script src="./assert.js" defer></script>
+    <script src="./analyzer-syntax.js" defer></script>
+    <script src="./analyzer-interface.js" defer></script>
   </head>
   <body>
-    <div contenteditable="true" id="myDiv">.p = rect (10,10) 10 10;</div>
+    <pre contenteditable="true" id="myDiv">
+      rect (10, 10) 10 10
+      .p = rect (10, 10) 10 10
+    </pre>
     <button onclick="analyze(getElementById('myDiv').innerText)">Send content</button>
   </body>
 </html>
