@@ -115,7 +115,7 @@ function followsSyntax(str, syntax) {
 
         const multiSyntaxParam = syntaxParam.slice(0, pureStr - 2) + "*" + syntaxParam.slice(pureStr - 2);
 
-// Under construction
+// TODO finish this
         pureStr = pureStr.replaceAll(multiSyntaxParam, "(.*)");
     }
 
