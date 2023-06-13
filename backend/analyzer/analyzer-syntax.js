@@ -5,7 +5,6 @@
  * <nume>  : A nummeric expression
  * <point> : A point, which is equivilant to '(<nume>, <nume>)'
  * <name>  : The name of the currently relevant symbol
- * <mtext> : Plain multiline text
  * <text>  : Plain inline text
  *
  * Syntax Array: keyword + syntax string.
@@ -21,18 +20,16 @@
  */
 
 let languageSyntax = {
-    // These either return a boolean which indicates that str is valid or a string that deligates the checking on other subfunctions.
-    // Recursions are condsidered incorrect code.
+    // These return a boolean which indicates that str is valid
     syntacticPramsCheckers: {
-        "<expr>":  (str) => isStringExpression(str) || isNumericExpression(str), // TODO IMPLEMENT THIS
+        "<expr>":  (str) => isStringExpression(str) || isNumericExpression(str),
         "<nume>":  (str) => isNumericExpression(str),
 
-        "<point>": (str) => "(^<nume>^,^<nume>^)",
+        "<point>": (str) => followsSyntax(str, "(^<nume>^,^<nume>^)"),
 
         "<name>":  (str) => isNameAllowed(str),
 
-        "<metxt>": (str) => true, // TODO IMPLEMENT THIS
-        "<text>":  (str) => true, // TODO IMPLEMENT THIS
+        "<text>":  (str) => true,
     },
 
     declarations: {
@@ -42,17 +39,16 @@ let languageSyntax = {
 
     predefinedFunctions: {
 
-        "circle":    [ "circle",   "| <point> <nume>"],
-        "line":      [ "line",     "| <point> <point>"],
-        "arc":       [ "arc",      "| <point> <nume> <nume> <nume>"],
-        "triangle":  [ "triangle", "| <point> <point> <point>"],
-        "polygon":   [ "polygon",  "| <point> <nume> <nume> <nume>"],
-        "vector":    [ "vector",   "| <point*>"],
+        "circle":    [ "circle",   "|^<point>^<nume>"],
+        "line":      [ "line",     "|^<point>^<point>"],
+        "arc":       [ "arc",      "|^<point>^<nume>^<nume>^<nume>"],
+        "triangle":  [ "triangle", "|^<point>^<point>^<point>"],
+        "polygon":   [ "polygon",  "|^<point>^<nume>^<nume>^<nume>"],
+        "vector":    [ "vector",   "|^<point*>"],
     },
 
     comments: {
         "inline":    [ "//", "//<text>"],
-        "multiline": [ "/*", "/*<mtext>*/"],
     },
 
     predefinedConstants: [
@@ -101,13 +97,40 @@ function isStringExpression(expression) {
     return first === "\"" && last === "\"";
 }
 
-/* Unit Testing */
+/**
+ * @method
+ * @param {string} str
+ * @param {string} syntax
+ */
+function followsSyntax(str, syntax) {
+    let pureStr = syntax;
 
-// /**
-//  * @method
-//  * @returns {void}
-//  */
-function tests() {
+    pureStr = pureStr.replaceAll("(", "\\(");
+    pureStr = pureStr.replaceAll(")", "\\)");
+
+    for (const key of Object.entries(languageSyntax["syntacticPramsCheckers"])) {
+        const syntaxParam = key[0];
+
+        pureStr = pureStr.replaceAll(syntaxParam, "(.*)");
+
+        const multiSyntaxParam = syntaxParam.slice(0, pureStr - 2) + "*" + syntaxParam.slice(pureStr - 2);
+
+// Under construction
+        pureStr = pureStr.replaceAll(multiSyntaxParam, "(.*)");
+    }
+
+    pureStr = pureStr.  replaceAll("^", "( *)");
+
+    console.log(pureStr);
+}
+// "(^<nume>^,^<nume>^)"
+
+/* Unit Testing */
+/**
+ * @method
+ * @returns {void}
+ */
+function _tests() {
     console.log("\n\n\n\n\nUnit testing...\n");
 
     const mohayVarNamingTests = () => {
@@ -176,9 +199,17 @@ function tests() {
         assert_eq(isStringExpression('Why does this string not have any quotes??'), false);
     }
 
+    const mohaySyntaxExpressionTests = () => {
+        console.log("\n\n\n\n\nSyntax Expression Tests...\n\n\n");
+
+        assert_eq(followsSyntax("(4, 5)",  "(^<nume>^,^<nume>^)"), true, "Point: '(4, 5)''")
+        assert_eq(followsSyntax("(4, 5)",  "(^<nume>^,^<nume*>^)"), true, "Point: '(4, 5)''")
+    }
+
     mohayVarNamingTests();
     mohayNumericExpressionTests();
     mohayStringExpressionTests();
+    mohaySyntaxExpressionTests();
 }
 
-tests();
+_tests();
