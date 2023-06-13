@@ -9,6 +9,10 @@ const pool = mysql
     })
     .promise();
 
+async function main() {
+    
+}
+main();
 
 // Table functions
 async function resetTable() {
@@ -48,10 +52,6 @@ async function getUsers() {
     return rows;
 }
 
-async function main() {
-    
-}
-main();
 
 async function getUser(email) {
     const [rows] = await pool.query(`SELECT * FROM users WHERE email = '${email}';`);
@@ -164,7 +164,7 @@ async function getFile(email, fileName) {
 
         const fileExists = await isFileExisting(userData, fileName);
         if (fileExists.length == 1) return "File not found";
-        
+
         const fileCode = userData.fileCode.split(",");
         return fileCode[fileExists[1]];
     }
