@@ -10,7 +10,8 @@ const pool = mysql
     .promise();
 
 async function main() {
-    
+    await addUser('emil.firekasdf@emil.com', 'asdfas', 'asdherhadf');
+    console.log(await getUsers());
 }
 main();
 
