@@ -113,13 +113,15 @@ function followsSyntax(str, syntax) {
 
         pureStr = pureStr.replaceAll(syntaxParam, "(.*)");
 
-        const multiSyntaxParam = syntaxParam.slice(0, pureStr - 2) + "*" + syntaxParam.slice(pureStr - 2);
+        const idx = syntaxParam.length - 1;
+        const multiSyntaxParam = syntaxParam.slice(0, idx) + "*" + syntaxParam.slice(idx);
 
-// TODO finish this
+        console.log(multiSyntaxParam);
+
         pureStr = pureStr.replaceAll(multiSyntaxParam, "(.*)");
     }
 
-    pureStr = pureStr.  replaceAll("^", "( *)");
+    pureStr = pureStr.replaceAll("^", "( *)");
 
     console.log(pureStr);
 }
