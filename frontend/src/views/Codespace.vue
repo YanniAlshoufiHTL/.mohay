@@ -14,105 +14,93 @@
             </div>
         </div>
         <div id="main-wrapper">
-            <div
-                id="preview"
-                class="draggable"
-                draggable="true"
-                @dragstart="dragStart"
-                @dragend="dragEnd"
-                @dragover="dragOver"
-                @dragenter="dragEnter"
-                @dragleave="dragLeave"
-                @drop="dragDrop"
-                :class="{
-                    dragging: draggedItem === 'preview',
-                    hovered: hoveredItem === 'preview',
-                }"
-            >
-                <slot name="preview">preview</slot>
-            </div>
+            <div id="preview" class="draggable" draggable="true">Preview</div>
             <div
                 id="code-area"
                 class="draggable"
                 draggable="true"
-                @dragstart="dragStart"
-                @dragend="dragEnd"
-                @dragover="dragOver"
-                @dragenter="dragEnter"
-                @dragleave="dragLeave"
-                @drop="dragDrop"
-                :class="{
-                    dragging: draggedItem === 'code-area',
-                    hovered: hoveredItem === 'code-area',
-                }"
+                contenteditable="true"
             >
-                <slot name="code">code</slot>
+                code
             </div>
-            <div
-                id="folder-viewer"
-                class="draggable"
-                draggable="true"
-                @dragstart="dragStart"
-                @dragend="dragEnd"
-                @dragover="dragOver"
-                @dragenter="dragEnter"
-                @dragleave="dragLeave"
-                @drop="dragDrop"
-                :class="{
-                    dragging: draggedItem === 'folder-viewer',
-                    hovered: hoveredItem === 'folder-viewer',
-                }"
-            >
-                <slot name="folder">folder</slot>
+            <div id="folder-viewer" class="draggable" draggable="true">
+                folder
+                <div id="red"></div>
             </div>
         </div>
     </div>
 </template>
+
 <script>
 export default {
     name: "Codespace",
-    data() {
-        return {
-            draggedItem: null,
-            hoveredItem: null,
-        };
-    },
-    methods: {
-        dragStart(event) {
-            this.draggedItem = event.target.id;
-            event.dataTransfer.setData("text/plain", ""); // Required for Firefox
-        },
-        dragEnd() {
-            this.draggedItem = null;
-            this.hoveredItem = null;
-        },
-        dragOver(event) {
-            event.preventDefault();
-        },
-        dragEnter(event) {
-            event.preventDefault();
-            this.hoveredItem = event.target.id;
-        },
-        dragLeave() {
-            this.hoveredItem = null;
-        },
-        dragDrop(event) {
-            event.preventDefault();
-            const targetItem = event.target.id;
-            if (this.draggedItem !== targetItem) {
-                const draggedElement = event.target;
-                const targetElement = document.getElementById(targetItem);
-                const parent = targetElement.parentNode;
-                const placeholder = document.createElement("div");
+    mounted() {
+        const draggableItems = document.querySelectorAll(".draggable");
+        let dragSource = null;
+        let draggedItem = null;
+        let dragSourceContent = "";
+        let dragSourceClass = "";
 
-                parent.insertBefore(placeholder, targetElement);
-                parent.insertBefore(targetElement, draggedElement);
-                parent.insertBefore(draggedElement, placeholder);
+        function dragStart(event) {
+            dragSource = this;
+            draggedItem = this.cloneNode(true);
+            dragSourceContent = this.innerHTML;
+            dragSourceClass = this.className;
+            event.dataTransfer.effectAllowed = "move";
+            event.dataTransfer.setData("text/plain", "");
+            this.classList.add("dragging");
+        }
 
-                parent.removeChild(placeholder);
+        function dragEnter(event) {
+            event.preventDefault();
+            this.classList.add("hovered");
+        }
+
+        function dragLeave() {
+            this.classList.remove("hovered");
+        }
+
+        function dragOver(event) {
+            event.preventDefault();
+            event.dataTransfer.dropEffect = "move";
+        }
+
+        function dragDrop(event) {
+            event.stopPropagation();
+            if (dragSource !== this) {
+                swapElements(dragSource, this);
             }
-            this.hoveredItem = null;
-        },
+            this.classList.remove("hovered");
+        }
+
+        function dragEnd() {
+            draggableItems.forEach((item) => {
+                item.classList.remove("dragging");
+                item.classList.remove("hovered");
+            });
+        }
+
+        function swapElements(source, target) {
+            const sourceHTML = source.innerHTML;
+            const sourceStyle = source.getAttribute("style");
+
+            source.innerHTML = target.innerHTML;
+            source.setAttribute("style", target.getAttribute("style"));
+
+            target.innerHTML = sourceHTML;
+            target.setAttribute("style", sourceStyle);
+
+            draggedItem = null;
+        }
+
+        draggableItems.forEach((item) => {
+            item.addEventListener("dragstart", dragStart);
+            item.addEventListener("dragenter", dragEnter);
+            item.addEventListener("dragleave", dragLeave);
+            item.addEventListener("dragover", dragOver);
+            item.addEventListener("drop", dragDrop);
+            item.addEventListener("dragend", dragEnd);
+        });
     },
 };
 </script>
@@ -161,11 +149,10 @@ $main-wrapper-width: 95vw;
 
     .hovered {
         transform: translate(0, -10px); /* Example translation for animation */
+        background-color: blue; /* Add the desired background color */
     }
 
     #preview {
-        background-color: red;
-
         margin-top: 0.5rem;
         margin-left: 0.5rem;
 
@@ -180,6 +167,13 @@ $main-wrapper-width: 95vw;
         grid-row: 2;
     }
 
+    #red {
+        //USED for testing switching childs of divs
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        align-self: center;
+    }
     #code-area {
         margin-top: 0.5rem;
 
