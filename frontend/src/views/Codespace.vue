@@ -14,16 +14,106 @@
             </div>
         </div>
         <div id="main-wrapper">
-            <div id="Preview"></div>
-            <div id="folder-viewer"></div>
-            <div id="code-area"></div>
+            <div
+                id="preview"
+                class="draggable"
+                draggable="true"
+                @dragstart="dragStart"
+                @dragend="dragEnd"
+                @dragover="dragOver"
+                @dragenter="dragEnter"
+                @dragleave="dragLeave"
+                @drop="dragDrop"
+                :class="{
+                    dragging: draggedItem === 'preview',
+                    hovered: hoveredItem === 'preview',
+                }"
+            >
+                <slot name="preview">preview</slot>
+            </div>
+            <div
+                id="code-area"
+                class="draggable"
+                draggable="true"
+                @dragstart="dragStart"
+                @dragend="dragEnd"
+                @dragover="dragOver"
+                @dragenter="dragEnter"
+                @dragleave="dragLeave"
+                @drop="dragDrop"
+                :class="{
+                    dragging: draggedItem === 'code-area',
+                    hovered: hoveredItem === 'code-area',
+                }"
+            >
+                <slot name="code">code</slot>
+            </div>
+            <div
+                id="folder-viewer"
+                class="draggable"
+                draggable="true"
+                @dragstart="dragStart"
+                @dragend="dragEnd"
+                @dragover="dragOver"
+                @dragenter="dragEnter"
+                @dragleave="dragLeave"
+                @drop="dragDrop"
+                :class="{
+                    dragging: draggedItem === 'folder-viewer',
+                    hovered: hoveredItem === 'folder-viewer',
+                }"
+            >
+                <slot name="folder">folder</slot>
+            </div>
         </div>
     </div>
 </template>
-
 <script>
 export default {
     name: "Codespace",
+    data() {
+        return {
+            draggedItem: null,
+            hoveredItem: null,
+        };
+    },
+    methods: {
+        dragStart(event) {
+            this.draggedItem = event.target.id;
+            event.dataTransfer.setData("text/plain", ""); // Required for Firefox
+        },
+        dragEnd() {
+            this.draggedItem = null;
+            this.hoveredItem = null;
+        },
+        dragOver(event) {
+            event.preventDefault();
+        },
+        dragEnter(event) {
+            event.preventDefault();
+            this.hoveredItem = event.target.id;
+        },
+        dragLeave() {
+            this.hoveredItem = null;
+        },
+        dragDrop(event) {
+            event.preventDefault();
+            const targetItem = event.target.id;
+            if (this.draggedItem !== targetItem) {
+                const draggedElement = event.target;
+                const targetElement = document.getElementById(targetItem);
+                const parent = targetElement.parentNode;
+                const placeholder = document.createElement("div");
+
+                parent.insertBefore(placeholder, targetElement);
+                parent.insertBefore(targetElement, draggedElement);
+                parent.insertBefore(draggedElement, placeholder);
+
+                parent.removeChild(placeholder);
+            }
+            this.hoveredItem = null;
+        },
+    },
 };
 </script>
 
@@ -38,10 +128,10 @@ $top-bar-elements-width: 750px;
 $bar-element-border-weight: 4px;
 
 $main-wrapper-width: 95vw;
-
 #main-wrapper {
     position: absolute;
     top: calc(calc(var(--nav-height) / 10) + 7vh);
+
     background-color: var(--bg-color);
     border: var(--codespace-box-border-color);
     border-width: 0.2rem;
@@ -50,6 +140,52 @@ $main-wrapper-width: 95vw;
     width: 95vw;
     height: 74vh;
     border-radius: 0.5rem;
+
+    display: grid;
+    grid-template-columns: calc(50% - 0.5rem) calc(50% - 0.5rem);
+    grid-template-rows: calc(70% - 0.5rem) calc(30% - 0.5rem);
+    grid-gap: 0.5rem;
+    .draggable {
+        background-color: var(--codespace-box-bg-color);
+        border: 0.2rem solid var(--codespace-box-border-color);
+        box-sizing: border-box;
+
+        border-radius: 0.5rem;
+
+        transition: all 0.3s ease;
+
+        &:hover {
+            cursor: grab;
+        }
+    }
+
+    .hovered {
+        transform: translate(0, -10px); /* Example translation for animation */
+    }
+
+    #preview {
+        background-color: red;
+
+        margin-top: 0.5rem;
+        margin-left: 0.5rem;
+
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    #folder-viewer {
+        margin-left: 0.5rem;
+
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    #code-area {
+        margin-top: 0.5rem;
+
+        grid-column: 2;
+        grid-row: 1 / span 2;
+    }
 }
 
 #codespace-wrapper {
