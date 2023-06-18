@@ -68,13 +68,15 @@ class Temp {
         StringBuilder builder = new();
 
         builder.AppendLine("function setup() {");
+        builder.AppendLine("createCanvas(400, 400);");
+        builder.AppendLine("}");
+
+        builder.AppendLine("function draw() {");
 
         foreach (var expression in expressions) {
             var toJsMethod = expression.GetType().GetMethod("ToJSCode");
 
-            
-                toJsMethod?.Invoke(expression, new object[] { builder });
-            
+            toJsMethod?.Invoke(expression, new object[] { builder });
         }
 
         builder.AppendLine("}");
