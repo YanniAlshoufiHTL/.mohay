@@ -1,51 +1,57 @@
 ﻿namespace transpiler.Logic {
     public static class StringHelper {
-        public static string[] GetRectValues(string value) {
-            //value = new Point(..,..), 30, 1
-            string[] results = new string[3];
-            string[] strings = value.Split(",");
-            //discard 0 1
-
-            results[0] = GetStringBetweenChars(value, '(', ')').Trim();
-            results[1] = strings[2].Trim();
-            results[2] = strings[3].Trim();
-
-            return results;
-        }
-
-        public static string[] GetCircleVaues(string value) {
-            //value = new Point(..,..), 10
-            string[] results = new string[2];
-            string[] strings = value.Split(",");
-            //discard 0 1
-
-            results[0] = GetStringBetweenChars(value, '(', ')').Trim();
-            results[1] = strings[2].Trim();
-
-            return results;
-        }
-
-
-        internal static string[] GetLineValues(string value) {
-            //value = new Point(..,..), new Point(..,..)
-            string[] values = GetStringsBetweenChars(value, '(', ')').ToArray();
-
-            return new string[] { values[0].Trim(), values[1].Trim() };
-        }
-
         internal static string[] GetArcValues(string value) {
-            //value = new Point(..,..), 30, 20, 30 
-            string[] results = new string[4];
-            string[] strings = value.Split(",");
-            //discard 0 1
+            //value = arc (1, 1) 10 20 30 
+            //values = [(..,..)], [..], [..], [..]
 
-            results[0] = GetStringBetweenChars(value, '(', ')').Trim();
-            results[1] = strings[2].Trim();
-            results[2] = strings[3].Trim();
-            results[3] = strings[4].Trim();
+            string[] results = new string[4];
+
+
 
             return results;
         }
+        public static string[] GetCircleVaues(string value) {
+            //value = circle (1, 1) 10
+            //values = [(..,..)], [..]
+
+            string[] results = new string[2];
+
+            return null;
+        }
+        internal static string[] GetConstantValues(string value) {
+            //wow EEE = ...
+            //[EEE], [...]
+
+            string[] results = new string[2];
+
+            return null;
+        }
+        internal static string[] GetLineValues(string value) {
+            //value = line (1, 1) (1, 1)
+            //values = [(..,..)], [(..,..)]
+
+            string[] results = new string[2];
+
+            return null;
+        }
+        internal static string[] GetPointValues(string value) {
+            //value = point (1, 1)
+            //[..], [..]
+
+            string[] results = new string[2];
+
+            return null;
+        }
+        public static string[] GetRectValues(string value) {
+            //value = rect (1, 1) 10 30
+            //values = [(..,..)], [..], [..]
+
+            string[] results = new string[3];
+
+            return null;
+        }
+        #region string methods
+
         /// <summary>
         /// returns the string between two chars
         /// </summary>
@@ -84,13 +90,8 @@
             return result;
         }
 
-        internal static string[] GetConstantValues(string value) {
-            throw new NotImplementedException();
-        }
 
-        internal static string[] GetPointValues(string value) {
-            throw new NotImplementedException();
-        }
+        #endregion string methods
     }
 
 }

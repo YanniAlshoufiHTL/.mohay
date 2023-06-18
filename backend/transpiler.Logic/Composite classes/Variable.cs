@@ -12,7 +12,6 @@ namespace transpiler.Logic.Composite_classes {
             string[] values = value.Split(" ");
             Name!.Value = values[0];
             Value!.Value = values[2];
-
         }
         public IValue Name { get; set; }
         public IValue Value { get; set; }

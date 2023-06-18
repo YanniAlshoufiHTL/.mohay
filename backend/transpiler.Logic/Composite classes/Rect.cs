@@ -7,7 +7,7 @@ namespace transpiler.Logic.Composite_classes {
         public Rect(string value, ShapeAttribute attribute) {
             //value = rect (1, 1) 10 30
             string[] values = StringHelper.GetRectValues(value);
-            //values = [..,..], [..], [..]
+            //values = [(..,..)], [..], [..]
 
             Keyword!.Name.Value = "rect";
             Position = new Point(values[0], attribute);

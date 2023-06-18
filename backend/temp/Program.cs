@@ -4,6 +4,7 @@ using System.Text;
 using transpiler.Logic;
 using transpiler.Logic.Composite_classes;
 using transpiler.Logic.Composite_interfaces;
+using transpiler.Logic.Composite_interfaces.Expression;
 
 class Temp {
     private static ShapeAttribute globalAttribute = new();
@@ -59,7 +60,7 @@ class Temp {
                     globalAttribute.Fill = color;
                     break;
                 default:
-
+                    expressions.Add(new Variable(value));
                     break;
             }
         }
@@ -68,7 +69,13 @@ class Temp {
 
         builder.AppendLine("function setup() {");
 
-        //
+        foreach (var expression in expressions) {
+            var toJsMethod = expression.GetType().GetMethod("ToJSCode");
+
+            
+                toJsMethod?.Invoke(expression, new object[] { builder });
+            
+        }
 
         builder.AppendLine("}");
     }
