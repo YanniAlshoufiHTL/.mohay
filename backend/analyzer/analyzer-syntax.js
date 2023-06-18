@@ -20,27 +20,34 @@ let languageSyntax = {
     syntacticPramsCheckers: {
         "<expr>":  str => isStringExpression(str) || isNumericExpression(str),
         "<nume>":  str => isNumericExpression(str),
+        "<str>": str => isStringExpression(str),
 
         "<point>": str => isPoint(str),
 
         "<name>":  str => isNameAllowed(str),
 
         "<text>":  _ => true,
+
+        "<hex>": str => isHexExpression(str),
+
+        "<bool>": str => str === "true" || str === "false",
     },
 
     declarations: {
-        "constants": [ "wow",      "wow+<name>+=+<expr>"],
-        "variables": [ ".",        ".<name>+=+<expr>"]
+        "constants": [ "wow",      "wow+<name>+=+<nume>"], // We might add support for <expr> (which includes <str>) later, 
+        "variables": [ ".",        ".<name>+=+<nume>"], // but right now it's just a pain in the neck
     },
 
     predefinedFunctions: {
-
+        "rect":      [ "rect",     "|+<point>+<nume>+<nume>"],
         "line":      [ "line",     "|+<point>+<point>"],
         "circle":    [ "circle",   "|+<point>+<nume>"],
         "arc":       [ "arc",      "|+<point>+<nume>+<nume>+<nume>"],
         "triangle":  [ "triangle", "|+<point>+<point>+<point>"],
         "polygon":   [ "polygon",  "|+<point>+<nume>+<nume>+<nume>"],
-        "vector":    [ "vector",   "|+<point>"],
+        "c":         [ "c",        "|+<hex>"],
+        "f":         [ "f",        "|+<bool>"],
+        "s":         [ "s",        "|+<bool>"],
     },
 
     comments: {
@@ -53,12 +60,7 @@ let languageSyntax = {
     ],
 }
 
-let runtimeVariables = {};
-let runtimeConstants = {};
-
-let parameterAttributes = {};
-let parameterlessAttributes = {};
-
+let runtimeVarsConsts = {};
 
 /**
  * @method
@@ -75,9 +77,16 @@ function isNameAllowed(name) {
  * @returns {boolean}
  */
 function isNumericExpression(expression) {
+    const trimmed = expression.trim();
+
     return typeof expression === "string" &&
-        expression !== "" &&
-        (expression.trim() === "NaN" || isFinite(expression) || /^((- *)|(-))?Infinity+$/g.test(expression.trim()));
+        trimmed !== "" &&
+        (
+            trimmed === "NaN" ||
+            isFinite(trimmed) ||
+            /^((- *)|(-))?Infinity+$/g.test(trimmed) ||
+            runtimeVarsConsts[trimmed] !== undefined && runtimeVarsConsts[trimmed] === "<nume>"
+        );
 }
 
 /**
@@ -90,7 +99,90 @@ function isStringExpression(expression) {
     const first = trimmed[0];
     const last = trimmed[trimmed.length - 1];
 
-    return first === "\"" && last === "\"";
+    return first === "\"" && last === "\"" ||
+           runtimeVarsConsts[trimmed] !== undefined && runtimeVarsConsts[trimmed] === "<str>";
+}
+
+/**
+ * @method
+ * @param {string} expression
+ * @returns {boolean}
+ */
+function isHexExpression(expression) {
+   return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(expression);
+}
+
+/**
+ * @method
+ * @param {string} str
+ * @returns {string}
+ */
+function replaceInQuoteSpacesWithUnicodeChar(str) {
+    let inStr = false;
+
+    for (const [idx, char] of str.split("").entries()) {
+        if (!inStr && str === '"')
+            inStr = true;
+        else if (inStr && str === '"')
+            inStr = false;
+
+        if (inStr && char === " ") {
+            str[idx] = "\u2800";
+        }
+    }
+
+    return str;
+}
+
+/**
+ * @method
+ * @param {string} str
+ * @returns {Array.<Array.<int>>}
+ */
+function getParsInString(str) {
+    let parr = [];
+    let isIn = false;
+
+    for (const [i, char] of str.split("").entries()) {
+        if (!isIn && char === '(') {
+            isIn = true;
+            parr.push([i]);
+        }
+
+        if (isIn && char === ')') {
+            isIn = false;
+            parr[parr.length - 1].push(i);
+        }
+    }
+
+    return parr;
+}
+
+/**
+ * @method
+ * @param {string} str
+ * @returns {boolean}
+ */
+
+function isPoint(str) {
+    if (str[0] !== "(" || str[str.length - 1] !== ")")
+        return false;   
+
+    if (str.split("").filter(a => a === ",").length !== 1)
+        return false;
+
+    const commaIdx = str.indexOf(",");
+
+    const first = str.substring(1, commaIdx);
+    const second = str.substring(commaIdx + 1, str.length - 1);
+
+    if (first == "" || second == "") // the '==' intead of '===' is on purpose
+        return false;
+
+    if (!isNumericExpression(first) || !isNumericExpression(second))
+        return false;
+
+    return true;
 }
 
 /**
@@ -118,6 +210,13 @@ function followsSyntax(str, syntax) {
                 str = str.slice(0, i) + str.slice(i + 1);
         }
     }
+
+    // same for point
+    if (syntax[0] === '.') {
+        syntax = syntax.slice(1);
+        str = str.slice(1);
+    }
+
     // End of bad code.
 
     let splitSyntax = syntax.split('+');
@@ -138,56 +237,6 @@ function followsSyntax(str, syntax) {
                 return false;
 
     };
-
-    return true;
-}
-
-/**
- * @method
- * @param {string} str
- * @returns {Array.<Array<int>>}
- */
-function getParsInString(string) {
-    let parr = [];
-    let isIn = false;
-
-    for (const [i, char] of string.split("").entries()) {
-        if (!isIn && char === '(') {
-            isIn = true;
-            parr.push([i]);
-        }
-
-        if (isIn && char === ')') {
-            isIn = false;
-            parr[parr.length - 1].push(i);
-        }
-    }
-
-    return parr;
-}
-
-/**
- * @method
- * @param {string} str
- * @returns {boolean}
- */
-function isPoint(str) {
-    if (str[0] !== "(" || str[str.length - 1] !== ")")
-        return false;   
-
-    if (str.split("").filter(a => a === ",").length !== 1)
-        return false;
-
-    const commaIdx = str.indexOf(",");
-
-    const first = str.substring(1, commaIdx);
-    const second = str.substring(commaIdx + 1, str.length - 1);
-
-    if (first == "" || second == "") // the '==' intead of '===' is on purpose
-        return false;
-
-    if (!isNumericExpression(first) || !isNumericExpression(second))
-        return false;
 
     return true;
 }
@@ -285,4 +334,4 @@ function _tests() {
     mohayStringExpressionTests();
     mohaySyntaxExpressionTests();
 }
-_tests();
+// _tests();

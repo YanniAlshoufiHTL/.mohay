@@ -1,65 +1,89 @@
-/*
+/**
  * analyze function (takes String, outputs object)
  *
  * output object interface:
  * {
  *  codeCorrect: boolean,
- *
- *  keywords: […], // example for keyword: { value: "wow", row: 4, col: 5 }
- *  expressions: […], // example for expression: { occurence: "PI", row: 1, col: 0 }
- *
- *  variables: […], // example for variable: { name: "peter", row: 22, col: 10 }
- *  constants: […], // example for constant: { name: "PI", row: 1, col: 0 }
- *  functions: […], // example for function: { name: "rect", row: 50, col: 10 }
- *
- *  errors: […], // example for error: { message: "Unknown symbol 'f'.", row: 3, col_start: 10, col_end: 15 }
+ *  errorLine: number,
+ *  failureReason: String
  * }
+ *
+ * @method
+ * @param {string} code
+ * @returns {Object}
  */
-
 function analyze(code) {
     let result = {
-        codeCorrect: false,
-
-        keywords: [],
-        expressions: [],
-
-        variables: [],
-        constants: [],
-        functions: [],
-
-        errors: [],
+        codeCorrect: true,
+        errorLine: -1,
+        failureReason: "",
     };
 
     let lines = code.split(/\r?\n/);
 
-    for (let line of lines) {
+    for (let [idx, line] of lines.entries()) {
         line = line.trim();
 
-        if (line[0] === "$")
-          return "TODO: MAKE THIS RETURN ERROR!";
+        if (line !== "" && !(line[0] === "/" && line[1] === "/")) {
+            if (line[0] === "$") {
+                result.codeCorrect = false;
+                result.errorLine = idx;
+                result.failureReason = "A line cannot start with a dollar sign!";
 
-        for (const key in languageSyntax) {
-            for (const [index, [innerKey, innerValue]] of Object.entries(Object.entries(languageSyntax[key]))) {
-                let keyword = innerValue[0];
+                return result;
+            }
 
-                if (keyword && keyword !== "" && innerKey[0] !== "$") {
-                    const splitLine = line.split(" ");
-                    const firstWordOfLine = splitLine[0];
+            let someKeyWasOk = false;
+            for (const key in languageSyntax) {
+                for (const [index, [innerKey, innerValue]] of Object.entries(Object.entries(languageSyntax[key]))) {
+                    let keyword = innerValue[0];
 
-                    if (firstWordOfLine === keyword || line[0] === "." && keyword === ".") {
-                        let syntaxLine = Object.entries(languageSyntax[key])[index];
-                        let symanticSyntaxLine = syntaxLine[1];
+                    if (keyword && keyword !== "" && innerKey[0] !== "$") {
+                        const splitLine = line.split(" ");
+                        const firstWordOfLine = splitLine[0];
 
-                        symanticSyntaxLine[1] = symanticSyntaxLine[1].split("").map((value, idx) => value == "|" ? symanticSyntaxLine[0] : value).join("");
+                        if (firstWordOfLine === keyword || line[0] === "." && keyword === ".") {
+                            someKeyWasOk = true;
 
-                        // split both next to each other
-                        const splitSyntax = symanticSyntaxLine[1].split(" ");
-                        const splitConcrete = line.split(" ");
+                            let syntaxLine = Object.entries(languageSyntax[key])[index];
+                            let symanticSyntaxLine = syntaxLine[1];
 
-                        console.log(splitSyntax);
-                        console.log(splitConcrete);
+                            symanticSyntaxLine[1] = symanticSyntaxLine[1].split("").map((value, _) => value == "|" 
+                                ? symanticSyntaxLine[0] 
+                                : value).join("");
+
+                            const syntax = symanticSyntaxLine[1];
+                            const str = line;
+
+                            if (!followsSyntax(str, syntax)) {
+                                result.codeCorrect = false;
+                                result.errorLine = idx;
+                                result.failureReason = 
+                                    `This line doesn't follow the syntax for ${line[0] === "." ? "variables" : `'${line.split(" ")[0]}'`}.`
+                            }
+
+                            if (keyword === "wow" || line[0] === ".") {
+                                const varConstName = line[0] === "." ? splitLine[0] : splitLine[1];
+
+                                if (runtimeVarsConsts[varConstName] !== undefined) {
+                                    result.codeCorrect = false;
+                                    result.errorLine = idx;
+                                    result.failureReason = `A variable or constant with the name ${varConstName} already exists.`;
+                                }
+                                
+                                const varConstType = followsSyntax(splitLine[splitLine.length - 1], "<nume>") ? "<nume>" : "<str>";
+                                runtimeVarsConsts[varConstName] = varConstType;
+                            }
+                        }
                     }
                 }
+            }
+
+            if (!someKeyWasOk) {
+                result.codeCorrect = false;
+                result.errorLine = idx;
+                result.failureReason = `Cannot resolve symbol '${line.split(" ")[0]}'.`;
+                return result;
             }
         }
     }
