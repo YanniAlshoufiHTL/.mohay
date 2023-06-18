@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "temp/1.0.0": {
+        "dependencies": {
+          "transpiler.Logic": "1.0.0"
+        },
+        "runtime": {
+          "temp.dll": {}
+        }
+      },
+      "transpiler.Logic/1.0.0": {
+        "runtime": {
+          "transpiler.Logic.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "temp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "transpiler.Logic/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

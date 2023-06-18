@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using transpiler.Logic.Composite_interfaces;
 using transpiler.Logic.Composite_interfaces.Expression;
 
@@ -13,8 +8,8 @@ namespace transpiler.Logic.Composite_classes {
             //value = new Point(..,..), 30, 1 
             string[] values = StringHelper.GetRectValues(value);
             //values = [..,..], [..], [..]
-            Keyword!.Name.Value = "rect";
 
+            Keyword!.Name.Value = "rect";
             RectPosition = new Position(values[0], attribute);
             Size1!.Value = values[1];
             Size2!.Value = values[2];

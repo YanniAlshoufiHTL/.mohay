@@ -8,12 +8,14 @@ namespace transpiler.Logic.Composite_classes {
             //value = 3,3
             string[] values = value.Split(",");
 
+            Keyword!.Name.Value = "position";
             X!.Value = values[0];
             Y!.Value = values[1];
             Attribute = new ShapeAttribute(attribute);
         }
-        public IValue? X { get; set; }
-        public IValue? Y { get ; set; }
+        public IKeyword Keyword { get; set; }
+        public IValue X { get; set; }
+        public IValue Y { get ; set; }
         public ShapeAttribute Attribute { get; set; }
 
         public void ToJSCode(StringBuilder builder) {

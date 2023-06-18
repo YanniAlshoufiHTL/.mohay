@@ -12,6 +12,19 @@
 
             return results;
         }
+
+        public static string[] GetCircleVaues(string value) {
+            //value = new Point(..,..), 10
+            string[] results = new string[2];
+            string[] strings = value.Split(",");
+            //discard 0 1
+
+            results[0] = GetStringBetweenChars(value, '(', ')').Trim();
+            results[1] = strings[2].Trim();
+
+            return results;
+        }
+
         /// <summary>
         /// returns the string between two chars
         /// </summary>
