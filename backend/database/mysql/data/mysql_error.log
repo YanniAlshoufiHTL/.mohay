@@ -135,3 +135,74 @@
 2023-06-18 19:56:19 0 [Note] InnoDB: Loading buffer pool(s) from C:\xampp\mysql\data\ib_buffer_pool
 2023-06-18 19:56:19 0 [Note] Plugin 'FEEDBACK' is disabled.
 2023-06-18 19:56:19 0 [Note] Server socket created on IP: '::'.
+2023-06-18 20:07:50 0 [Note] Starting MariaDB 10.4.28-MariaDB source revision c8f2e9a5c0ac5905f28b050b7df5a9ffd914b7e7 as process 28000
+2023-06-18 20:07:50 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2023-06-18 20:07:50 0 [Note] InnoDB: Uses event mutexes
+2023-06-18 20:07:50 0 [Note] InnoDB: Compressed tables use zlib 1.2.12
+2023-06-18 20:07:50 0 [Note] InnoDB: Number of pools: 1
+2023-06-18 20:07:50 0 [Note] InnoDB: Using SSE2 crc32 instructions
+2023-06-18 20:07:50 0 [Note] InnoDB: Initializing buffer pool, total size = 16M, instances = 1, chunk size = 16M
+2023-06-18 20:07:50 0 [Note] InnoDB: Completed initialization of buffer pool
+2023-06-18 20:07:50 0 [Note] InnoDB: Starting crash recovery from checkpoint LSN=492726
+2023-06-18 20:07:50 0 [Note] InnoDB: 128 out of 128 rollback segments are active.
+2023-06-18 20:07:50 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2023-06-18 20:07:50 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2023-06-18 20:07:50 0 [Note] InnoDB: Setting file 'C:\xampp\mysql\data\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2023-06-18 20:07:50 0 [Note] InnoDB: File 'C:\xampp\mysql\data\ibtmp1' size is now 12 MB.
+2023-06-18 20:07:50 0 [Note] InnoDB: Waiting for purge to start
+2023-06-18 20:07:50 4 [ERROR] InnoDB: Expected tablespace id 46 but found 35 in the file .\mohay\users.ibd
+2023-06-18 20:07:50 4 [ERROR] InnoDB: Expected tablespace id 46 but found 35 in the file .\mohay\users.ibd
+2023-06-18 20:07:50 0 [Note] InnoDB: 10.4.28 started; log sequence number 492735; transaction id 759
+2023-06-18 20:07:50 0 [Note] InnoDB: Loading buffer pool(s) from C:\xampp\mysql\data\ib_buffer_pool
+2023-06-18 20:07:50 0 [Note] Plugin 'FEEDBACK' is disabled.
+2023-06-18 20:07:50 0 [Note] Server socket created on IP: '::'.
+2023-06-18 20:10:00 0 [Note] Starting MariaDB 10.4.28-MariaDB source revision c8f2e9a5c0ac5905f28b050b7df5a9ffd914b7e7 as process 11504
+2023-06-18 20:10:00 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2023-06-18 20:10:00 0 [Note] InnoDB: Uses event mutexes
+2023-06-18 20:10:00 0 [Note] InnoDB: Compressed tables use zlib 1.2.12
+2023-06-18 20:10:00 0 [Note] InnoDB: Number of pools: 1
+2023-06-18 20:10:00 0 [Note] InnoDB: Using SSE2 crc32 instructions
+2023-06-18 20:10:00 0 [Note] InnoDB: Initializing buffer pool, total size = 16M, instances = 1, chunk size = 16M
+2023-06-18 20:10:00 0 [Note] InnoDB: Completed initialization of buffer pool
+2023-06-18 20:10:00 0 [Note] InnoDB: Starting crash recovery from checkpoint LSN=492744
+2023-06-18 20:10:00 0 [Note] InnoDB: 128 out of 128 rollback segments are active.
+2023-06-18 20:10:00 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2023-06-18 20:10:00 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2023-06-18 20:10:00 0 [Note] InnoDB: Setting file 'C:\xampp\mysql\data\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2023-06-18 20:10:00 0 [Note] InnoDB: File 'C:\xampp\mysql\data\ibtmp1' size is now 12 MB.
+2023-06-18 20:10:00 0 [Note] InnoDB: Waiting for purge to start
+2023-06-18 20:10:00 4 [ERROR] InnoDB: Expected tablespace id 46 but found 35 in the file .\mohay\users.ibd
+2023-06-18 20:10:00 4 [ERROR] InnoDB: Expected tablespace id 46 but found 35 in the file .\mohay\users.ibd
+2023-06-18 20:10:00 0 [Note] InnoDB: 10.4.28 started; log sequence number 492753; transaction id 759
+2023-06-18 20:10:00 0 [Note] InnoDB: Loading buffer pool(s) from C:\xampp\mysql\data\ib_buffer_pool
+2023-06-18 20:10:00 0 [Note] Plugin 'FEEDBACK' is disabled.
+2023-06-18 20:10:00 0 [Note] Server socket created on IP: '::'.
+2023-06-18 20:11:53 0 [Note] Starting MariaDB 10.4.28-MariaDB source revision c8f2e9a5c0ac5905f28b050b7df5a9ffd914b7e7 as process 21444
+2023-06-18 20:11:53 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2023-06-18 20:11:53 0 [Note] InnoDB: Uses event mutexes
+2023-06-18 20:11:53 0 [Note] InnoDB: Compressed tables use zlib 1.2.12
+2023-06-18 20:11:53 0 [Note] InnoDB: Number of pools: 1
+2023-06-18 20:11:53 0 [Note] InnoDB: Using SSE2 crc32 instructions
+2023-06-18 20:11:53 0 [Note] InnoDB: Initializing buffer pool, total size = 16M, instances = 1, chunk size = 16M
+2023-06-18 20:11:53 0 [Note] InnoDB: Completed initialization of buffer pool
+2023-06-18 20:11:53 0 [Note] InnoDB: Starting crash recovery from checkpoint LSN=492762
+2023-06-18 20:11:53 0 [Note] InnoDB: 128 out of 128 rollback segments are active.
+2023-06-18 20:11:53 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2023-06-18 20:11:53 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2023-06-18 20:11:53 0 [Note] InnoDB: Setting file 'C:\xampp\mysql\data\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2023-06-18 20:11:53 0 [Note] InnoDB: File 'C:\xampp\mysql\data\ibtmp1' size is now 12 MB.
+2023-06-18 20:11:53 0 [Note] InnoDB: Waiting for purge to start
+2023-06-18 20:11:53 3 [ERROR] InnoDB: Expected tablespace id 46 but found 35 in the file .\mohay\users.ibd
+2023-06-18 20:11:53 3 [ERROR] InnoDB: Expected tablespace id 46 but found 35 in the file .\mohay\users.ibd
+2023-06-18 20:11:54 0 [Note] InnoDB: 10.4.28 started; log sequence number 492771; transaction id 759
+2023-06-18 20:11:54 0 [Note] InnoDB: Loading buffer pool(s) from C:\xampp\mysql\data\ib_buffer_pool
+2023-06-18 20:11:54 0 [Note] Plugin 'FEEDBACK' is disabled.
+2023-06-18 20:11:54 0 [Note] Server socket created on IP: '::'.
+2023-06-18 20:11:54 0 [Note] InnoDB: Buffer pool(s) load completed at 230618 20:11:54
+2023-06-18 20:11:54 0 [Note] Reading of all Master_info entries succeeded
+2023-06-18 20:11:54 0 [Note] Added new Master_info '' to hash table
+2023-06-18 20:11:54 0 [Note] c:\xampp\mysql\bin\mysqld.exe: ready for connections.
+Version: '10.4.28-MariaDB'  socket: ''  port: 3306  mariadb.org binary distribution
+2023-06-18 20:11:57 8 [ERROR] InnoDB: Table `mohay`.`users` is corrupted. Please drop the table and recreate.
+2023-06-18 20:11:57 8 [Warning] Aborted connection 8 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2023-06-18 20:12:25 9 [Warning] Aborted connection 9 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)

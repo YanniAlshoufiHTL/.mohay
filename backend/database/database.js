@@ -11,8 +11,7 @@ const pool = mysql
     })
     .promise();
 
-async function main() {
-}
+async function main() {}
 
 main();
 
