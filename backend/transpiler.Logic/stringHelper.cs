@@ -83,6 +83,14 @@
 
             return result;
         }
+
+        internal static string[] GetConstantValues(string value) {
+            throw new NotImplementedException();
+        }
+
+        internal static string[] GetPointValues(string value) {
+            throw new NotImplementedException();
+        }
     }
 
 }

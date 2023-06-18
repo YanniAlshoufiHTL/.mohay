@@ -3,12 +3,13 @@ using transpiler.Logic.Composite_interfaces;
 using transpiler.Logic.Composite_interfaces.Expression;
 
 namespace transpiler.Logic.Composite_classes {
-    public class Position : IShape, IPosition {
-        public Position(string value, ShapeAttribute attribute) {
-            //value = 3,3
-            string[] values = value.Split(",");
+    public class Point : IShape, IPosition {
+        public Point(string value, ShapeAttribute attribute) {
+            //value = point (1, 1)
+            string[] values = StringHelper.GetPointValues(value);
+            //[..], [..]
 
-            Keyword!.Name.Value = "position";
+            Keyword!.Name.Value = "point";
             X!.Value = values[0];
             Y!.Value = values[1];
             Attributes = new ShapeAttribute(attribute);

@@ -5,12 +5,12 @@ using transpiler.Logic.Composite_interfaces.Expression;
 namespace transpiler.Logic.Composite_classes {
     public class Rect : IShape {
         public Rect(string value, ShapeAttribute attribute) {
-            //value = new Point(..,..), 30, 1 
+            //value = rect (1, 1) 10 30
             string[] values = StringHelper.GetRectValues(value);
             //values = [..,..], [..], [..]
 
             Keyword!.Name.Value = "rect";
-            Position = new Position(values[0], attribute);
+            Position = new Point(values[0], attribute);
             Size1!.Value = values[1];
             Size2!.Value = values[2];
             Attributes = new ShapeAttribute(attribute);

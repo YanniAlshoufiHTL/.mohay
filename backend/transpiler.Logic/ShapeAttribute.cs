@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace transpiler.Logic {
     public class ShapeAttribute {
-        public ShapeAttribute()
-        {
-            
+        public ShapeAttribute() {
+
         }
         public ShapeAttribute(ShapeAttribute attribute) {
             IsFillSet = attribute.IsFillSet;

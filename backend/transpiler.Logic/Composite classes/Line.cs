@@ -6,13 +6,13 @@ using transpiler.Logic.Composite_interfaces.Expression;
 namespace transpiler.Logic.Composite_classes {
     public class Line : IShape {
         public Line(string value, ShapeAttribute attribute) {
-            //value = new Point(..,..), new Point(..,..)
+            //value = line (1, 1) (1, 1)
             string[] values = StringHelper.GetLineValues(value);
-            //values = [..,..], [..,..]
+            //values = [(..,..)], [(..,..)]
 
             Keyword!.Name.Value = "line";
-            Position1 = new Position(values[0], attribute);
-            Position2 = new Position(values[1], attribute);
+            Position1 = new Point(values[0], attribute);
+            Position2 = new Point(values[1], attribute);
             Attributes = new ShapeAttribute(attribute);
         }
         public ShapeAttribute Attributes { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace transpiler.Logic.Composite_interfaces {
-    internal interface IVariable : IExpression {
-        public IExpression expression { get; set; }
+    public interface IVariable : IExpression {
+        public IValue Name { get; set; }
+        public IValue Value { get; set; }
     }
-
 }

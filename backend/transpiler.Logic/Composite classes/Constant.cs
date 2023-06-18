@@ -16,5 +16,9 @@ namespace transpiler.Logic.Composite_classes {
         }
         public IValue Value { get; set; }
         public IValue Name { get; set; }
+
+        public void ToJSCode(StringBuilder builder) {
+            builder.AppendLine($"const {Name} = {Value};");
+        }
     }
 }

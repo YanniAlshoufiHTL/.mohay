@@ -9,12 +9,12 @@ using transpiler.Logic.Composite_interfaces.Expression;
 namespace transpiler.Logic.Composite_classes {
     public class Arc : IShape {
         public Arc(string value, ShapeAttribute attribute) {
-            //value = new Point(..,..), 30, 20°, 30° 
+            //value = arc (1, 1) 10 20 30 
             string[] values = StringHelper.GetArcValues(value);
-            //values = [..,..], [..], [..], [..]
+            //values = [(..,..)], [..], [..], [..]
 
             Keyword!.Name.Value = "arc";
-            Position = new Position(values[0], attribute);
+            Position = new Point(values[0], attribute);
             Size!.Value = values[1];
             Angle1!.Value = values[2];
             Angle2!.Value = values[3];
