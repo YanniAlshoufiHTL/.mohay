@@ -1,6 +1,6 @@
 ﻿namespace transpiler.Logic.Composite_interfaces {
-internal interface IConstant : IExpression {
-
-}
+    public interface IConstant : IExpression {
+        public INumeric Value { get; set; }
+    }
 
 }

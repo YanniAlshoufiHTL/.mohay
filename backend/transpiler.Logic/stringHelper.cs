@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace transpiler.Logic {
-    internal static class StringHelper {
-        internal static string[] GetRectValues(string value) {
+﻿namespace transpiler.Logic {
+    public static class StringHelper {
+        public static string[] GetRectValues(string value) {
             //value = new Point(..,..), 30, 1
             string[] results = new string[3];
             string[] strings = value.Split(",");
             //discard 0 1
 
-            results[0] = GetStringBetweenChars(value, '(', ')');
-            results[1] = strings[2];
-            results[2] = strings[3];
+            results[0] = GetStringBetweenChars(value, '(', ')').Trim();
+            results[1] = strings[2].Trim();
+            results[2] = strings[3].Trim();
+
             return results;
         }
         /// <summary>

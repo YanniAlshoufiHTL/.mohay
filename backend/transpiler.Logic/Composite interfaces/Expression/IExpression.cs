@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace transpiler.Logic.Composite_interfaces {
-public interface IExpression {
+    public interface IExpression {
 
-}
+    }
 
 }

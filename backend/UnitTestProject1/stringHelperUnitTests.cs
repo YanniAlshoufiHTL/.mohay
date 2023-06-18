@@ -1,11 +1,15 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace UnitTests {
+namespace UnitTest {
     [TestClass]
-    public class UnitTest1 {
+    public class StringHelperUnitTests {
         [TestMethod]
-        public void TestMethod1() {
+        public void Test_Method_GetRectValues() {
+            string value = "new Point(1, 1), 10, 10";
+
+
+            
         }
     }
 }

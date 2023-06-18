@@ -49,11 +49,21 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="StringHelperUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\temp\temp.csproj">
+      <Project>{6abe3d78-5faa-4c92-b5a6-45cc3482b0af}</Project>
+      <Name>temp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\transpiler.Logic\transpiler.Logic.csproj">
+      <Project>{68262d84-f987-4e7e-864e-15f9ae529c7f}</Project>
+      <Name>transpiler.Logic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
