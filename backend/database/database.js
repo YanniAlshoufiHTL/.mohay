@@ -11,6 +11,13 @@ const pool = mysql
     })
     .promise();
 
+async function main() {
+    /*await addUser('lucahaas07@gmx.at', 'Luca Haas', 'klajdsklfjasdklfjaklsdjflk', '029123', '2023-06-18T13:10:49.000Z');
+    console.log(await getUsers());*/
+}
+
+main();
+
 // Table functions
 async function resetTable() {
     await dropTable();
