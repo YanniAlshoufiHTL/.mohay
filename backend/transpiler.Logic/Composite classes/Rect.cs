@@ -13,10 +13,10 @@ namespace transpiler.Logic.Composite_classes {
             RectPosition = new Position(values[0], attribute);
             Size1!.Value = values[1];
             Size2!.Value = values[2];
-            Attribute = new ShapeAttribute(attribute);
+            Attributes = new ShapeAttribute(attribute);
         }
         public void ToJSCode(StringBuilder builder) {
-            Attribute.ToJSCode(builder);
+            Attributes.ToJSCode(builder);
 
             builder.AppendLine($"rect({RectPosition!.X},{RectPosition.Y},{Size1},{Size2});");
         }
@@ -24,6 +24,6 @@ namespace transpiler.Logic.Composite_classes {
         public IPosition? RectPosition { get; set; }
         public IValue? Size1 { get; set; }
         public IValue? Size2 { get; set; }
-        public ShapeAttribute Attribute { get; set; }
+        public ShapeAttribute Attributes { get; set; }
     }
 }

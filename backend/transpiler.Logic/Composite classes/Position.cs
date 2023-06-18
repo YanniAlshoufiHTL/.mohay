@@ -11,15 +11,15 @@ namespace transpiler.Logic.Composite_classes {
             Keyword!.Name.Value = "position";
             X!.Value = values[0];
             Y!.Value = values[1];
-            Attribute = new ShapeAttribute(attribute);
+            Attributes = new ShapeAttribute(attribute);
         }
         public IKeyword Keyword { get; set; }
         public IValue X { get; set; }
         public IValue Y { get ; set; }
-        public ShapeAttribute Attribute { get; set; }
+        public ShapeAttribute Attributes { get; set; }
 
         public void ToJSCode(StringBuilder builder) {
-            Attribute.ToJSCode(builder);
+            Attributes.ToJSCode(builder);
 
             builder.AppendLine($"point({X},{Y});");
         }

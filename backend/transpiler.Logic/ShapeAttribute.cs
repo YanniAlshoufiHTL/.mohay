@@ -15,16 +15,16 @@ namespace transpiler.Logic {
         }
         public void ToJSCode(StringBuilder builder) {
             if (IsFillSet) {
-                builder.AppendLine($"fill('rgba({Fill.R},{Fill.G}, {Fill.B}, {Fill.A})');");
+                builder.AppendLine($"fill({Fill});");
             }
 
             if (IsStrokeSet) {
-                builder.AppendLine($"stroke('rgba({Fill.R},{Fill.G}, {Fill.B}, {Fill.A})');");
+                builder.AppendLine($"stroke({Stroke});");
             }
         }
         public bool IsFillSet { get; set; } = true;
-        public Color Fill { get; set; }
+        public string Fill { get; set; } //hex format
         public bool IsStrokeSet { get; set; } = true;
-        public Color Stroke { get; set; }
+        public string Stroke { get; set; } //hex format
     }
 }

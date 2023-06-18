@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using transpiler.Logic.Composite_interfaces;
 using transpiler.Logic.Composite_interfaces.Expression;
 
 namespace transpiler.Logic.Composite_classes {
@@ -8,12 +9,20 @@ namespace transpiler.Logic.Composite_classes {
             string[] values = StringHelper.GetCircleVaues(value);
             //values = [..,..], [..]
 
-            Attribute = new ShapeAttribute(attribute);
+            Keyword!.Name.Value = "circle";
+            CirclePosition = new Position(values[0], attribute);
+            Size!.Value = values[1];
+            Attributes = new ShapeAttribute(attribute);
         }
-        public ShapeAttribute Attribute { get; set; }
+        public IKeyword Keyword { get; set; }
+        public IPosition? CirclePosition { get; set; }
+        public IValue? Size { get; set; }
+        public ShapeAttribute Attributes { get; set; }
 
         public void ToJSCode(StringBuilder builder) {
-            throw new NotImplementedException();
+            Attributes.ToJSCode(builder);
+
+            builder.AppendLine($"circle({CirclePosition!.X},{CirclePosition!.Y},{Size});");
         }
     }
 }
