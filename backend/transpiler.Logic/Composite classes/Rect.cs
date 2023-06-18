@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 using transpiler.Logic.Composite_interfaces;
 
 namespace transpiler.Logic.Composite_classes {
-    internal class Rect : IKeyword {
-        public IString? Name { get; set; }
-        public IPosition? Pos { get; set; }
-        public INumeric? NumX { get; set; }
-        public INumeric? NumY { get; set; }
+    internal class Rect : IExpression {
+        public Rect()
+        {
+            
+        }
+        public IKeyword? Keyword { get; set; }
+        public IPosition? Position { get; set; }
+        public INumeric? Size1 { get; set; }
+        public INumeric? Size2 { get; set; }
     }
 }
