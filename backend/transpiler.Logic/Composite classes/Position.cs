@@ -1,25 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using transpiler.Logic.Composite_interfaces;
 using transpiler.Logic.Composite_interfaces.Expression;
 
 namespace transpiler.Logic.Composite_classes {
     public class Position : IShape, IPosition {
-        public Position(string value) {
+        public Position(string value, ShapeAttribute attribute) {
             //value = 3,3
             string[] values = value.Split(",");
-            X!.Value = Convert.ToDouble(values[0]);
-            Y!.Value = Convert.ToDouble(values[1]);
+
+            X!.Value = values[0];
+            Y!.Value = values[1];
+            Attribute = new ShapeAttribute(attribute);
         }
-        public INumeric? X { get; set; }
-        public INumeric? Y { get ; set; }
+        public IValue? X { get; set; }
+        public IValue? Y { get ; set; }
         public ShapeAttribute Attribute { get; set; }
 
-        public string ToJSCode() {
-            throw new NotImplementedException();
+        public void ToJSCode(StringBuilder builder) {
+            Attribute.ToJSCode(builder);
+
+            builder.AppendLine($"point({X},{Y});");
         }
     }
 }

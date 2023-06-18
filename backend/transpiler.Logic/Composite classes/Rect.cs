@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,15 +15,20 @@ namespace transpiler.Logic.Composite_classes {
             //values = [..,..], [..], [..]
             Keyword!.Name.Value = "rect";
 
-            RectPosition = new Position(values[0]);
-            Size1!.Value = Convert.ToDouble(values[1]);
-            Size2!.Value = Convert.ToDouble(values[2]);
+            RectPosition = new Position(values[0], attribute);
+            Size1!.Value = values[1];
+            Size2!.Value = values[2];
             Attribute = new ShapeAttribute(attribute);
+        }
+        public void ToJSCode(StringBuilder builder) {
+            Attribute.ToJSCode(builder);
+
+            builder.AppendLine($"rect({RectPosition!.X},{RectPosition.Y},{Size1},{Size2});");
         }
         public IKeyword? Keyword { get; set; }
         public IPosition? RectPosition { get; set; }
-        public INumeric? Size1 { get; set; }
-        public INumeric? Size2 { get; set; }
+        public IValue? Size1 { get; set; }
+        public IValue? Size2 { get; set; }
         public ShapeAttribute Attribute { get; set; }
     }
 }
