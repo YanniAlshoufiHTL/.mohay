@@ -9,42 +9,38 @@
  *
  * Syntax Array: keyword + syntax string.
  *
- * Spaces in a syntax string represent n spaces while n > 1.
- * If 0 or more spaces are OK it's represented by ^.
+ * '+' in a syntax string represent n spaces while n > 1.
+ * If 0 or more spaces are OK it's represented by '^'.
  *
  * A bar/pipe ('|') represents the keyword.
- *
- * If a +1 occurance of a certein syntacticparam is needed,
- * we indictate that by usnign an astrisk ('*') before the '>'.
- *
  */
 
 let languageSyntax = {
     // These return a boolean which indicates that str is valid
     syntacticPramsCheckers: {
-        "<expr>":  (str) => isStringExpression(str) || isNumericExpression(str),
-        "<nume>":  (str) => isNumericExpression(str),
+        "<expr>":  str => isStringExpression(str) || isNumericExpression(str),
+        "<nume>":  str => isNumericExpression(str),
 
-        "<point>": (str) => followsSyntax(str, "(^<nume>^,^<nume>^)"),
+        "<point>": str => isPoint(str),
 
-        "<name>":  (str) => isNameAllowed(str),
+        "<name>":  str => isNameAllowed(str),
 
-        "<text>":  (str) => true,
+        "<text>":  _ => true,
     },
 
     declarations: {
-        "constants": [ "wow",      "wow <name>^=^<expr>"],
-        "variables": [ ".",        ".<name>^=^<expr>"]
+        "constants": [ "wow",      "wow+<name>+=+<expr>"],
+        "variables": [ ".",        ".<name>+=+<expr>"]
     },
 
     predefinedFunctions: {
 
-        "circle":    [ "circle",   "|^<point>^<nume>"],
-        "line":      [ "line",     "|^<point>^<point>"],
-        "arc":       [ "arc",      "|^<point>^<nume>^<nume>^<nume>"],
-        "triangle":  [ "triangle", "|^<point>^<point>^<point>"],
-        "polygon":   [ "polygon",  "|^<point>^<nume>^<nume>^<nume>"],
-        "vector":    [ "vector",   "|^<point*>"],
+        "line":      [ "line",     "|+<point>+<point>"],
+        "circle":    [ "circle",   "|+<point>+<nume>"],
+        "arc":       [ "arc",      "|+<point>+<nume>+<nume>+<nume>"],
+        "triangle":  [ "triangle", "|+<point>+<point>+<point>"],
+        "polygon":   [ "polygon",  "|+<point>+<nume>+<nume>+<nume>"],
+        "vector":    [ "vector",   "|+<point>"],
     },
 
     comments: {
@@ -101,31 +97,100 @@ function isStringExpression(expression) {
  * @method
  * @param {string} str
  * @param {string} syntax
+ * @returns {boolean}
  */
 function followsSyntax(str, syntax) {
-    let pureStr = syntax;
+    while (str.indexOf("  ") !== -1)
+        str = str.replaceAll("  ", " ");
 
-    pureStr = pureStr.replaceAll("(", "\\(");
-    pureStr = pureStr.replaceAll(")", "\\)");
+    str = str.replaceAll("*", " ");
 
-    for (const key of Object.entries(languageSyntax["syntacticPramsCheckers"])) {
-        const syntaxParam = key[0];
+    // In this piece of code, I'm removing all spaces within a point.
+    // Generally speaking it's bad practice to bind a generalization to a concrete case.
+    // Meaning, it's really bad that I'm basically assuming that the '^'s only occur in parentheses
+    // and so I don't have to deal with them, I'm removing all spaces from within a bracket.
+    // Here, I didn't have much time to think about implementation details,
+    // so I'm just implementing it like this.
+    let parenthesesIndexes = getParsInString(str);
+    for (const parPair of parenthesesIndexes) {
+        for (let i = parPair[1]; i >= parPair[0]; i--) {
+            if (str[i] === ' ')
+                str = str.slice(0, i) + str.slice(i + 1);
+        }
+    }
+    // End of bad code.
 
-        pureStr = pureStr.replaceAll(syntaxParam, "(.*)");
+    let splitSyntax = syntax.split('+');
+    let splitStr = str.split(' ');
 
-        const idx = syntaxParam.length - 1;
-        const multiSyntaxParam = syntaxParam.slice(0, idx) + "*" + syntaxParam.slice(idx);
+    if (splitSyntax.length !== splitStr.length)
+        return false;
 
-        console.log(multiSyntaxParam);
+    for (let [idx, syn] of splitSyntax.entries()) {
+        syn = syn.trim();
 
-        pureStr = pureStr.replaceAll(multiSyntaxParam, "(.*)");
+        if (languageSyntax.syntacticPramsCheckers[syn] !== undefined) {
+            const follows = languageSyntax.syntacticPramsCheckers[syn](splitStr[idx]);
+
+            if (follows === false)
+                return false;
+        } else if (splitStr[idx] !== splitSyntax[idx])
+                return false;
+
+    };
+
+    return true;
+}
+
+/**
+ * @method
+ * @param {string} str
+ * @returns {Array.<Array<int>>}
+ */
+function getParsInString(string) {
+    let parr = [];
+    let isIn = false;
+
+    for (const [i, char] of string.split("").entries()) {
+        if (!isIn && char === '(') {
+            isIn = true;
+            parr.push([i]);
+        }
+
+        if (isIn && char === ')') {
+            isIn = false;
+            parr[parr.length - 1].push(i);
+        }
     }
 
-    pureStr = pureStr.replaceAll("^", "( *)");
-
-    console.log(pureStr);
+    return parr;
 }
-// "(^<nume>^,^<nume>^)"
+
+/**
+ * @method
+ * @param {string} str
+ * @returns {boolean}
+ */
+function isPoint(str) {
+    if (str[0] !== "(" || str[str.length - 1] !== ")")
+        return false;   
+
+    if (str.split("").filter(a => a === ",").length !== 1)
+        return false;
+
+    const commaIdx = str.indexOf(",");
+
+    const first = str.substring(1, commaIdx);
+    const second = str.substring(commaIdx + 1, str.length - 1);
+
+    if (first == "" || second == "") // the '==' intead of '===' is on purpose
+        return false;
+
+    if (!isNumericExpression(first) || !isNumericExpression(second))
+        return false;
+
+    return true;
+}
 
 /* Unit Testing */
 /**
@@ -172,6 +237,7 @@ function _tests() {
         assert_eq(isNumericExpression(""), false, "empty string");
         assert_eq(isNumericExpression("   -    0 "), false, "   -    0 ");
         assert_eq(isNumericExpression("4,5"), false, "4,5");
+        assert_eq(isNumericExpression("_"), false, "_");
         assert_eq(isNumericExpression("Inf"), false, "Inf");
         assert_eq(isNumericExpression("infinity"), false, "infinity");
         assert_eq(isNumericExpression("infinity-"), false, "infinity");
@@ -204,8 +270,14 @@ function _tests() {
     const mohaySyntaxExpressionTests = () => {
         console.log("\n\n\n\n\nSyntax Expression Tests...\n\n\n");
 
-        assert_eq(followsSyntax("(4, 5)",  "(^<nume>^,^<nume>^)"), true, "Point: '(4, 5)''")
-        assert_eq(followsSyntax("(4, 5)",  "(^<nume>^,^<nume*>^)"), true, "Point: '(4, 5)''")
+        assert_eq(followsSyntax("(4, 5)",  "<point>"), true, "Point: '(4, 5)'");
+        assert_eq(followsSyntax("(4, 5)",  "<point>"), true, "Point: '(4, 5)'");
+        assert_eq(followsSyntax("(Infinity, 5)",  "<point>"), true, "Point: '(Infinity, 5)'");
+
+        assert_eq(followsSyntax("(4; 5)",  "<point>"), false, "Point: '(4; 5)'");
+        assert_eq(followsSyntax("(_, 5)",  "<point>"), false, "Point: '(_, 5)'");
+        assert_eq(followsSyntax("(infinity, 5)",  "<point>"), false, "Point: '(infinity, 5)'");
+        assert_eq(followsSyntax("(3, 2) (4, 61) (4, 2)", "<point>"), false, "(3, 2) (4, 61) (4, 2)");
     }
 
     mohayVarNamingTests();
@@ -213,5 +285,4 @@ function _tests() {
     mohayStringExpressionTests();
     mohaySyntaxExpressionTests();
 }
-
 _tests();
