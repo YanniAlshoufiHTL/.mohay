@@ -12,8 +12,6 @@ const pool = mysql
     .promise();
 
 async function main() {
-    /*await addUser('lucahaas07@gmx.at', 'Luca Haas', 'klajdsklfjasdklfjaklsdjflk', '029123', '2023-06-18T13:10:49.000Z');
-    console.log(await getUsers());*/
 }
 
 main();
@@ -26,7 +24,7 @@ async function resetTable() {
 
 async function createTable() {
     await pool.query(
-        "CREATE TABLE IF NOT EXISTS users (id INT PRIMARY KEY AUTO_INCREMENT, email VARCHAR(255), userName VARCHAR(255), hashCode VARCHAR(255), verificationCode INT, dateCreated DATETIME, verified INT, loginState INT, fileNames VARCHAR(255), fileCode LONGTEXT);"
+        "CREATE TABLE IF NOT EXISTS users (id INT PRIMARY KEY AUTO_INCREMENT, email VARCHAR(255), userName VARCHAR(255), hashCode VARCHAR(255), verificationCode INT, verified INT, loginState INT, fileNames VARCHAR(255), fileCode LONGTEXT);"
     );
 }
 
@@ -35,19 +33,29 @@ async function dropTable() {
 }
 
 // User functions
-async function addUser(email, userName, hashCode, verificationCode, timeCreated) {
+async function addUser(email, userName, hashCode, verificationCode) {
     const user = await getUser(email);
     const emailLegit = await isEmailAllowed(email);
     if (emailLegit && user === undefined)
-        return insertUser(email, userName, hashCode, verificationCode, timeCreated);
+        return insertUser(email, userName, hashCode, verificationCode);
     else if (!emailLegit)
         return 403;
     else
-        return 403;
+        return 400;
 }
 
-async function insertUser(email, userName, hashCode, verificationCode, timeCreated) {
-    await pool.query(`INSERT INTO users(email, userName, hashCode, verificationCode, dateCreated, verified, loginState, fileNames, fileCode) VALUES('${email}', '${userName}', '${hashCode}', '${verificationCode}', '${timeCreated}', '0', '1', '', '');`);
+async function removeUser(email) {
+    const user = await getUser(email);
+    if (user === undefined) return 400;
+    if (user.loginState == 1 && user.verified == 1) {
+        pool.query(`DELETE FROM users WHERE email='${email}';`)
+        return 200;
+    }
+    return 401;
+}
+
+async function insertUser(email, userName, hashCode, verificationCode) {
+    await pool.query(`INSERT INTO users(email, userName, hashCode, verificationCode, verified, loginState, fileNames, fileCode) VALUES('${email}', '${userName}', '${hashCode}', '${verificationCode}', '0', '1', '', '');`);
     return 200;
 }
 
@@ -68,13 +76,10 @@ async function getUser(email) {
 async function login(email, hashCode) {
     let result;
     const userData = await getUser(email);
-    if (userData !== undefined && userData.hashCode === hashCode && userData.loginState != 1) {
+    if (userData !== undefined && userData.hashCode === hashCode && userData.loginState != 1 && userData.verified == 1) {
         result = 200;
         await updateData('loginState', '1', email);
-    } else if (userData !== undefined && userData.hashCode === hashCode && userData.loginState == 1 && userData.verified == 1)
-        result = 406;
-
-    else if (userData === undefined)
+    } else if (userData === undefined)
         result = 400;
     else
         result = 401;
@@ -84,13 +89,10 @@ async function login(email, hashCode) {
 async function logout(email, hashCode) {
     let result;
     const userData = await getUser(email);
-    if (userData !== undefined && userData.hashCode === hashCode && userData.loginState != 0) {
+    if (userData !== undefined && userData.hashCode === hashCode && userData.loginState != 0 && userData.verified == 1) {
         result = 200;
         await updateData('loginState', '0', email);
-    } else if (userData !== undefined && userData.hashCode === hashCode && userData.loginState == 0)
-        result = 406;
-
-    else if (userData === undefined)
+    } else if (userData === undefined)
         result = 400;
     else
         result = 401;
@@ -156,10 +158,8 @@ async function modifyFileName(email, fileName, newFileName) {
     const userData = await getUser(email);
     if (userData === undefined)
         return 400;
-    if ((await isFileExisting(userData, newFileName)).length != 1)
-        return 404;
+    const fileExists = await isFileExisting(userData, fileName);
     if (userData.loginState == 1 && userData.verified == 1) {
-        const fileExists = await isFileExisting(userData, fileName);
         if (fileExists.length == 1) return 404;
         const fileNames = userData.fileNames.split(",");
         fileNames[fileExists[1]] = newFileName;
@@ -239,5 +239,6 @@ module.exports = {
     modifyFileName,
     modifyFileCode,
     getFile,
-    getLoginState
+    getLoginState,
+    removeUser
 };

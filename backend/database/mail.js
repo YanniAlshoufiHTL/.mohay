@@ -23,7 +23,7 @@ function genereteVerificationCode() {
 function sendEmail(email) {
     const verificationCode = genereteVerificationCode();
     mailOptions.to = email;
-    mailOptions.text = `Your current Verificationcode is ${verificationCode} and will last for 5 minutes!`;
+    mailOptions.text = `This is your Verificationcode: ${verificationCode}!`;
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) console.log(error);
         else console.log(`Email sent: ` + info.response);

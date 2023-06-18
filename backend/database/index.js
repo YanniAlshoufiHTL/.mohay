@@ -102,52 +102,33 @@ app.get('/modifyMohayFileName', async (req, res) => {
     res.status(code).send(newFileName);
 });
 
+app.get('/removeUser', async (req, res) => {
+    const { email } = req.body;
+    const code = await database.removeUser(email);
+    res.status(code).send();
+});
+
 app.get('/enterVerificationCode', async (req, res) => {
     const { email } = req.body;
     const { verificationCode } = req.body;
     let code = 400;
     const userData = await database.getUser(email);
-    console.log(userData.dateCreated);
-    console.log(new Date());
     if (userData === undefined) code = 404;
-    else if (userData.verificationCode == verificationCode && isDateValid(userData.dateCreated)) {
+    else if (userData.verificationCode == verificationCode) {
         await database.updateData('verified', '1', email);
         code = 200;
     }
     res.status(code).send();
 });
 
-function isDateValid(date) {
-    const current = new Date();
-    const dateCreated = convertMysqlToJsDate(date);
-    const differnce = current - dateCreated;
-    if (differnce <= 300000) return true;
-    return false;
-}
-
 app.get('/registerUser', async (req, res) => {
     const { email } = req.body;
     const { userName } = req.body;
     const { password } = req.body;
     const verificationCode = sendEmail(email);
-    const timeCreated = convertJsToMysqlDate(new Date());
-    const code = await database.addUser(email, userName, password, verificationCode, timeCreated);
+    const code = await database.addUser(email, userName, password, verificationCode);
     res.status(code).send();
 });
-// TODO: correct Date Conversion
-function convertMysqlToJsDate(date) {
-    const time = date.split(/[- :]/);
-    return new Date(Date.UTC(time[0], time[1] - 1, time[2], time[3], time[4], time[5]));
-}
-
-function convertJsToMysqlDate(date) {
-    return date.getUTCFullYear() + '-' +
-        ('00' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
-        ('00' + date.getUTCDate()).slice(-2) + ' ' +
-        ('00' + date.getUTCHours()).slice(-2) + ':' +
-        ('00' + date.getUTCMinutes()).slice(-2) + ':' +
-        ('00' + date.getUTCSeconds()).slice(-2);
-}
 
 function sendEmail(email) {
     return verificationCode = mail.sendEmail(email);
@@ -157,3 +138,11 @@ function sendEmail(email) {
 app.listen(PORT, () => {
     console.log("listening on http://localhost:8080");
 });
+
+/* Codes:
+400: user not found
+401: not authorized(wrong password)
+403: email wrong format
+404: file not found
+409: file already exists
+*/
