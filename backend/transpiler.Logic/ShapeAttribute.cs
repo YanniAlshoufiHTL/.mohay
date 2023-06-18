@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace transpiler.Logic {
     public class ShapeAttribute {
+        public ShapeAttribute()
+        {
+            
+        }
         public ShapeAttribute(ShapeAttribute attribute) {
             IsFillSet = attribute.IsFillSet;
             Fill = attribute.Fill;
@@ -23,8 +27,8 @@ namespace transpiler.Logic {
             }
         }
         public bool IsFillSet { get; set; } = true;
-        public string Fill { get; set; } //hex format
+        public string Fill { get; set; } = "#ffffff"; //hex format
         public bool IsStrokeSet { get; set; } = true;
-        public string Stroke { get; set; } //hex format
+        public string Stroke { get; set; } = "#ffffff"; //hex format
     }
 }
