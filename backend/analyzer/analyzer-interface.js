@@ -13,6 +13,8 @@
  * @returns {Object}
  */
 function analyze(code) {
+    runtimeVarsConsts = {};
+
     let result = {
         codeCorrect: true,
         errorLine: -1,
@@ -22,12 +24,17 @@ function analyze(code) {
     let lines = code.split(/\r?\n/);
 
     for (let [idx, line] of lines.entries()) {
+        const commentIdx = line.indexOf("//");
+        if (commentIdx !== -1) {
+            line = line.substring(0, commentIdx).trim();
+        }
+
         line = line.trim();
 
-        if (line !== "" && !(line[0] === "/" && line[1] === "/")) {
+        if (line !== "") {
             if (line[0] === "$") {
                 result.codeCorrect = false;
-                result.errorLine = idx;
+                result.errorLine = idx + 1;
                 result.failureReason = "A line cannot start with a dollar sign!";
 
                 return result;
@@ -57,7 +64,7 @@ function analyze(code) {
 
                             if (!followsSyntax(str, syntax)) {
                                 result.codeCorrect = false;
-                                result.errorLine = idx;
+                                result.errorLine = idx + 1;
                                 result.failureReason = 
                                     `This line doesn't follow the syntax for ${line[0] === "." ? "variables" : `'${line.split(" ")[0]}'`}.`
                             }
@@ -67,7 +74,7 @@ function analyze(code) {
 
                                 if (runtimeVarsConsts[varConstName] !== undefined) {
                                     result.codeCorrect = false;
-                                    result.errorLine = idx;
+                                    result.errorLine = idx + 1;
                                     result.failureReason = `A variable or constant with the name ${varConstName} already exists.`;
                                 }
                                 
@@ -81,7 +88,7 @@ function analyze(code) {
 
             if (!someKeyWasOk) {
                 result.codeCorrect = false;
-                result.errorLine = idx;
+                result.errorLine = idx + 1;
                 result.failureReason = `Cannot resolve symbol '${line.split(" ")[0]}'.`;
                 return result;
             }
