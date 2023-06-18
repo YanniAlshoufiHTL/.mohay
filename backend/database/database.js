@@ -19,7 +19,6 @@ async function resetTable() {
 
 async function createTable() {
     await pool.query(
-        "CREATE TABLE IF NOT EXISTS users (id INT PRIMARY KEY AUTO_INCREMENT, email VARCHAR(255), userName VARCHAR(255), hashCode VARCHAR(255), loginState INT, fileNames VARCHAR(255), fileCode LONGTEXT);"
         "CREATE TABLE IF NOT EXISTS users (id INT PRIMARY KEY AUTO_INCREMENT, email VARCHAR(255), userName VARCHAR(255), hashCode VARCHAR(255), verificationCode INT, dateCreated DATETIME, verified INT, loginState INT, fileNames VARCHAR(255), fileCode LONGTEXT);"
     );
 }
@@ -65,8 +64,7 @@ async function login(email, hashCode) {
     if (userData !== undefined && userData.hashCode === hashCode && userData.loginState != 1) {
         result = 200;
         await updateData('loginState', '1', email);
-    }
-    else if (userData !== undefined && userData.hashCode === hashCode && userData.loginState == 1 && userData.verified == 1)
+    } else if (userData !== undefined && userData.hashCode === hashCode && userData.loginState == 1 && userData.verified == 1)
         result = 406;
 
     else if (userData === undefined)
@@ -82,8 +80,7 @@ async function logout(email, hashCode) {
     if (userData !== undefined && userData.hashCode === hashCode && userData.loginState != 0) {
         result = 200;
         await updateData('loginState', '0', email);
-    }
-    else if (userData !== undefined && userData.hashCode === hashCode && userData.loginState == 0)
+    } else if (userData !== undefined && userData.hashCode === hashCode && userData.loginState == 0)
         result = 406;
 
     else if (userData === undefined)
@@ -184,8 +181,7 @@ async function getFile(email, fileName) {
     const userData = await getUser(email);
     if (userData === undefined) {
         return [400]
-    }
-    else if (userData.loginState == 1 && userData.verified == 1) {
+    } else if (userData.loginState == 1 && userData.verified == 1) {
         const fileExists = await isFileExisting(userData, fileName);
         if (fileExists.length == 1) return [404];
 
@@ -199,8 +195,7 @@ async function getFiles(email) {
     const userData = await getUser(email);
     if (userData === undefined) {
         return [400]
-    }
-    else if (userData.loginState == 1 && userData.verified == 1) {
+    } else if (userData.loginState == 1 && userData.verified == 1) {
         const fileNames = userData.fileNames.split(',');
         const fileCodes = userData.fileCode.split(',');
         fileNames.pop();
@@ -224,5 +219,18 @@ async function updateData(coloumName, fileData, email) {
 }
 
 module.exports = {
-    getFiles, updateData, addUser, insertUser, getUsers, getUser, login, logout, addFile, deleteFile, modifyFileName, modifyFileCode, getFile, getLoginState
+    getFiles,
+    updateData,
+    addUser,
+    insertUser,
+    getUsers,
+    getUser,
+    login,
+    logout,
+    addFile,
+    deleteFile,
+    modifyFileName,
+    modifyFileCode,
+    getFile,
+    getLoginState
 };
