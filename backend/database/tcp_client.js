@@ -4,7 +4,6 @@ const { resolve } = require('path');
 // Define the server address and port
 const serverAddress = '172.17.210.91';
 const serverPort = 12345;
-let transpiledCode;
 
 // Create a TCP socket instance
 const socket = net.createConnection(serverPort, serverAddress, () => {
@@ -48,5 +47,5 @@ function sendMessage(variable) {
   return(resolve);
 }
 module.exports = {
-    transpiledCode, sendMessage
+    sendMessage
 }
