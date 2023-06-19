@@ -1,19 +1,14 @@
 /**
- * analyze function (takes String, outputs object)
- *
- * output object interface:
- * {
- *  codeCorrect: boolean,
- *  errorLine: number,
- *  failureReason: String,
- *  code: String,
- * }
- *
  * @method
  * @param {string} code
- * @returns {{codeCorrect: boolean, errorLine: number, failureReason: String, code: String}}
+ * @returns {{
+ *     codeCorrect: boolean,
+ *     errorLine: number,
+ *     failureReason: String,
+ *     code: String,
+ * }}
  */
-function analyze(code) {
+export function analyze(code) {
     runtimeVarsConsts = {};
 
 
