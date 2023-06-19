@@ -1,16 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Analyzer</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analyzer</title>
 
-        <script src="analyzer.js" defer></script>
-        <script src="stringHelper.js" defer></script>
-    </head>
-    <body>
-        <div contenteditable="true" id="myDiv">.p = rect (10,10) 10 10;</div>
-        <button onclick="analyze()">Send content</button>
-    </body>
+    <script src="./assert.js" defer></script>
+    <script src="./analyzer-syntax.js" defer></script>
+    <script src="./analyzer-interface.js" defer></script>
+  </head>
+  <body>
+    <pre contenteditable="true" id="myDiv">
+        wow EEE = 10
+        .v = 35
+        rect (EEE,EEE) EEE EEE
+        line (1,1) (1,1)
+        rect (1,1) 10 10
+        circle (1,1) 10
+        arc (1,1) .v 20 30
+        c #123456
+        f true
+        f false
+        s true
+        s false
+        line (1,1) (1,1)
+        //asdf
+
+                    .v = 35
+                    rect (EEE,EEE) EEE EEE
+                    line (1,1) (1,1)
+                    rect (1,1) 10 10
+                    circle (1,1) 10
+                    arc (1,1) .v 20 30
+                    c #3abcaa
+                    f true
+                    f false
+                    s true
+                    s false
+                    line (1,1) (1,1)
+                    //asdf
+                
+    </pre>
+    <button onclick="console.log(analyze(getElementById('myDiv').innerText))">Send content</button>
+  </body>
 </html>

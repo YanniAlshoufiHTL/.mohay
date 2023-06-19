@@ -1,3 +1,4 @@
+<<<<<<< HEAD:backend/transpiler.Logic/Composite classes/Circle.cs
 ﻿using System.Text;
 using transpiler.Logic.Composite_interfaces;
 using transpiler.Logic.Composite_interfaces.Expression;
@@ -25,5 +26,19 @@ namespace transpiler.Logic.Composite_classes {
 
             builder.AppendLine($"circle({CirclePosition!.X},{CirclePosition!.Y},{Size});");
         }
+=======
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using transpiler.Logic.Composite_interfaces;
+
+namespace transpiler.Logic.Composite_classes {
+    internal class Circle : IKeyword {
+        public IString? Name { get; set; }
+        public IPosition? Pos { get; set; }
+        public INumeric? Radius { get; set; }
+>>>>>>> origin/Implementing-Analzyer-Yanni:backend/transpiler/transpiler.Logic/Composite classes/Circle.cs
     }
 }

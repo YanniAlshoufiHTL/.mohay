@@ -1,3 +1,4 @@
+<<<<<<< HEAD:backend/transpiler.Logic/Composite classes/Arc.cs
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,5 +34,16 @@ namespace transpiler.Logic.Composite_classes {
 
             builder.AppendLine($"arc({Position.X},{Position.Y},{Size},{Size},{Angle1},{Angle2});");
         }
+=======
+﻿using transpiler.Logic.Composite_interfaces;
+
+namespace transpiler.Logic.Composite_classes {
+    internal class Arc : IKeyword {
+        public IString? Name { get; set; }
+        public IPosition? pos { get; set; }
+        public INumeric? radius { get; set; }
+        public IAngle? angl1 { get; set; }
+        public IAngle? angl2 { get; set; }
+>>>>>>> origin/Implementing-Analzyer-Yanni:backend/transpiler/transpiler.Logic/Composite classes/Arc.cs
     }
 }

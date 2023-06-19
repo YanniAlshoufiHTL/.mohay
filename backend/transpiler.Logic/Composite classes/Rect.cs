@@ -1,3 +1,4 @@
+<<<<<<< HEAD:backend/transpiler.Logic/Composite classes/Rect.cs
 ﻿using System.Text;
 using transpiler.Logic.Composite_interfaces;
 using transpiler.Logic.Composite_interfaces.Expression;
@@ -26,5 +27,20 @@ namespace transpiler.Logic.Composite_classes {
         public IValue? Size1 { get; set; }
         public IValue? Size2 { get; set; }
         public ShapeAttribute Attributes { get; set; }
+=======
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using transpiler.Logic.Composite_interfaces;
+
+namespace transpiler.Logic.Composite_classes {
+    internal class Rect : IKeyword {
+        public IString? Name { get; set; }
+        public IPosition? Pos { get; set; }
+        public INumeric? NumX { get; set; }
+        public INumeric? NumY { get; set; }
+>>>>>>> origin/Implementing-Analzyer-Yanni:backend/transpiler/transpiler.Logic/Composite classes/Rect.cs
     }
 }
