@@ -15,11 +15,6 @@
 function analyze(code) {
     runtimeVarsConsts = {};
 
-    let result = {
-        codeCorrect: true,
-        errorLine: -1,
-        failureReason: "",
-    };
 
     let lines = code.split(/\r?\n/);
 
@@ -33,11 +28,7 @@ function analyze(code) {
 
         if (line !== "") {
             if (line[0] === "$") {
-                result.codeCorrect = false;
-                result.errorLine = idx + 1;
-                result.failureReason = "A line cannot start with a dollar sign!";
-
-                return result;
+                return getErrResult(idx, "A line cannot start with a dollar sign!");;
             }
 
             let someKeyWasOk = false;
@@ -63,19 +54,14 @@ function analyze(code) {
                             const str = line;
 
                             if (!followsSyntax(str, syntax)) {
-                                result.codeCorrect = false;
-                                result.errorLine = idx + 1;
-                                result.failureReason = 
-                                    `This line doesn't follow the syntax for ${line[0] === "." ? "variables" : `'${line.split(" ")[0]}'`}.`
+                               return getErrResult(idx, `This line doesn't follow the syntax for ${line[0] === "." ? "variables" : `'${line.split(" ")[0]}'`}.`);
                             }
 
                             if (keyword === "wow" || line[0] === ".") {
                                 const varConstName = line[0] === "." ? splitLine[0] : splitLine[1];
 
-                                if (runtimeVarsConsts[varConstName] !== undefined) {
-                                    result.codeCorrect = false;
-                                    result.errorLine = idx + 1;
-                                    result.failureReason = `A variable or constant with the name ${varConstName} already exists.`;
+                                if (keyword === "wow" && runtimeVarsConsts[varConstName] !== undefined) {
+                                    return getErrResult(idx, `A variable or constant with the name ${varConstName} already exists.`);
                                 }
                                 
                                 const varConstType = followsSyntax(splitLine[splitLine.length - 1], "<nume>") ? "<nume>" : "<str>";
@@ -87,15 +73,36 @@ function analyze(code) {
             }
 
             if (!someKeyWasOk) {
-                result.codeCorrect = false;
-                result.errorLine = idx + 1;
-                result.failureReason = `Cannot resolve symbol '${line.split(" ")[0]}'.`;
-                return result;
+                return getErrResult(idx, `Cannot resolve symbol '${line.split(" ")[0]}'.`);
             }
         }
     }
 
-    return result;
+    // TODO
+    // Refactor this monstrosity of a code
+    // Make it READABLE
+    // Make sure it still works
+
+ 
+    return {
+        codeCorrect: true,
+        errorLine: -1,
+        failureReason: "",
+    };  
+}
+
+/**
+ * @method
+ * @param {number} idx0
+ * @param {String} message
+ * @returns {Object}
+ */
+function getErrResult(idx0, message) {
+    return {
+        codeCorrect : false,
+        errorLine : idx0 + 1,
+        failureReason : message,
+    }
 }
 
 window.analyze = analyze;
