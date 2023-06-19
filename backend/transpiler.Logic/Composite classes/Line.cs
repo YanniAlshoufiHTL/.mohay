@@ -2,6 +2,7 @@
 using System.Text;
 using transpiler.Logic.Composite_interfaces;
 using transpiler.Logic.Composite_interfaces.Expression;
+using transpiler.Logic.Composite_values;
 
 namespace transpiler.Logic.Composite_classes {
     public class Line : IShape {
@@ -10,7 +11,7 @@ namespace transpiler.Logic.Composite_classes {
             string[] values = StringHelper.GetLineValues(value);
             //values = [(..,..)], [(..,..)]
 
-            Keyword!.Name.Value = "line";
+            Keyword = new Keyword("line");
             Position1 = new Point(values[0], attribute);
             Position2 = new Point(values[1], attribute);
             Attributes = new ShapeAttribute(attribute);

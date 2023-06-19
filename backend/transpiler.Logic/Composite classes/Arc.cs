@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using transpiler.Logic.Composite_interfaces;
 using transpiler.Logic.Composite_interfaces.Expression;
+using transpiler.Logic.Composite_values;
 
 namespace transpiler.Logic.Composite_classes {
     public class Arc : IShape {
@@ -13,11 +14,11 @@ namespace transpiler.Logic.Composite_classes {
             string[] values = StringHelper.GetArcValues(value);
             //values = [(..,..)], [..], [..], [..]
 
-            Keyword!.Name.Value = "arc";
+            Keyword = new Keyword("arc");
             Position = new Point(values[0], attribute);
-            Size!.Value = values[1];
-            Angle1!.Value = values[2];
-            Angle2!.Value = values[3];
+            Size = new Value(values[1]);
+            Angle1 = new Value(values[2]);
+            Angle2 = new Value(values[3]);
             Attributes = new ShapeAttribute(attribute);
         }
         public IPosition Position { get; set; }

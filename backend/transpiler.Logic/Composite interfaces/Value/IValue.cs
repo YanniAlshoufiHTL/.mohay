@@ -1,5 +1,8 @@
-﻿namespace transpiler.Logic.Composite_interfaces {
+﻿using System.Runtime.CompilerServices;
+
+namespace transpiler.Logic.Composite_interfaces {
     public interface IValue : IExpression {
-        public string Value { get; set; }
+        public string _Value { get; set; }
+        public string ToString();
     }
 }

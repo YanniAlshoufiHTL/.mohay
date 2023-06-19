@@ -10,8 +10,8 @@ class Temp {
     private static ShapeAttribute globalAttribute = new();
     private static List<IExpression> expressions = new();
     static void Main(string[] args) {
-        string input = "wow EEE = 10\r\nrect (EEE,EEE) EEE EEE\r\nx1 = line (1,1) (1,1)\r\nline (1,1) (1,1)\r\npoint (1,1)\r\nrect (1,1) 10 10\r\ncircle (1,1) 10\r\narc (1,1) 10 20 30\r\nc #123456\r\nf 1\r\nf 0\r\ns 1\r\ns 0\r\nline (1,1) (1,1)\r\n";
-
+        //string input = "wow EEE = 10\r\nrect (EEE,EEE) EEE EEE\r\nx1 = line (1,1) (1,1)\r\nline (1,1) (1,1)\r\npoint (1,1)\r\nrect (1,1) 10 10\r\ncircle (1,1) 10\r\narc (1,1) 10 20 30\r\nc #123456\r\nf 1\r\nf 0\r\ns 1\r\ns 0\r\nline (1,1) (1,1)\r\n";
+        string input = "wow EEE = 10";
 
         input = input.Replace("\r", String.Empty);
         string[] values = input.Split('\n');
@@ -67,11 +67,13 @@ class Temp {
 
         StringBuilder builder = new();
 
-        builder.AppendLine("function setup() {");
-        builder.AppendLine("createCanvas(400, 400);");
-        builder.AppendLine("}");
-
-        builder.AppendLine("function draw() {");
+        builder.AppendLine(@"
+function setup() {
+createCanvas(400, 400);
+}
+function draw() {
+background(0);
+");
 
         foreach (var expression in expressions) {
             var toJsMethod = expression.GetType().GetMethod("ToJSCode");
@@ -80,5 +82,10 @@ class Temp {
         }
 
         builder.AppendLine("}");
+
+        string result = builder.ToString();
+
+        Console.WriteLine(result);
+        Console.ReadKey();
     }
 }

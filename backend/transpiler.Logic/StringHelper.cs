@@ -2,33 +2,47 @@
     public static class StringHelper {
         internal static string[] GetArcValues(string value) {
             //value = arc (1, 1) 10 20 30 
-            //values = [(..,..)], [..], [..], [..]
+            //values = [(..,..)], [..] [..] [..]
+            string[] values = value.Split(' ');
 
             string[] results = new string[4];
 
-
+            results[0] = "(" + GetStringBetweenChars(value, '(', ')') + ")";
+            results[1] = values[3];
+            results[2] = values[4];
+            results[3] = values[5];
 
             return results;
         }
         public static string[] GetCircleVaues(string value) {
             //value = circle (1, 1) 10
-            //values = [(..,..)], [..]
+            //values = [(..,..)] [..]
 
             string[] results = new string[2];
 
-            return null;
+            string[] values = value.Split(' ');
+
+            results[0] = "(" + GetStringBetweenChars(value, '(', ')') + ")";
+            results[1] = values[3];
+
+            return results;
         }
         internal static string[] GetConstantValues(string value) {
             //wow EEE = ...
-            //[EEE], [...]
+            //[EEE] [...]
 
             string[] results = new string[2];
 
-            return null;
+            string[] values = value.Split(" ");
+
+            results[0] = values[1];
+            results[1] = values[3];
+
+            return results;
         }
         internal static string[] GetLineValues(string value) {
             //value = line (1, 1) (1, 1)
-            //values = [(..,..)], [(..,..)]
+            //values = [(..,..)] [(..,..)]
 
             string[] results = new string[2];
 
@@ -36,15 +50,21 @@
         }
         internal static string[] GetPointValues(string value) {
             //value = point (1, 1)
-            //[..], [..]
+            //[..] [..]
+            string cords = GetStringBetweenChars(value, '(', ')');
+            //1, 1
+            string[] values = cords.Split(",");
 
             string[] results = new string[2];
 
-            return null;
+            results[0] = values[0].Trim();
+            results[1] = values[1].Trim();
+
+            return results;
         }
         public static string[] GetRectValues(string value) {
             //value = rect (1, 1) 10 30
-            //values = [(..,..)], [..], [..]
+            //values = [(..,..)] [..] [..]
 
             string[] results = new string[3];
 

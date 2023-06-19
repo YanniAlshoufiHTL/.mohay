@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using transpiler.Logic.Composite_interfaces;
 using transpiler.Logic.Composite_interfaces.Expression;
+using transpiler.Logic.Composite_values;
 
 namespace transpiler.Logic.Composite_classes {
     public class Circle : IShape {
@@ -9,9 +10,9 @@ namespace transpiler.Logic.Composite_classes {
             string[] values = StringHelper.GetCircleVaues(value);
             //values = [(..,..)], [..]
 
-            Keyword!.Name.Value = "circle";
+            Keyword = new Keyword("circle");
             CirclePosition = new Point(values[0], attribute);
-            Size!.Value = values[1];
+            Size = new Value(values[1]);
             Attributes = new ShapeAttribute(attribute);
         }
         public IKeyword Keyword { get; set; }

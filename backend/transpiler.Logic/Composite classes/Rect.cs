@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using transpiler.Logic.Composite_interfaces;
 using transpiler.Logic.Composite_interfaces.Expression;
+using transpiler.Logic.Composite_values;
 
 namespace transpiler.Logic.Composite_classes {
     public class Rect : IShape {
@@ -9,10 +10,10 @@ namespace transpiler.Logic.Composite_classes {
             string[] values = StringHelper.GetRectValues(value);
             //values = [(..,..)], [..], [..]
 
-            Keyword!.Name.Value = "rect";
+            Keyword = new Keyword("rect");
             Position = new Point(values[0], attribute);
-            Size1!.Value = values[1];
-            Size2!.Value = values[2];
+            Size1 = new Value(values[1]);
+            Size2 = new Value(values[2]);
             Attributes = new ShapeAttribute(attribute);
         }
         public void ToJSCode(StringBuilder builder) {

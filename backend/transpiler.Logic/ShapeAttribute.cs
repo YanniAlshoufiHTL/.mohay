@@ -18,16 +18,16 @@ namespace transpiler.Logic {
         }
         public void ToJSCode(StringBuilder builder) {
             if (IsFillSet) {
-                builder.AppendLine($"fill({Fill});");
+                builder.AppendLine($"fill('{Fill}');");
             }
 
             if (IsStrokeSet) {
-                builder.AppendLine($"stroke({Stroke});");
+                builder.AppendLine($"stroke('{Stroke}');");
             }
         }
         public bool IsFillSet { get; set; } = true;
-        public string Fill { get; set; } = "#ffffff"; //hex format
+        public string Fill { get; set; } = "#000000"; //hex format
         public bool IsStrokeSet { get; set; } = true;
-        public string Stroke { get; set; } = "#ffffff"; //hex format
+        public string Stroke { get; set; } = "#000000"; //hex format
     }
 }
