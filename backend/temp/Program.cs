@@ -14,8 +14,6 @@ class TCP_Server {
 
     private static TcpListener? tcpListener;
     private static Thread? listenThread;
-
-    private static int i = 0;
     static void Main() {
 
         listenThread = new Thread(new ThreadStart(ListenForClients));
@@ -31,7 +29,7 @@ class TCP_Server {
         tcpListener = new TcpListener(ipAddress, port);
         tcpListener.Start();
 
-        Console.WriteLine("listening");
+        Console.WriteLine("listening...");
 
         while (true) {
             // Accept incoming client connections
@@ -45,32 +43,28 @@ class TCP_Server {
     private static void HandleClientConnection(object clientObj) {
         TcpClient client = (TcpClient)clientObj;
         Console.WriteLine("Client connected: " + client.Client.RemoteEndPoint);
+        while (client.Connected) {
+            try {
+                NetworkStream stream = client.GetStream();
 
-        try {
-            NetworkStream stream = client.GetStream();
+                byte[] buffer = new byte[1024];
+                int bytesRead = stream.Read(buffer, 0, buffer.Length);
+                string receivedData = Encoding.UTF8.GetString(buffer, 0, bytesRead);
 
-            byte[] buffer = new byte[1024];
-            int bytesRead = stream.Read(buffer, 0, buffer.Length);
-            string receivedData = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                var variable = JsonConvert.DeserializeObject(receivedData);
 
-            var variable = JsonConvert.DeserializeObject(receivedData);
+                string? output = Transpile(variable!.ToString());
 
-            string? output = Transpile(variable!.ToString());
-
-            byte[] responseBytes = Encoding.UTF8.GetBytes(output);
-            stream.Write(responseBytes, 0, responseBytes.Length);
-
-            Console.WriteLine($"sucessfully send {++i} times");
+                byte[] responseBytes = Encoding.UTF8.GetBytes(output);
+                stream.Write(responseBytes, 0, responseBytes.Length);
+            }
+            catch (Exception ex) {
+                client.Close();
+                Console.WriteLine("Disconnected from Client\n\n");
+                Console.WriteLine("Error: " + ex.Message);
+            }
         }
-        catch (Exception ex) {
-            Console.WriteLine("Error: " + ex.Message);
-        }
-        finally {
-            client.Close();
-            Console.WriteLine("Disconnected from Client\n\n");
-        }
-
-
+        Console.WriteLine("Disconnected from Client\n\n");
         static string Transpile(string input) {
 
             //string input = "wow EEE = 10\r\nrect (EEE,EEE) EEE EEE\r\nline (1,1) (1,1)\r\npoint (1,1)\r\nrect (1,1) 10 10\r\ncircle (1,1) 10\r\narc (1,1) 10 20 30\r\nc #123456\r\nf true\r\nf false\r\ns true\r\ns false\r\nline (1,1) (1,1)";
