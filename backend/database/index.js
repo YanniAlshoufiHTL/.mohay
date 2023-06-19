@@ -2,9 +2,10 @@ const express = require("express");
 const nodeMailer = require("nodemailer");
 const database = require("./database");
 const mail = require("./mail.js");
+const tcpClient = require("./tcp_client.js");
 
 const app = express();
-const PORT = 8080;
+const PORT = 7000;
 
 app.use(express.json());
 
@@ -32,16 +33,22 @@ app.get('/getMohayCode', async (req, res) => {
         res.status(returnValue[0]).send();
 });
 
+
+async function transpileCode(fileCode) {
+    return tcpClient.sendMessage(fileCode);
+}
 /* TODO: Need to return transpiled code */
 app.get('/addMohayFile', async (req, res) => {
     const { email } = req.body;
     const { fileName } = req.body;
     const { fileCode } = req.body;
     const code = await database.addFile(email, fileName, fileCode);
-    const result = transpileCode(fileCode);
-    console.log(await database.getUser(email));
-    res.status(code).send({ analizedCode: result });
+    const result = await transpileCode(fileCode);
+    res.status(code).send({
+        transpiledCode: result
+    });
 });
+
 
 app.get('/getMohayFiles', async (req, res) => {
     const { email } = req.body;
@@ -81,10 +88,6 @@ app.get('/modifyMohayFileName', async (req, res) => {
     console.log(await database.getUser(email));
     res.status(code).send();
 });
-
-function transpileCode() {
-    return "";
-}
 
 app.get('/modifyMohayFileCode', async (req, res) => {
     const { email } = req.body;

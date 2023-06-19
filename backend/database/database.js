@@ -11,7 +11,9 @@ const pool = mysql
     })
     .promise();
 
-async function main() {}
+async function main() {
+    console.log(await getUsers());
+}
 
 main();
 
