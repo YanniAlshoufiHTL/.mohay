@@ -1,0 +1,21 @@
+{
+  "name": "database",
+  "version": "1.0.0",
+  "description": "sql database with node js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "deep-email-validator": "^0.1.21",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.3.5",
+    "net": "^1.0.2",
+    "nodemailer": "^6.9.3"
+  },
+  "keywords": []
+}
