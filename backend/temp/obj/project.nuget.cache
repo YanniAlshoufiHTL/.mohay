@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "qkncseWTHlT0PbCSwqed+wJtUo0HRW623Db1yBjQx2eU8Z+hI6LaZH6kDOKCqTGo5OGsgNIqh6eb4WWt63/1AA==",
+  "dgSpecHash": "AhPBAF51oM4uw/Ow9cUBuGApDr6qeELBrFV3Ue/3gmAJ2zks71wBi21oUX8iZJrCUa1MHX8qMnxq1tlvvltF2g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\flyti\\Documents\\GitHubONLY\\.mohay\\backend\\temp\\temp.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\flyti\\Documents\\GitHubONLY\\.mohay\\backend\\temp\\TCP-Server.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\flyti\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

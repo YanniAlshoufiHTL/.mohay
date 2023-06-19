@@ -16,3 +16,4 @@ C:\Users\flyti\Documents\GitHubONLY\.mohay\backend\temp\obj\Debug\net7.0\refint\
 C:\Users\flyti\Documents\GitHubONLY\.mohay\backend\temp\obj\Debug\net7.0\temp.pdb
 C:\Users\flyti\Documents\GitHubONLY\.mohay\backend\temp\obj\Debug\net7.0\temp.genruntimeconfig.cache
 C:\Users\flyti\Documents\GitHubONLY\.mohay\backend\temp\obj\Debug\net7.0\ref\temp.dll
+C:\Users\flyti\Documents\GitHubONLY\.mohay\backend\temp\bin\Debug\net7.0\Newtonsoft.Json.dll

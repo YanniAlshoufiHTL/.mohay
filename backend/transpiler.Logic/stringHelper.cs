@@ -8,9 +8,9 @@
             string[] results = new string[4];
 
             results[0] = "(" + GetStringBetweenChars(value, '(', ')') + ")";
-            results[1] = values[3];
-            results[2] = values[4];
-            results[3] = values[5];
+            results[1] = values[2];
+            results[2] = values[3];
+            results[3] = values[4];
 
             return results;
         }
@@ -23,7 +23,7 @@
             string[] values = value.Split(' ');
 
             results[0] = "(" + GetStringBetweenChars(value, '(', ')') + ")";
-            results[1] = values[3];
+            results[1] = values[2];
 
             return results;
         }
@@ -46,7 +46,12 @@
 
             string[] results = new string[2];
 
-            return null;
+            string[] values = GetStringsBetweenChars(value, '(', ')').ToArray();
+
+            results[0] = "(" + values[0] + ")";
+            results[1] = "(" + values[1] + ")";
+
+            return results;
         }
         internal static string[] GetPointValues(string value) {
             //value = point (1, 1)
@@ -68,7 +73,13 @@
 
             string[] results = new string[3];
 
-            return null;
+            string[] values = value.Split(' ');
+
+            results[0] = "(" + GetStringBetweenChars(value, '(', ')') + ")";
+            results[1] = values[2];
+            results[2] = values[3];
+
+            return results;
         }
         #region string methods
 

@@ -25,6 +25,7 @@ namespace transpiler.Logic {
                 builder.AppendLine($"stroke('{Stroke}');");
             }
         }
+        public string GlobalColor { get; set; }
         public bool IsFillSet { get; set; } = true;
         public string Fill { get; set; } = "#000000"; //hex format
         public bool IsStrokeSet { get; set; } = true;

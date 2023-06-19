@@ -1,73 +1,147 @@
 ﻿namespace temp;
 
+using Newtonsoft.Json;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using transpiler.Logic;
 using transpiler.Logic.Composite_classes;
 using transpiler.Logic.Composite_interfaces;
-using transpiler.Logic.Composite_interfaces.Expression;
 
-class Temp {
+class TCP_Server {
     private static ShapeAttribute globalAttribute = new();
     private static List<IExpression> expressions = new();
-    static void Main(string[] args) {
-        //string input = "wow EEE = 10\r\nrect (EEE,EEE) EEE EEE\r\nx1 = line (1,1) (1,1)\r\nline (1,1) (1,1)\r\npoint (1,1)\r\nrect (1,1) 10 10\r\ncircle (1,1) 10\r\narc (1,1) 10 20 30\r\nc #123456\r\nf 1\r\nf 0\r\ns 1\r\ns 0\r\nline (1,1) (1,1)\r\n";
-        string input = "wow EEE = 10";
 
-        input = input.Replace("\r", String.Empty);
-        string[] values = input.Split('\n');
+    private static TcpListener? tcpListener;
+    private static Thread? listenThread;
 
-        foreach (string value in values) {
-            string firstvalue = value.Split(" ")[0];
+    private static int i = 0;
+    static void Main() {
 
-            switch (firstvalue) {
-                case "wow":
-                    //wow EEE = 10;
-                    expressions.Add(new Constant(value));
-                    break;
-                case "line":
-                    //line (1, 1) (1, 1)
-                    expressions.Add(new Line(value, globalAttribute));
-                    break;
-                case "point":
-                    //point (1, 1)
-                    expressions.Add(new Point(value, globalAttribute));
-                    break;
-                case "rect":
-                    //rect (1, 1) 10 10
-                    expressions.Add(new Rect(value, globalAttribute));
-                    break;
-                case "circle":
-                    //circle (1, 1) 10
-                    expressions.Add(new Circle(value, globalAttribute));
-                    break;
-                case "arc":
-                    //arc (1, 1) 10 20 30y
-                    expressions.Add(new Arc(value, globalAttribute));
-                    break;
-                case "f":
-                    //f true or f false
-                    globalAttribute.IsFillSet = value.Split(" ")[1] == "true" ?
-                        true : false;
-                    break;
-                case "s":
-                    //s true or s false
-                    globalAttribute.IsStrokeSet = value.Split(" ")[1] == "true" ?
-                        true : false;
-                    break;
-                case "c":
-                    string color = value.Split(" ")[1];
-                    globalAttribute.Stroke = color;
-                    globalAttribute.Fill = color;
-                    break;
-                default:
-                    expressions.Add(new Variable(value));
-                    break;
-            }
+        listenThread = new Thread(new ThreadStart(ListenForClients));
+        listenThread.Start();
+        Console.WriteLine("Server started");
+
+    }
+
+    private static void ListenForClients() {
+        IPAddress ipAddress = IPAddress.Parse("172.17.210.91");
+        int port = 12345;
+
+        tcpListener = new TcpListener(ipAddress, port);
+        tcpListener.Start();
+
+        Console.WriteLine("listening");
+
+        while (true) {
+            // Accept incoming client connections
+            TcpClient client = tcpListener.AcceptTcpClient();
+
+            Thread clientThread = new Thread(new ParameterizedThreadStart(HandleClientConnection));
+            clientThread.Start(client);
+        }
+    }
+
+    private static void HandleClientConnection(object clientObj) {
+        TcpClient client = (TcpClient)clientObj;
+        Console.WriteLine("Client connected: " + client.Client.RemoteEndPoint);
+
+        try {
+            NetworkStream stream = client.GetStream();
+
+            byte[] buffer = new byte[1024];
+            int bytesRead = stream.Read(buffer, 0, buffer.Length);
+            string receivedData = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+
+            var variable = JsonConvert.DeserializeObject(receivedData);
+
+            string? output = Transpile(variable!.ToString());
+
+            byte[] responseBytes = Encoding.UTF8.GetBytes(output);
+            stream.Write(responseBytes, 0, responseBytes.Length);
+
+            Console.WriteLine($"sucessfully send {++i} times");
+        }
+        catch (Exception ex) {
+            Console.WriteLine("Error: " + ex.Message);
+        }
+        finally {
+            client.Close();
+            Console.WriteLine("Disconnected from Client\n\n");
         }
 
-        StringBuilder builder = new();
 
-        builder.AppendLine(@"
+        static string Transpile(string input) {
+
+            //string input = "wow EEE = 10\r\nrect (EEE,EEE) EEE EEE\r\nline (1,1) (1,1)\r\npoint (1,1)\r\nrect (1,1) 10 10\r\ncircle (1,1) 10\r\narc (1,1) 10 20 30\r\nc #123456\r\nf true\r\nf false\r\ns true\r\ns false\r\nline (1,1) (1,1)";
+            //string input = "wow EEE = 10";
+
+            input = input.Replace("\r", String.Empty);
+            string[] values = input.Split('\n');
+
+            foreach (string value in values) {
+
+                string[] vaasdawad = value.Split(" ");
+                string firstvalue = value.Split(" ")[0];
+
+                if (vaasdawad.Length == 1)
+                    Console.WriteLine();
+
+                switch (firstvalue) {
+                    case "wow":
+                        //wow EEE = 10;
+                        expressions.Add(new Constant(value));
+                        break;
+                    case "line":
+                        //line (1, 1) (1, 1)
+                        expressions.Add(new Line(value, globalAttribute));
+                        break;
+                    case "point":
+                        //point (1, 1)
+                        expressions.Add(new Point(value, globalAttribute));
+                        break;
+                    case "rect":
+                        //rect (1, 1) 10 10
+                        expressions.Add(new Rect(value, globalAttribute));
+                        break;
+                    case "circle":
+                        //circle (1, 1) 10
+                        expressions.Add(new Circle(value, globalAttribute));
+                        break;
+                    case "arc":
+                        //arc (1, 1) 10 20 30y
+                        expressions.Add(new Arc(value, globalAttribute));
+                        break;
+                    case "f":
+                        //f true or f false
+                        globalAttribute.IsFillSet = value.Split(" ")[1] == "true" ?
+                            true : false;
+                        break;
+                    case "s":
+                        //s true or s false
+                        globalAttribute.IsStrokeSet = value.Split(" ")[1] == "true" ?
+                            true : false;
+                        break;
+                    case "c":
+                        string color = value.Split(" ")[1];
+
+                        if (globalAttribute.IsFillSet) {
+                            globalAttribute.Fill = color;
+                        }
+
+                        if (globalAttribute.IsStrokeSet) {
+                            globalAttribute.Stroke = color;
+                        }
+                        break;
+                    default:
+                        expressions.Add(new Variable(value));
+                        break;
+                }
+            }
+
+            StringBuilder builder = new();
+
+            builder.AppendLine(@"
 function setup() {
 createCanvas(400, 400);
 }
@@ -75,17 +149,15 @@ function draw() {
 background(0);
 ");
 
-        foreach (var expression in expressions) {
-            var toJsMethod = expression.GetType().GetMethod("ToJSCode");
+            foreach (var expression in expressions) {
+                var toJsMethod = expression.GetType().GetMethod("ToJSCode");
 
-            toJsMethod?.Invoke(expression, new object[] { builder });
+                toJsMethod?.Invoke(expression, new object[] { builder });
+            }
+
+            builder.AppendLine("}");
+
+            return builder.ToString();
         }
-
-        builder.AppendLine("}");
-
-        string result = builder.ToString();
-
-        Console.WriteLine(result);
-        Console.ReadKey();
     }
 }

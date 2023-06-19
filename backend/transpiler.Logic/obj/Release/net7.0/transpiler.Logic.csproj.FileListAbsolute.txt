@@ -1,0 +1,12 @@
+C:\Users\flyti\Documents\GitHubONLY\.mohay\backend\transpiler.Logic\bin\Release\net7.0\transpiler.Logic.deps.json
+C:\Users\flyti\Documents\GitHubONLY\.mohay\backend\transpiler.Logic\bin\Release\net7.0\transpiler.Logic.dll
+C:\Users\flyti\Documents\GitHubONLY\.mohay\backend\transpiler.Logic\bin\Release\net7.0\transpiler.Logic.pdb
+C:\Users\flyti\Documents\GitHubONLY\.mohay\backend\transpiler.Logic\obj\Release\net7.0\transpiler.Logic.csproj.AssemblyReference.cache
+C:\Users\flyti\Documents\GitHubONLY\.mohay\backend\transpiler.Logic\obj\Release\net7.0\transpiler.Logic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\flyti\Documents\GitHubONLY\.mohay\backend\transpiler.Logic\obj\Release\net7.0\transpiler.Logic.AssemblyInfoInputs.cache
+C:\Users\flyti\Documents\GitHubONLY\.mohay\backend\transpiler.Logic\obj\Release\net7.0\transpiler.Logic.AssemblyInfo.cs
+C:\Users\flyti\Documents\GitHubONLY\.mohay\backend\transpiler.Logic\obj\Release\net7.0\transpiler.Logic.csproj.CoreCompileInputs.cache
+C:\Users\flyti\Documents\GitHubONLY\.mohay\backend\transpiler.Logic\obj\Release\net7.0\transpiler.Logic.dll
+C:\Users\flyti\Documents\GitHubONLY\.mohay\backend\transpiler.Logic\obj\Release\net7.0\refint\transpiler.Logic.dll
+C:\Users\flyti\Documents\GitHubONLY\.mohay\backend\transpiler.Logic\obj\Release\net7.0\transpiler.Logic.pdb
+C:\Users\flyti\Documents\GitHubONLY\.mohay\backend\transpiler.Logic\obj\Release\net7.0\ref\transpiler.Logic.dll
