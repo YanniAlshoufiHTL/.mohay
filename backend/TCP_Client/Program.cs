@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.RegularExpressions;
 using transpiler.Logic;
 using transpiler.Logic.Composite_classes;
 using transpiler.Logic.Composite_interfaces;
@@ -22,7 +23,7 @@ class TCP_Server {
 
     private static void ListenForClients() {
         IPAddress ipAddress = IPAddress.Parse("172.17.210.91");
-        int port = 12345;
+        int port = 6924;
 
         tcpListener = new TcpListener(ipAddress, port);
         tcpListener.Start();
@@ -33,7 +34,9 @@ class TCP_Server {
             // Accept incoming client connections
             TcpClient client = tcpListener.AcceptTcpClient();
 
-            Thread clientThread = new Thread(new ParameterizedThreadStart(HandleClientConnection));
+            Thread clientThread = new Thread(new ParameterizedThreadStart(HandleClientConnection)) {
+                IsBackground = true
+            };
             clientThread.Start(client);
         }
     }
@@ -71,7 +74,7 @@ class TCP_Server {
 
         globalAttribute = new();
         expressions = new();
-
+        
         input = input.Replace("\r", String.Empty);
         string[] values = input.Split('\n');
 
@@ -135,22 +138,53 @@ class TCP_Server {
 
         StringBuilder builder = new();
 
-        builder.AppendLine(@"
-function setup() {
-createCanvas(400, 400);
-}
-function draw() {
-background(255);
-");
+        builder.AppendLine(
+            @"
+            <!DOCTYPE html>
+            <html>
+                <head>
+                    <meta charset='UTF-8'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                    <title>Canvas Application</title>
+                </head>
+                <body>
+                <script type='text/javascript'>
+                    function loadP5JS() {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js';
+                        script.async = true;
+
+                        script.onload = function() {
+                            console.log('p5.js has been loaded!');
+                        };
+
+                        document.head.appendChild(script);
+                    }
+
+                    loadP5JS();
+
+                    function setup() {
+                        createCanvas(400, 400);
+                    }
+                    function draw() {
+                        background(255);
+                    ");
 
         foreach (var expression in expressions) {
             var toJsMethod = expression.GetType().GetMethod("ToJSCode");
 
             toJsMethod?.Invoke(expression, new object[] { builder });
         }
+  
+        builder.AppendLine(
+            @"        }
+                      </script>
+                  </body>
+              </html>
+             ");
 
-        builder.AppendLine("}");
+        string str = builder.ToString().Replace("\r", "").Replace("\n", "");
 
-        return builder.ToString();
+        return str;
     }
 }
