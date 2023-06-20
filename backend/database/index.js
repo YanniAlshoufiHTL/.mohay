@@ -9,6 +9,13 @@ const PORT = 7000;
 
 app.use(express.json());
 
+app.post('loose-transpile', async (req, res) => {
+    const { code } = req.body;
+    const { email } = req.body;
+    const result = await transpileCode(fileCode);
+    res.send(result);
+});
+
 app.get('/login', async (req, res) => {
     const { email } = req.body;
     const { password } = req.body;
