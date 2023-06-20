@@ -1,3 +1,5 @@
+import { languageSyntax, runtimeVarsConsts, addRuntimeVarConst, clearRuntimeVarConst, followsSyntax } from "./analyzer-syntax.js";
+
 /**
  * @method
  * @param {string} code
@@ -9,7 +11,7 @@
  * }}
  */
 export function analyze(code) {
-    runtimeVarsConsts = {};
+    clearRuntimeVarConst();
 
 
     let lines = code.split(/\r?\n/);
@@ -61,7 +63,7 @@ export function analyze(code) {
                                 }
                                 
                                 const varConstType = followsSyntax(splitLine[splitLine.length - 1], "<nume>") ? "<nume>" : "<str>";
-                                runtimeVarsConsts[varConstName] = varConstType;
+                                addRuntimeVarConst(varConstName, varConstType);
                             }
                         }
                     }

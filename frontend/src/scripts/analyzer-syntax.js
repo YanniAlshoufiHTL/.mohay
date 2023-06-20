@@ -61,6 +61,14 @@ export let languageSyntax = {
 }
 
 export let runtimeVarsConsts = {};
+export function addRuntimeVarConst(varConstName, varConstType) {
+    runtimeVarsConsts[varConstName] = varConstType;
+}
+
+export function clearRuntimeVarConst() {
+    runtimeVarsConsts = {}
+}
+
 
 /**
  * @method
@@ -169,7 +177,7 @@ function isPoint(str) {
  * @param {string} syntax
  * @returns {boolean}
  */
-function followsSyntax(str, syntax) {
+export function followsSyntax(str, syntax) {
     while (str.indexOf("  ") !== -1)
         str = str.replaceAll("  ", " ");
 
