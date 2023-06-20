@@ -15,13 +15,8 @@
         </div>
         <div id="main-wrapper">
             <div id="preview" class="draggable" draggable="true">Preview</div>
-            <div
-                id="code-area"
-                class="draggable"
-                draggable="true"
-                contenteditable="true"
-            >
-                code
+            <div id="code-area" class="draggable" draggable="true">
+                <div contenteditable="true">code</div>
             </div>
             <div id="folder-viewer" class="draggable" draggable="true">
                 folder
