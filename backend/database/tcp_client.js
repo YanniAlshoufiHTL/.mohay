@@ -16,12 +16,12 @@ function createTCPConnection() {
 // Send and recieve message to the server
 function sendMessage(variable) {
   return new Promise((resolve, reject) => {
-    const message = JSON.stringify(variable);
+    const message = variable;
     if (!socket.destroyed) {
       socket.write(message);
 
       socket.once('data', (data) => {
-        const response = data.toString();
+        const response = data;
         resolve(response);
       });
 
@@ -36,7 +36,6 @@ function sendMessage(variable) {
       reject(new Error('Socket is not open'));
     }
   });
-  return(resolve);
 }
 module.exports = {
     sendMessage, createTCPConnection

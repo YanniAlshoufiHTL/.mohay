@@ -32,12 +32,18 @@ export async function analyzeAndGetNew(code) {
  * @return {Promise<null> | Promise<String>}
  */
 async function transpileCode(code) {
-    const transpiledCode = await fetch("/loose-transpile", {
+    const options = {
         method: "POST",
-        body: {
-            code: getTranspilableCode(code),
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json",
         },
-    })
+        body: JSON.stringify({
+            code: getTranspilableCode(code).trim(),
+        }),
+    };
+    
+    const transpiledCode = (await fetch("http://localhost:7000/loose-transpile", options));
 
     return transpiledCode ? transpiledCode : null;
 }
