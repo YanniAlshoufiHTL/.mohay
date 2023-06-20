@@ -6,7 +6,7 @@
         <router-link class="nav-link" :to="{ name: 'Documentation', params: { id: 'Home' } }">
           Documentation
         </router-link>
-        <router-link class="nav-link" :to="{ name: 'AboutUs' }"> About Us </router-link>
+        <router-link class="nav-link" :to="{ name: 'AboutUs' }"> Login </router-link>
         <div id="nav-btn-div">
           <router-link id="btn-link" class="codespace-btn" :to="{ name: 'Codespace' }"
             >Codespace</router-link
