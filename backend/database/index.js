@@ -9,11 +9,15 @@ const PORT = 7000;
 
 app.use(express.json());
 
-app.post('loose-transpile', async (req, res) => {
+tcpClient.createTCPConnection();
+
+app.post('/loose-transpile', async (req, res) => {
+    console.log("hallo");
     const { code } = req.body;
-    const { email } = req.body;
-    const result = await transpileCode(fileCode);
-    res.send(result);
+    const result = await transpileCode(code);
+    res.send({
+        result: result
+    });
 });
 
 app.get('/login', async (req, res) => {
@@ -146,7 +150,7 @@ function sendEmail(email) {
 
 
 app.listen(PORT, () => {
-    console.log("listening on http://localhost:8080");
+    console.log(`listening on http://localhost:${PORT}`);
 });
 
 /* Codes:
