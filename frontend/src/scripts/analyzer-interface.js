@@ -1,19 +1,17 @@
+import { languageSyntax, runtimeVarsConsts, addRuntimeVarConst, clearRuntimeVarConst, followsSyntax } from "./analyzer-syntax.js";
+
 /**
- * analyze function (takes String, outputs object)
- *
- * output object interface:
- * {
- *  codeCorrect: boolean,
- *  errorLine: number,
- *  failureReason: String
- * }
- *
  * @method
  * @param {string} code
- * @returns {Object}
+ * @returns {{
+ *     codeCorrect: boolean,
+ *     errorLine: number,
+ *     failureReason: String,
+ *     code: String,
+ * }}
  */
-function analyze(code) {
-    runtimeVarsConsts = {};
+export function analyze(code) {
+    clearRuntimeVarConst();
 
 
     let lines = code.split(/\r?\n/);
@@ -65,7 +63,7 @@ function analyze(code) {
                                 }
                                 
                                 const varConstType = followsSyntax(splitLine[splitLine.length - 1], "<nume>") ? "<nume>" : "<str>";
-                                runtimeVarsConsts[varConstName] = varConstType;
+                                addRuntimeVarConst(varConstName, varConstType);
                             }
                         }
                     }
@@ -88,6 +86,7 @@ function analyze(code) {
         codeCorrect: true,
         errorLine: -1,
         failureReason: "",
+        code: "",
     };  
 }
 
@@ -102,6 +101,7 @@ function getErrResult(idx0, message) {
         codeCorrect : false,
         errorLine : idx0 + 1,
         failureReason : message,
+        code: "",
     }
 }
 

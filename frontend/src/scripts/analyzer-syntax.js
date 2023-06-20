@@ -15,7 +15,7 @@
  * A bar/pipe ('|') represents the keyword.
  */
 
-let languageSyntax = {
+export let languageSyntax = {
     // These return a boolean which indicates that str is valid
     syntacticPramsCheckers: {
         "<expr>":  str => isStringExpression(str) || isNumericExpression(str),
@@ -60,7 +60,15 @@ let languageSyntax = {
     ],
 }
 
-let runtimeVarsConsts = {};
+export let runtimeVarsConsts = {};
+export function addRuntimeVarConst(varConstName, varConstType) {
+    runtimeVarsConsts[varConstName] = varConstType;
+}
+
+export function clearRuntimeVarConst() {
+    runtimeVarsConsts = {}
+}
+
 
 /**
  * @method
@@ -110,28 +118,6 @@ function isStringExpression(expression) {
  */
 function isHexExpression(expression) {
    return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(expression);
-}
-
-/**
- * @method
- * @param {string} str
- * @returns {string}
- */
-function replaceInQuoteSpacesWithUnicodeChar(str) {
-    let inStr = false;
-
-    for (const [idx, char] of str.split("").entries()) {
-        if (!inStr && str === '"')
-            inStr = true;
-        else if (inStr && str === '"')
-            inStr = false;
-
-        if (inStr && char === " ") {
-            str[idx] = "\u2800";
-        }
-    }
-
-    return str;
 }
 
 /**
@@ -191,7 +177,7 @@ function isPoint(str) {
  * @param {string} syntax
  * @returns {boolean}
  */
-function followsSyntax(str, syntax) {
+export function followsSyntax(str, syntax) {
     while (str.indexOf("  ") !== -1)
         str = str.replaceAll("  ", " ");
 
@@ -241,6 +227,7 @@ function followsSyntax(str, syntax) {
     return true;
 }
 
+import { assert_eq } from "./assert";
 /* Unit Testing */
 /**
  * @method
