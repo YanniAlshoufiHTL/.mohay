@@ -32,7 +32,7 @@ export async function analyzeAndGetNew(code) {
  * @return {Promise<null> | Promise<String>}
  */
 async function transpileCode(code) {
-    const transpiledCode = await fetch("/loose_transpile", {
+    const transpiledCode = await fetch("/loose-transpile", {
         method: "POST",
         body: {
             code: getTranspilableCode(code),
@@ -62,7 +62,7 @@ function getTranspilableCode(code) {
 
             for (let j = pair[1]; j >= pair[0]; j--) {
                 if (x[j] === " ")
-                x = x.slice(0, j), x.slice(j + 1);
+                    x = x.slice(0, j), x.slice(j + 1);
             }
         }
 
