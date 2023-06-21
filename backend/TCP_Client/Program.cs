@@ -52,9 +52,8 @@ class TCP_Server {
                 int bytesRead = stream.Read(buffer, 0, buffer.Length);
                 string receivedData = Encoding.UTF8.GetString(buffer, 0, bytesRead);
 
-                var variable = JsonConvert.DeserializeObject(receivedData);
-
-                string? output = Transpile(variable!.ToString());
+                string? output = Transpile(receivedData);
+                Console.WriteLine(output);
 
                 byte[] responseBytes = Encoding.UTF8.GetBytes(output);
                 stream.Write(responseBytes, 0, responseBytes.Length);
@@ -74,7 +73,7 @@ class TCP_Server {
 
         globalAttribute = new();
         expressions = new();
-        
+
         input = input.Replace("\r", String.Empty);
         string[] values = input.Split('\n');
 
@@ -113,22 +112,18 @@ class TCP_Server {
                     break;
                 case "f":
                     //f true or f false
-                    globalAttribute.IsFillSet = value.Split(" ")[1] == "true";
+                    globalAttribute.Fill = value.Split(" ")[1] == "true" ?
+                                        globalAttribute.GlobalColor : "#fff";
                     break;
                 case "s":
                     //s true or s false
-                    globalAttribute.IsStrokeSet = value.Split(" ")[1] == "true";
+                    globalAttribute.Stroke = value.Split(" ")[1] == "true" ?
+                                        globalAttribute.GlobalColor : "#fff";
                     break;
                 case "c":
                     string color = value.Split(" ")[1];
 
-                    if (globalAttribute.IsFillSet) {
-                        globalAttribute.Fill = color;
-                    }
-
-                    if (globalAttribute.IsStrokeSet) {
-                        globalAttribute.Stroke = color;
-                    }
+                    globalAttribute.GlobalColor = color;
                     break;
                 default:
                     expressions.Add(new Variable(value));
@@ -140,15 +135,6 @@ class TCP_Server {
 
         builder.AppendLine(
             @"
-            <!DOCTYPE html>
-            <html>
-                <head>
-                    <meta charset='UTF-8'>
-                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-                    <title>Canvas Application</title>
-                </head>
-                <body>
-                <script type='text/javascript'>
                     function loadP5JS() {
                         var script = document.createElement('script');
                         script.src = 'https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js';
@@ -175,12 +161,9 @@ class TCP_Server {
 
             toJsMethod?.Invoke(expression, new object[] { builder });
         }
-  
+
         builder.AppendLine(
             @"        }
-                      </script>
-                  </body>
-              </html>
              ");
 
         string str = builder.ToString().Replace("\r", "").Replace("\n", "");
