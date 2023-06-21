@@ -16,9 +16,11 @@ class TCP_Server {
     private static TcpListener? tcpListener;
     private static Thread? listenThread;
     static void Main() {
-        listenThread = new Thread(new ThreadStart(ListenForClients));
-        listenThread.Start();
-        Console.WriteLine("Server started");
+        //listenThread = new Thread(new ThreadStart(ListenForClients));
+        //listenThread.Start();
+        //Console.WriteLine("Server started");
+        string output = Transpile();
+        Console.WriteLine(output);
     }
 
     private static void ListenForClients() {
@@ -69,13 +71,14 @@ class TCP_Server {
     static string Transpile(string input = null) {
 
         //input = "wow EEE = 10\r\nrect (EEE,EEE) EEE EEE\r\nline (1,1) (1,1)\r\npoint (1,1)\r\nrect (1,1) 10 10\r\ncircle (1,1) 10\r\narc (1,1) 10 20 30\r\nc #123456\r\nf true\r\nf false\r\ns true\r\ns false\r\nline (1,1) (1,1)";
-        //string input = "wow EEE = 10";
+        input = "wow E = 10\r\n\r\nrect (E, E*20) 10 E";
 
         globalAttribute = new();
         expressions = new();
 
         input = input.Replace("\r", String.Empty);
         string[] values = input.Split('\n');
+        values = values.Where(s => !string.IsNullOrEmpty(s)).ToArray();
 
         foreach (string value in values) {
 
