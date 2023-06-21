@@ -12,7 +12,7 @@ const pool = mysql
     .promise();
 
 async function main() {
-    console.log(await getUsers());
+    await resetTable();
 }
 
 main();
