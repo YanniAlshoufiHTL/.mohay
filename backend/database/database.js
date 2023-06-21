@@ -12,7 +12,8 @@ const pool = mysql
     .promise();
 
 async function main() {
-    await resetTable();
+    await addUser('lucahaas07@gmx.at', 'aksdlkfjaksdf', 'kasldkfjaksldf', 345678);
+    console.log(await getUsers());
 }
 
 main();
