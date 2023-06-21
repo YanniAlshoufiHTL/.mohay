@@ -12,9 +12,7 @@ const pool = mysql
     .promise();
 
 async function main() {
-    //await pool.query("DROP TABLESPACE users;");
     await resetTable();
-    console.log(await getUsers());
 }
 
 main();
