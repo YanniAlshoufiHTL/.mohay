@@ -3,11 +3,20 @@ const nodeMailer = require("nodemailer");
 const database = require("./database");
 const mail = require("./mail.js");
 const tcpClient = require("./tcp_client.js");
+const cors = require("cors");
 
 const app = express();
 const PORT = 7000;
 
+app.use(cors())
 app.use(express.json());
+
+tcpClient.createTCPConnection();
+app.post('/loose-transpile', async (req, res) => {
+    const code = req.body.code;
+    const result = await transpileCode(code);
+    res.send(result);
+});
 
 app.get('/login', async (req, res) => {
     const { email } = req.body;
@@ -139,7 +148,7 @@ function sendEmail(email) {
 
 
 app.listen(PORT, () => {
-    console.log("listening on http://localhost:8080");
+    console.log(`listening on http://localhost:${PORT}`);
 });
 
 /* Codes:
