@@ -58,6 +58,7 @@
             //[..] [..]
             string cords = GetStringBetweenChars(value, '(', ')');
             //1, 1
+
             string[] values = cords.Split(",");
 
             string[] results = new string[2];
@@ -117,6 +118,21 @@
                     endIndex = -1;
                 }
             }
+
+            return result;
+        }
+        public static string RemoveCharBetween(string input, char startChar, char endChar, char charToRemove) {
+            int startIndex = input.IndexOf(startChar);
+            int endIndex = input.IndexOf(endChar);
+
+            if (startIndex == -1 || endIndex == -1 || startIndex >= endIndex) {
+                // Invalid start and end characters, or start comes after end
+                return input;
+            }
+
+            string substringBetween = input.Substring(startIndex + 1, endIndex - startIndex - 1);
+            string substringModified = substringBetween.Replace(charToRemove.ToString(), string.Empty);
+            string result = input.Substring(0, startIndex + 1) + substringModified + input.Substring(endIndex);
 
             return result;
         }

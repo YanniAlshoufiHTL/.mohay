@@ -13,8 +13,7 @@ import { analyze } from "./analyzer-interface";
 export async function analyzeAndGetNew(code) {
     const analyzed = analyze(code);
 
-    if (!analyzed.codeCorrect)
-        return analyzed;
+    if (!analyzed.codeCorrect) return analyzed;
 
     const jsCode = await transpileCode(code);
 
@@ -42,8 +41,11 @@ async function transpileCode(code) {
             code: getTranspilableCode(code).trim(),
         }),
     };
-    
-    const transpiledCode = (await fetch("http://localhost:7000/loose-transpile", options));
+
+    const transpiledCode = await fetch(
+        "http://localhost:7000/loose-transpile",
+        options
+    );
 
     return transpiledCode ? transpiledCode : null;
 }
@@ -54,32 +56,32 @@ async function transpileCode(code) {
  * @returns {String}
  */
 function getTranspilableCode(code) {
-    code = code.split("\n").map(x => {
-        x = x.trim()
+    code = code
+        .split("\n")
+        .map((x) => {
+            x = x.trim();
 
-        if (x.includes("//")) {
-            const idx = x.indexOf("//");
-            x = x.substring(0, idx).trim();
-        }
-
-        const parPairs = getParPairs(x);
-        for (let i = parPairs.length - 1; i >= 0; i--) {
-            const pair = parPairs[i];
-
-            for (let j = pair[1]; j >= pair[0]; j--) {
-                if (x[j] === " ")
-                    x = x.slice(0, j), x.slice(j + 1);
+            if (x.includes("//")) {
+                const idx = x.indexOf("//");
+                x = x.substring(0, idx).trim();
             }
-        }
 
-        return x;
-    }).join("\n");
+            const parPairs = getParPairs(x);
+            for (let i = parPairs.length - 1; i >= 0; i--) {
+                const pair = parPairs[i];
 
-    while (code.includes("\n\n"))
-        code = code.replaceAll("\n\n", "\n");
+                for (let j = pair[1]; j >= pair[0]; j--) {
+                    if (x[j] === " ") (x = x.slice(0, j)), x.slice(j + 1);
+                }
+            }
 
-    while (code.includes("  "))
-        code = code.replaceAll("  ", " ");
+            return x;
+        })
+        .join("\n");
+
+    while (code.includes("\n\n")) code = code.replaceAll("\n\n", "\n");
+
+    while (code.includes("  ")) code = code.replaceAll("  ", " ");
 
     return code;
 }

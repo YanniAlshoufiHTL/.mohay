@@ -1,4 +1,4 @@
-const emailValidator = require('deep-email-validator');
+//const emailValidator = require("deep-email-validator");
 const mysql = require("mysql2");
 
 const pool = mysql
@@ -12,6 +12,8 @@ const pool = mysql
     .promise();
 
 async function main() {
+    //await pool.query("DROP TABLESPACE users;");
+    await resetTable();
     console.log(await getUsers());
 }
 
@@ -39,24 +41,24 @@ async function addUser(email, userName, hashCode, verificationCode) {
     const emailLegit = await isEmailAllowed(email);
     if (emailLegit && user === undefined)
         return insertUser(email, userName, hashCode, verificationCode);
-    else if (!emailLegit)
-        return 403;
-    else
-        return 400;
+    else if (!emailLegit) return 403;
+    else return 400;
 }
 
 async function removeUser(email) {
     const user = await getUser(email);
     if (user === undefined) return 400;
     if (user.loginState == 1 && user.verified == 1) {
-        pool.query(`DELETE FROM users WHERE email='${email}';`)
+        pool.query(`DELETE FROM users WHERE email='${email}';`);
         return 200;
     }
     return 401;
 }
 
 async function insertUser(email, userName, hashCode, verificationCode) {
-    await pool.query(`INSERT INTO users(email, userName, hashCode, verificationCode, verified, loginState, fileNames, fileCode) VALUES('${email}', '${userName}', '${hashCode}', '${verificationCode}', '0', '1', '', '');`);
+    await pool.query(
+        `INSERT INTO users(email, userName, hashCode, verificationCode, verified, loginState, fileNames, fileCode) VALUES('${email}', '${userName}', '${hashCode}', '${verificationCode}', '0', '1', '', '');`
+    );
     return 200;
 }
 
@@ -65,38 +67,43 @@ async function getUsers() {
     return rows;
 }
 
-
 async function getUser(email) {
-    const [rows] = await pool.query(`SELECT * FROM users WHERE email = '${email}';`);
+    const [rows] = await pool.query(
+        `SELECT * FROM users WHERE email = '${email}';`
+    );
     return rows[0];
 }
-
-
 
 // Login functions
 async function login(email, hashCode) {
     let result;
     const userData = await getUser(email);
-    if (userData !== undefined && userData.hashCode === hashCode && userData.loginState != 1 && userData.verified == 1) {
+    if (
+        userData !== undefined &&
+        userData.hashCode === hashCode &&
+        userData.loginState != 1 &&
+        userData.verified == 1
+    ) {
         result = 200;
-        await updateData('loginState', '1', email);
-    } else if (userData === undefined)
-        result = 400;
-    else
-        result = 401;
+        await updateData("loginState", "1", email);
+    } else if (userData === undefined) result = 400;
+    else result = 401;
     return result;
 }
 
 async function logout(email, hashCode) {
     let result;
     const userData = await getUser(email);
-    if (userData !== undefined && userData.hashCode === hashCode && userData.loginState != 0 && userData.verified == 1) {
+    if (
+        userData !== undefined &&
+        userData.hashCode === hashCode &&
+        userData.loginState != 0 &&
+        userData.verified == 1
+    ) {
         result = 200;
-        await updateData('loginState', '0', email);
-    } else if (userData === undefined)
-        result = 400;
-    else
-        result = 401;
+        await updateData("loginState", "0", email);
+    } else if (userData === undefined) result = 400;
+    else result = 401;
     return result;
 }
 
@@ -120,13 +127,16 @@ async function isEmailAllowed(email) {
 // File functions
 async function addFile(email, fileName, fileCode) {
     const userData = await getUser(email);
-    if (userData === undefined)
-        return 400;
+    if (userData === undefined) return 400;
     if (userData.loginState == 1 && userData.verified == 1) {
         const fileExists = await isFileExisting(userData, fileName);
         if (fileExists[0]) return 409;
-        await updateData('fileNames', `${fileName},${userData.fileNames}`, email);
-        await updateData('fileCode', `${fileCode},${userData.fileCode}`, email);
+        await updateData(
+            "fileNames",
+            `${fileName},${userData.fileNames}`,
+            email
+        );
+        await updateData("fileCode", `${fileCode},${userData.fileCode}`, email);
         return 200;
     }
 }
@@ -134,14 +144,16 @@ async function addFile(email, fileName, fileCode) {
 async function deleteFile(email, fileName) {
     const userData = await getUser(email);
     console.log(userData);
-    if (userData === undefined)
-        return 400;
+    if (userData === undefined) return 400;
     if (userData.loginState == 1 && userData.verified == 1) {
         const fileExists = await isFileExisting(userData, fileName);
         if (fileExists.length == 1) return 404;
-        const fileData = await deleteElementFromFilesArray(userData, fileExists[1]);
-        await updateData('fileNames', fileData[0].toString(), email);
-        await updateData('fileCode', fileData[1].toString(), email);
+        const fileData = await deleteElementFromFilesArray(
+            userData,
+            fileExists[1]
+        );
+        await updateData("fileNames", fileData[0].toString(), email);
+        await updateData("fileCode", fileData[1].toString(), email);
         return 200;
     }
     return 401;
@@ -157,14 +169,13 @@ async function deleteElementFromFilesArray(userData, index) {
 
 async function modifyFileName(email, fileName, newFileName) {
     const userData = await getUser(email);
-    if (userData === undefined)
-        return 400;
+    if (userData === undefined) return 400;
     const fileExists = await isFileExisting(userData, fileName);
     if (userData.loginState == 1 && userData.verified == 1) {
         if (fileExists.length == 1) return 404;
         const fileNames = userData.fileNames.split(",");
         fileNames[fileExists[1]] = newFileName;
-        await updateData('fileNames', fileNames.toString(), email);
+        await updateData("fileNames", fileNames.toString(), email);
         return 200;
     }
     return 401;
@@ -172,14 +183,13 @@ async function modifyFileName(email, fileName, newFileName) {
 
 async function modifyFileCode(email, fileName, newFileCode) {
     const userData = await getUser(email);
-    if (userData === undefined)
-        return 400;
+    if (userData === undefined) return 400;
     if (userData.loginState == 1 && userData.verified == 1) {
         const fileExists = await isFileExisting(userData, fileName);
         if (fileExists.length == 1) return 404;
         const fileCode = userData.fileCode.split(",");
         fileCode[fileExists[1]] = newFileCode;
-        await updateData('fileCode', fileCode.toString(), email);
+        await updateData("fileCode", fileCode.toString(), email);
         return 200;
     }
     return 401;
@@ -188,7 +198,7 @@ async function modifyFileCode(email, fileName, newFileCode) {
 async function getFile(email, fileName) {
     const userData = await getUser(email);
     if (userData === undefined) {
-        return [400]
+        return [400];
     } else if (userData.loginState == 1 && userData.verified == 1) {
         const fileExists = await isFileExisting(userData, fileName);
         if (fileExists.length == 1) return [404];
@@ -202,10 +212,10 @@ async function getFile(email, fileName) {
 async function getFiles(email) {
     const userData = await getUser(email);
     if (userData === undefined) {
-        return [400]
+        return [400];
     } else if (userData.loginState == 1 && userData.verified == 1) {
-        const fileNames = userData.fileNames.split(',');
-        const fileCodes = userData.fileCode.split(',');
+        const fileNames = userData.fileNames.split(",");
+        const fileCodes = userData.fileCode.split(",");
         fileNames.pop();
         fileCodes.pop();
         return [200, [fileNames, fileCodes]];
@@ -241,5 +251,5 @@ module.exports = {
     modifyFileCode,
     getFile,
     getLoginState,
-    removeUser
+    removeUser,
 };

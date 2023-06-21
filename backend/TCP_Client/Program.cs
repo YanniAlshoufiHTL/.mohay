@@ -16,11 +16,11 @@ class TCP_Server {
     private static TcpListener? tcpListener;
     private static Thread? listenThread;
     static void Main() {
-        //listenThread = new Thread(new ThreadStart(ListenForClients));
-        //listenThread.Start();
-        //Console.WriteLine("Server started");
-        string output = Transpile();
-        Console.WriteLine(output);
+        listenThread = new Thread(new ThreadStart(ListenForClients));
+        listenThread.Start();
+        Console.WriteLine("Server started");
+        //string output = Transpile();
+        //Console.WriteLine(output);
     }
 
     private static void ListenForClients() {
@@ -81,55 +81,52 @@ class TCP_Server {
         values = values.Where(s => !string.IsNullOrEmpty(s)).ToArray();
 
         foreach (string value in values) {
-
-            string[] vaasdawad = value.Split(" ");
             string firstvalue = value.Split(" ")[0];
 
-            if (vaasdawad.Length == 1)
-                Console.WriteLine();
+            string line = StringHelper.RemoveCharBetween(value, '(', ')', ' ');
 
             switch (firstvalue) {
                 case "wow":
                     //wow EEE = 10;
-                    expressions.Add(new Constant(value));
+                    expressions.Add(new Constant(line));
                     break;
                 case "line":
                     //line (1, 1) (1, 1)
-                    expressions.Add(new Line(value, globalAttribute));
+                    expressions.Add(new Line(line, globalAttribute));
                     break;
                 case "point":
                     //point (1, 1)
-                    expressions.Add(new Point(value, globalAttribute));
+                    expressions.Add(new Point(line, globalAttribute));
                     break;
                 case "rect":
                     //rect (1, 1) 10 10
-                    expressions.Add(new Rect(value, globalAttribute));
+                    expressions.Add(new Rect(line, globalAttribute));
                     break;
                 case "circle":
                     //circle (1, 1) 10
-                    expressions.Add(new Circle(value, globalAttribute));
+                    expressions.Add(new Circle(line, globalAttribute));
                     break;
                 case "arc":
                     //arc (1, 1) 10 20 30y
-                    expressions.Add(new Arc(value, globalAttribute));
+                    expressions.Add(new Arc(line, globalAttribute));
                     break;
                 case "f":
                     //f true or f false
-                    globalAttribute.Fill = value.Split(" ")[1] == "true" ?
+                    globalAttribute.Fill = line.Split(" ")[1] == "true" ?
                                         globalAttribute.GlobalColor : "#fff";
                     break;
                 case "s":
                     //s true or s false
-                    globalAttribute.Stroke = value.Split(" ")[1] == "true" ?
+                    globalAttribute.Stroke = line.Split(" ")[1] == "true" ?
                                         globalAttribute.GlobalColor : "#fff";
                     break;
                 case "c":
-                    string color = value.Split(" ")[1];
+                    string color = line.Split(" ")[1];
 
                     globalAttribute.GlobalColor = color;
                     break;
                 default:
-                    expressions.Add(new Variable(value));
+                    expressions.Add(new Variable(line));
                     break;
             }
         }
@@ -153,7 +150,8 @@ class TCP_Server {
                     loadP5JS();
 
                     function setup() {
-                        createCanvas(400, 400);
+                        var canvas = createCanvas(400, 400);
+                        canvas.parent('preview');
                     }
                     function draw() {
                         background(255);

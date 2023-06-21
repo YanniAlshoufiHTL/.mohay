@@ -27,8 +27,14 @@
 </template>
 
 <script>
+import p5 from "p5";
 export default {
     name: "Codespace",
+    methods: {
+        executeCode(code) {
+            eval(code);
+        },
+    },
     mounted() {
         const draggableItems = document.querySelectorAll(".draggable");
         let dragSource = null;
@@ -98,7 +104,6 @@ export default {
         });
     },
 };
-
 </script>
 
 <style lang="scss" scoped>
