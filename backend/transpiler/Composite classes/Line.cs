@@ -24,7 +24,7 @@ namespace transpiler.Logic.Composite_classes {
         public void ToJSCode(StringBuilder builder) {
             Attributes.ToJSCode(builder);
 
-            builder.AppendLine($"line({Position1.X},{Position1.Y},{Position2.X},{Position2.Y});");
+            builder.AppendLine($"sketch.line({Position1.X},{Position1.Y},{Position2.X},{Position2.Y});");
         }
     }
 }

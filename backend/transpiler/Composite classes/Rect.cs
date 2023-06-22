@@ -19,7 +19,7 @@ namespace transpiler.Logic.Composite_classes {
         public void ToJSCode(StringBuilder builder) {
             Attributes.ToJSCode(builder);
 
-            builder.AppendLine($"rect({Position!.X},{Position.Y},{Size1},{Size2});");
+            builder.AppendLine($"sketch.rect({Position!.X},{Position.Y},{Size1},{Size2});");
         }
         public IKeyword Keyword { get; set; }
         public IPosition? Position { get; set; }

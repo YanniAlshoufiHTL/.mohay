@@ -31,7 +31,7 @@ namespace transpiler.Logic.Composite_classes {
         public void ToJSCode(StringBuilder builder) {
             Attributes.ToJSCode(builder);
 
-            builder.AppendLine($"arc({Position.X},{Position.Y},{Size},{Size},{Angle1},{Angle2});");
+            builder.AppendLine($"sketch.arc({Position.X},{Position.Y},{Size},{Size},{Angle1},{Angle2});");
         }
     }
 }
