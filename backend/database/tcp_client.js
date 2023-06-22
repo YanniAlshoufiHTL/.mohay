@@ -2,7 +2,7 @@ const net = require('net');
 const { resolve } = require('path');
 
 // Define the server address and port
-const serverAddress = '172.17.210.168';
+const serverAddress = '172.17.220.168';
 const serverPort = 6924;
 
 let socket;
