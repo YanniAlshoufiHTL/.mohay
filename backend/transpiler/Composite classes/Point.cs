@@ -23,7 +23,7 @@ namespace transpiler.Logic.Composite_classes {
         public void ToJSCode(StringBuilder builder) {
             Attributes.ToJSCode(builder);
 
-            builder.AppendLine($"point({X},{Y});");
+            builder.AppendLine($"sketch.point({X},{Y});");
         }
     }
 }

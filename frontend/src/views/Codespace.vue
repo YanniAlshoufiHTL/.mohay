@@ -20,19 +20,35 @@
             </div>
             <div id="folder-viewer" class="draggable" draggable="true">
                 folder
-                <div id="red"></div>
+                <button
+                    @click="executeCode"
+                    style="background-color: red; width: 20px; height: 20px"
+                ></button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import p5 from "p5";
+import { analyzeAndGetNew } from "@/scripts/transpilationFlow";
+
 export default {
     name: "Codespace",
     methods: {
-        executeCode(code) {
-            eval(code);
+        async executeCode() {
+            const code = document.querySelector("#code-area").innerText;
+            const result = await analyzeAndGetNew(code);
+            if (result.codeCorrect) {
+                console.log(result.code);
+                alert(result.code);
+            } else {
+                console.log(
+                    `The code has an error in it at line ${result.line}!\nError message:\n\n${result.failureReason}`
+                );
+                alert(
+                    `The code has an error in it at line ${result.line}!\nError message:\n\n${result.failureReason}`
+                );
+            }
         },
     },
     mounted() {

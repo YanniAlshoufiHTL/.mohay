@@ -24,7 +24,7 @@ class TCP_Server {
     }
 
     private static void ListenForClients() {
-        IPAddress ipAddress = IPAddress.Parse("172.17.210.91");
+        IPAddress ipAddress = IPAddress.Parse("172.17.220.168");
         int port = 6924;
 
         tcpListener = new TcpListener(ipAddress, port);
@@ -71,13 +71,14 @@ class TCP_Server {
     static string Transpile(string input = null) {
 
         //input = "wow EEE = 10\r\nrect (EEE,EEE) EEE EEE\r\nline (1,1) (1,1)\r\npoint (1,1)\r\nrect (1,1) 10 10\r\ncircle (1,1) 10\r\narc (1,1) 10 20 30\r\nc #123456\r\nf true\r\nf false\r\ns true\r\ns false\r\nline (1,1) (1,1)";
-        input = "wow E = 10\r\n\r\nrect (E, E*20) 10 E";
+        //input = "wow E = 10\r\nrect (E, E*20) 10 E";
 
         globalAttribute = new();
         expressions = new();
 
         input = input.Replace("\r", String.Empty);
-        string[] values = input.Split('\n');
+        string[] values = input.Split("\n");
+
         values = values.Where(s => !string.IsNullOrEmpty(s)).ToArray();
 
         foreach (string value in values) {
@@ -135,27 +136,15 @@ class TCP_Server {
 
         builder.AppendLine(
             @"
-                    function loadP5JS() {
-                        var script = document.createElement('script');
-                        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js';
-                        script.async = true;
+            new p5((sketch) => {
+                sketch.setup = () => {
+                    const canvas = sketch.createCanvas(800, 600);
+                    canvas.parent('preview');
+                };
 
-                        script.onload = function() {
-                            console.log('p5.js has been loaded!');
-                        };
-
-                        document.head.appendChild(script);
-                    }
-
-                    loadP5JS();
-
-                    function setup() {
-                        var canvas = createCanvas(400, 400);
-                        canvas.parent('preview');
-                    }
-                    function draw() {
-                        background(255);
-                    ");
+                sketch.draw = () => {
+                sketch.background(255);
+                ");
 
         foreach (var expression in expressions) {
             var toJsMethod = expression.GetType().GetMethod("ToJSCode");
@@ -164,8 +153,8 @@ class TCP_Server {
         }
 
         builder.AppendLine(
-            @"        }
-             ");
+            @"};
+            });");
 
         string str = builder.ToString().Replace("\r", "").Replace("\n", "");
 

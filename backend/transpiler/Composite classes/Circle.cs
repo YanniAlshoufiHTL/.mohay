@@ -23,7 +23,7 @@ namespace transpiler.Logic.Composite_classes {
         public void ToJSCode(StringBuilder builder) {
             Attributes.ToJSCode(builder);
 
-            builder.AppendLine($"circle({CirclePosition!.X},{CirclePosition!.Y},{Size});");
+            builder.AppendLine($"sketch.circle({CirclePosition!.X},{CirclePosition!.Y},{Size});");
         }
     }
 }

@@ -16,8 +16,8 @@ namespace transpiler.Logic {
             GlobalColor = attribute.GlobalColor;
         }
         public void ToJSCode(StringBuilder builder) {
-            builder.AppendLine($"fill('{Fill}');");
-            builder.AppendLine($"stroke('{Stroke}');");
+            builder.AppendLine($"sketch.fill('{Fill}');");
+            builder.AppendLine($"sketch.stroke('{Stroke}');");
         }
         public string GlobalColor { get; set; }
         public string Fill { get; set; } = "#000000"; //hex format
