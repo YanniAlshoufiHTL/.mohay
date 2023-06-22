@@ -18,21 +18,21 @@ app.post('/loose-transpile', async (req, res) => {
     res.send(result);
 });
 
-app.get('/login', async (req, res) => {
+app.post('/login', async (req, res) => {
     const { email } = req.body;
     const { password } = req.body;
     const result = await database.login(email, password);
     res.status(result).send();
 });
 
-app.get('/logout', async (req, res) => {
+app.post('/logout', async (req, res) => {
     const { email } = req.body;
     const { password } = req.body;
     const result = await database.logout(email, password);
     res.status(result).send();
 });
 
-app.get('/getMohayCode', async (req, res) => {
+app.post('/getMohayCode', async (req, res) => {
     const { email } = req.body;
     const { fileName } = req.body;
     const returnValue = await database.getFile(email, fileName);
@@ -47,7 +47,7 @@ async function transpileCode(fileCode) {
     return tcpClient.sendMessage(fileCode);
 }
 /* TODO: Need to return transpiled code */
-app.get('/addMohayFile', async (req, res) => {
+app.post('/addMohayFile', async (req, res) => {
     const { email } = req.body;
     const { fileName } = req.body;
     const { fileCode } = req.body;
@@ -59,7 +59,7 @@ app.get('/addMohayFile', async (req, res) => {
 });
 
 
-app.get('/getMohayFiles', async (req, res) => {
+app.post('/getMohayFiles', async (req, res) => {
     const { email } = req.body;
     const result = await database.getFiles(email);
     console.log(result);
@@ -73,14 +73,14 @@ app.get('/getMohayFiles', async (req, res) => {
     }
 });
 
-app.get('/deleteMohayFile', async (req, res) => {
+app.post('/deleteMohayFile', async (req, res) => {
     const { email } = req.body;
     const { fileName } = req.body;
     const code = await database.deleteFile(email, fileName);
     res.status(code).send();
 });
 
-app.get('/modifyMohayFileCode', async (req, res) => {
+app.post('/modifyMohayFileCode', async (req, res) => {
     const { email } = req.body;
     const { fileName } = req.body;
     const { fileCode } = req.body;
@@ -89,7 +89,7 @@ app.get('/modifyMohayFileCode', async (req, res) => {
     res.status(code).send();
 });
 
-app.get('/modifyMohayFileName', async (req, res) => {
+app.post('/modifyMohayFileName', async (req, res) => {
     const { email } = req.body;
     const { fileName } = req.body;
     const { newFileName } = req.body;
@@ -98,7 +98,7 @@ app.get('/modifyMohayFileName', async (req, res) => {
     res.status(code).send();
 });
 
-app.get('/modifyMohayFileCode', async (req, res) => {
+app.post('/modifyMohayFileCode', async (req, res) => {
     const { email } = req.body;
     const { fileName } = req.body;
     const { fileCode } = req.body;
@@ -106,7 +106,7 @@ app.get('/modifyMohayFileCode', async (req, res) => {
     res.status(202).send(fileCode);
 })
 
-app.get('/modifyMohayFileName', async (req, res) => {
+app.post('/modifyMohayFileName', async (req, res) => {
     const { email } = req.body;
     const { fileName } = req.body;
     const { newFileName } = req.body;
@@ -114,13 +114,13 @@ app.get('/modifyMohayFileName', async (req, res) => {
     res.status(code).send(newFileName);
 });
 
-app.get('/removeUser', async (req, res) => {
+app.post('/removeUser', async (req, res) => {
     const { email } = req.body;
     const code = await database.removeUser(email);
     res.status(code).send();
 });
 
-app.get('/enterVerificationCode', async (req, res) => {
+app.post('/enterVerificationCode', async (req, res) => {
     const { email } = req.body;
     const { verificationCode } = req.body;
     let code = 400;
@@ -133,7 +133,7 @@ app.get('/enterVerificationCode', async (req, res) => {
     res.status(code).send();
 });
 
-app.get('/registerUser', async (req, res) => {
+app.post('/registerUser', async (req, res) => {
     const { email } = req.body;
     const { userName } = req.body;
     const { password } = req.body;
