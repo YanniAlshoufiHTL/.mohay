@@ -64,10 +64,12 @@ export default {
             const sketch = new p5((sketch) => {
                 sketch.setup = () => {
                     let canvas = sketch.createCanvas(890, 475);
+                    
                     canvas.parent('preview');
                 };
 
                 sketch.draw = () => {
+                    sketch.background(255);
                     eval(code);
                 };
             });
