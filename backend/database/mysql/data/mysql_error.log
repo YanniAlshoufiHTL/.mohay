@@ -27,3 +27,45 @@ Version: '10.4.28-MariaDB'  socket: ''  port: 3306  mariadb.org binary distribut
 2023-06-21 21:50:08 11 [Warning] Aborted connection 11 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
 2023-06-21 21:52:04 12 [Warning] Aborted connection 12 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
 2023-06-21 21:52:06 13 [Warning] Aborted connection 13 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2023-06-22  8:01:16 14 [Warning] Aborted connection 14 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2023-06-22  8:02:29 15 [Warning] Aborted connection 15 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2023-06-22  8:03:58 16 [Warning] Aborted connection 16 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2023-06-22  8:06:16 17 [Warning] Aborted connection 17 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2023-06-22  8:06:43 18 [Warning] Aborted connection 18 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2023-06-22  8:29:51 19 [Warning] Aborted connection 19 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2023-06-22  8:33:22 20 [Warning] Aborted connection 20 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2023-06-22  8:34:18 21 [Warning] Aborted connection 21 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2023-06-22  8:34:32 22 [Warning] Aborted connection 22 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2023-06-22  8:34:42 23 [Warning] Aborted connection 23 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2023-06-22  8:35:38 24 [Warning] Aborted connection 24 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2023-06-22  8:39:09 25 [Warning] Aborted connection 25 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2023-06-22  8:39:52 26 [Warning] Aborted connection 26 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2023-06-22  8:43:00 27 [Warning] Aborted connection 27 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2023-06-22  8:52:37 28 [Warning] Aborted connection 28 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2023-06-22  8:52:53 29 [Warning] Aborted connection 29 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2023-06-22  8:52:55 30 [Warning] Aborted connection 30 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2023-06-22  8:55:41 31 [Warning] Aborted connection 31 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2023-06-22  8:58:11 32 [Warning] Aborted connection 32 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2023-06-22  9:00:45 33 [Warning] Aborted connection 33 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2023-06-22  9:01:16 34 [Warning] Aborted connection 34 to db: 'mohay' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2023-06-25 13:10:25 35 [Warning] Aborted connection 35 to db: 'mohay' user: 'root' host: 'localhost' (Got timeout reading communication packets)
+2023-06-27 11:22:02 0 [Note] Starting MariaDB 10.4.28-MariaDB source revision c8f2e9a5c0ac5905f28b050b7df5a9ffd914b7e7 as process 8760
+2023-06-27 11:22:02 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2023-06-27 11:22:02 0 [Note] InnoDB: Uses event mutexes
+2023-06-27 11:22:02 0 [Note] InnoDB: Compressed tables use zlib 1.2.12
+2023-06-27 11:22:02 0 [Note] InnoDB: Number of pools: 1
+2023-06-27 11:22:02 0 [Note] InnoDB: Using SSE2 crc32 instructions
+2023-06-27 11:22:02 0 [Note] InnoDB: Initializing buffer pool, total size = 16M, instances = 1, chunk size = 16M
+2023-06-27 11:22:02 0 [Note] InnoDB: Completed initialization of buffer pool
+2023-06-27 11:22:02 0 [Note] InnoDB: Starting crash recovery from checkpoint LSN=307609
+2023-06-27 11:22:03 0 [Note] InnoDB: 128 out of 128 rollback segments are active.
+2023-06-27 11:22:03 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2023-06-27 11:22:03 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2023-06-27 11:22:03 0 [Note] InnoDB: Setting file 'C:\xampp\mysql\data\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2023-06-27 11:22:03 0 [Note] InnoDB: File 'C:\xampp\mysql\data\ibtmp1' size is now 12 MB.
+2023-06-27 11:22:03 0 [Note] InnoDB: Waiting for purge to start
+2023-06-27 11:22:03 0 [Note] InnoDB: 10.4.28 started; log sequence number 307618; transaction id 195
+2023-06-27 11:22:03 0 [Note] InnoDB: Loading buffer pool(s) from C:\xampp\mysql\data\ib_buffer_pool
+2023-06-27 11:22:03 0 [Note] Plugin 'FEEDBACK' is disabled.
+2023-06-27 11:22:03 0 [Note] InnoDB: Buffer pool(s) load completed at 230627 11:22:03
+2023-06-27 11:22:03 0 [Note] Server socket created on IP: '::'.

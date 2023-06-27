@@ -21,7 +21,7 @@ export async function analyzeAndGetNew(code) {
         codeCorrect: true,
         errorLine: -1,
         failureReason: "",
-        code: jsCode.json(),
+        code: jsCode,
     };
 }
 
@@ -45,7 +45,7 @@ async function transpileCode(code) {
     const transpiledCode = await fetch(
         "http://localhost:7000/loose-transpile",
         options
-    );
+    ).then(x => x.json());
 
     return transpiledCode ? transpiledCode : null;
 }
