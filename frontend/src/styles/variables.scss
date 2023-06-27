@@ -1,157 +1,163 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Work+Sans:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Work+Sans:wght@300&display=swap");
 
 :root {
-  // --body-bg-color: #111;
-  //
-  // --logo-color: #2596be;
-  // --nav-bg-color: #222;
-  // --nav-fg-color: #d6ddd6;
-  // --nav-fg-shadow-color: black;
-  // 
-  // --codespace-btn-fg-color: $d6ddd6;
-  // --codespace-btn-bg-color: #2596be;
-  // --codespace-btn-focus-color: #1d7999;
-  //
-  // --overlay-corner-color: rgba(0, 0, 0, 0.6);
-  // --overlay-center-color: rgba(255, 255, 255, 0);
-  //
-  // --aside-fg-color: #d6ddd6;
-  // --aside-bg-color: #111;
-  // 
-  // --documentation-heading-color: #2596be;
-  // --documentation-subheading-color: #d6ddd6;
-  // --documentation-hl-color: #d6ddd6;
-  // --documentation-fg-color: #d6ddd6;
-  //
-  // --documentation-codebox-bg-color: #222;
-  // --documentation-codebox-heading-color: #d6ddd6;
-  // --documentation-codebox-fg-color: #d6ddd6; 
-  //
-  // --codespace-account-circle-bg-color: #111;
-  // --codespace-account-circle-border-color: #2596be;
-  //
-  // --codespace-menu-bar-bg-color: rgb(34, 34, 34);
-  // --codespace-menu-bar-fg-color: #2596be;
-  // --codespace-menu-bar-border-color: #2596be;
-  //
-  // --codespace-box-bg-color: #222;
-  // --codespace-box-border-color: #2596b2;
-  //
-  // --codespace-file-tree-box-folder-bg-color: #2596b2;
-  // --codespace-file-tree-box-folder-border-color: #111;
-  //
-  --nav-height: 140px;
-  --aside-width: 200px;
-  --footer-height: 40vh;
+    // --body-bg-color: #111;
+    //
+    // --logo-color: #2596be;
+    // --nav-bg-color: #222;
+    // --nav-fg-color: #d6ddd6;
+    // --nav-fg-shadow-color: black;
+    //
+    // --codespace-btn-fg-color: $d6ddd6;
+    // --codespace-btn-bg-color: #2596be;
+    // --codespace-btn-focus-color: #1d7999;
+    //
+    // --overlay-corner-color: rgba(0, 0, 0, 0.6);
+    // --overlay-center-color: rgba(255, 255, 255, 0);
+    //
+    // --aside-fg-color: #d6ddd6;
+    // --aside-bg-color: #111;
+    //
+    // --documentation-heading-color: #2596be;
+    // --documentation-subheading-color: #d6ddd6;
+    // --documentation-hl-color: #d6ddd6;
+    // --documentation-fg-color: #d6ddd6;
+    //
+    // --documentation-codebox-bg-color: #222;
+    // --documentation-codebox-heading-color: #d6ddd6;
+    // --documentation-codebox-fg-color: #d6ddd6;
+    //
+    // --codespace-account-circle-bg-color: #111;
+    // --codespace-account-circle-border-color: #2596be;
+    //
+    // --codespace-menu-bar-bg-color: rgb(34, 34, 34);
+    // --codespace-menu-bar-fg-color: #2596be;
+    // --codespace-menu-bar-border-color: #2596be;
+    //
+    // --codespace-box-bg-color: #222;
+    // --codespace-box-border-color: #2596b2;
+    //
+    // --codespace-file-tree-box-folder-bg-color: #2596b2;
+    // --codespace-file-tree-box-folder-border-color: #111;
+    //
+    --nav-height: 140px;
+    --aside-width: 200px;
+    --footer-height: 40vh;
 
-  --primary-font: 'Work Sans', sans-serif;
-  --headings-font: 'Fredoka One', sans-serif;
+    --primary-font: "Work Sans", sans-serif;
+    --headings-font: "Fredoka One", sans-serif;
+
+    --codespace-error-color: #942222;
 }
 
 body.dark {
-  --body-bg-color: #111;
-  --body-fg-color: #d6ddd6;
+    --body-bg-color: #111;
+    --body-fg-color: #d6ddd6;
 
-  --logo-color: #2596be;
-  --nav-bg-color: #222;
-  --nav-fg-color: #d6ddd6;
-  --nav-hover-color: #aaa;
-  --nav-fg-shadow-color: black;
-  
-  --codespace-btn-shadow-color: #2596be;
-  --codespace-btn-fg-color: #d6ddd6;
-  --codespace-btn-bg-color: #2596be;
-  --codespace-btn-hover-color: #1d7999;
-  --codespace-btn-focus-color: #11627d;
+    --logo-color: #2596be;
+    --nav-bg-color: #222;
+    --nav-fg-color: #d6ddd6;
+    --nav-hover-color: #aaa;
+    --nav-fg-shadow-color: black;
 
-  --overlay-corner-color: rgba(0, 0, 0, 0.6);
-  --overlay-center-color: rgba(255, 255, 255, 0);
+    --codespace-btn-shadow-color: #2596be;
+    --codespace-btn-fg-color: #d6ddd6;
+    --codespace-btn-bg-color: #2596be;
+    --codespace-btn-hover-color: #1d7999;
+    --codespace-btn-focus-color: #11627d;
 
-  --aside-fg-color: #d6ddd6 ;
-  --aside-bg-color: #111;
+    --overlay-corner-color: rgba(0, 0, 0, 0.6);
+    --overlay-center-color: rgba(255, 255, 255, 0);
 
-  --footer-bg-color: #222;
-  --footer-shadow-color: #222;
-  
-  --documentation-bg-color: #111;
-  --documentation-heading-color: #2596be;
-  --documentation-subheading-color: #d6ddd6;
-  --documentation-hl-color: #d6ddd6;
-  --documentation-fg-color: #d6ddd6;
-  --documentation-link-color: #2596be;
+    --aside-fg-color: #d6ddd6;
+    --aside-bg-color: #111;
 
-  --documentation-codebox-bg-color: #222;
-  --documentation-codebox-heading-color: #d6ddd6;
-  --documentation-codebox-fg-color: #d6ddd6; 
+    --footer-bg-color: #222;
+    --footer-shadow-color: #222;
 
-  --codespace-account-circle-bg-color: #111;
-  --codespace-account-circle-border-color: #2596be;
+    --documentation-bg-color: #111;
+    --documentation-heading-color: #2596be;
+    --documentation-subheading-color: #d6ddd6;
+    --documentation-hl-color: #d6ddd6;
+    --documentation-fg-color: #d6ddd6;
+    --documentation-link-color: #2596be;
 
-  --codespace-menu-btn-bg-color: rgb(34, 34, 34);
-  --codespace-menu-btn-bg-hover-color: #111;
-  --codespace-menu-btn-fg-color: #2596be;
-  --codespace-menu-btn-border-color: #2596be;
+    --documentation-codebox-bg-color: #222;
+    --documentation-codebox-heading-color: #d6ddd6;
+    --documentation-codebox-fg-color: #d6ddd6;
 
-  --codespace-box-bg-color: #222;
-  --codespace-box-border-color: #2596b2;
+    --codespace-account-circle-bg-color: #111;
+    --codespace-account-circle-border-color: #2596be;
 
-  --codespace-file-tree-box-folder-bg-color: #2596b2;
-  --codespace-file-tree-box-folder-border-color: #111;
+    --codespace-menu-btn-bg-color: rgb(34, 34, 34);
+    --codespace-menu-btn-bg-hover-color: #111;
+    --codespace-menu-btn-fg-color: #2596be;
+    --codespace-menu-btn-border-color: #2596be;
 
-  --scrollbar-track-bg-color: #1a1a1b;
-  --scrollbar-thumb-bg-color: #6a6b6b;
+    --codespace-box-bg-color: #222;
+    --codespace-box-border-color: #2596b2;
+
+    --codespace-file-tree-box-folder-bg-color: #2596b2;
+    --codespace-file-tree-box-folder-border-color: #111;
+
+    --scrollbar-track-bg-color: #1a1a1b;
+    --scrollbar-thumb-bg-color: #6a6b6b;
+
+    --codespace-error-color: #942222;
 }
 
-
 body.light {
-  --body-bg-color: white;
-  --body-fg-color: black;
+    --body-bg-color: white;
+    --body-fg-color: black;
 
-  --logo-color: white;
-  --nav-bg-color: #506cff;
-  --nav-fg-color: white;
-  --nav-hover-color: #b5edff;
-  --nav-fg-shadow-color: black;
-  
-  --codespace-btn-shadow-color: #28b8e8;
-  --codespace-btn-fg-color: white;
-  --codespace-btn-bg-color: #28b8eb;
-  --codespace-btn-hover-color: #21a2d1;
-  --codespace-btn-focus-color: #1c87ad;
+    --logo-color: white;
+    --nav-bg-color: #506cff;
+    --nav-fg-color: white;
+    --nav-hover-color: #b5edff;
+    --nav-fg-shadow-color: black;
 
-  --overlay-corner-color: rgba(0, 0, 0, 0);
-  --overlay-center-color: rgba(255, 255, 255, 0);
+    --codespace-btn-shadow-color: #28b8e8;
+    --codespace-btn-fg-color: white;
+    --codespace-btn-bg-color: #28b8eb;
+    --codespace-btn-hover-color: #21a2d1;
+    --codespace-btn-focus-color: #1c87ad;
 
-  --aside-fg-color: black ;
-  --aside-bg-color: white;
+    --overlay-corner-color: rgba(0, 0, 0, 0);
+    --overlay-center-color: rgba(255, 255, 255, 0);
 
-  --footer-bg-color: #506cff;
-  --footer-shadow-color: white;
-  
-  --documentation-bg-color: white;
-  --documentation-heading-color: #506cff;
-  --documentation-subheading-color: black;
-  --documentation-hl-color: black;
-  --documentation-fg-color: black;
-  --documentation-link-color: #506cff;
+    --aside-fg-color: black;
+    --aside-bg-color: white;
 
-  --documentation-codebox-bg-color: #cad2ff;
-  --documentation-codebox-heading-color: black;
-  --documentation-codebox-fg-color: black; 
+    --footer-bg-color: #506cff;
+    --footer-shadow-color: white;
 
-  --codespace-account-circle-bg-color: white;
-  --codespace-account-circle-border-color: #506cff;
+    --documentation-bg-color: white;
+    --documentation-heading-color: #506cff;
+    --documentation-subheading-color: black;
+    --documentation-hl-color: black;
+    --documentation-fg-color: black;
+    --documentation-link-color: #506cff;
 
-  --codespace-menu-btn-bg-color: #eee;
-  --codespace-menu-btn-bg-hover-color: white;
-  --codespace-menu-btn-fg-color: #506cff;
-  --codespace-menu-btn-border-color: #506cff;
+    --documentation-codebox-bg-color: #cad2ff;
+    --documentation-codebox-heading-color: black;
+    --documentation-codebox-fg-color: black;
 
-  --codespace-box-bg-color: #eee;
-  --codespace-box-border-color: #506cff;
+    --codespace-account-circle-bg-color: white;
+    --codespace-account-circle-border-color: #506cff;
 
-  --codespace-file-tree-box-folder-bg-color: #506cff;
-  --codespace-file-tree-box-folder-border-color: white;
+    --codespace-menu-btn-bg-color: #eee;
+    --codespace-menu-btn-bg-hover-color: white;
+    --codespace-menu-btn-fg-color: #506cff;
+    --codespace-menu-btn-border-color: #506cff;
 
-  --scrollbar-track-bg-color: #1a1a1b;
-  --scrollbar-thumb-bg-color: #6a6b6b;}
+    --codespace-box-bg-color: #eee;
+    --codespace-box-border-color: #506cff;
+
+    --codespace-file-tree-box-folder-bg-color: #506cff;
+    --codespace-file-tree-box-folder-border-color: white;
+
+    --scrollbar-track-bg-color: #1a1a1b;
+    --scrollbar-thumb-bg-color: #6a6b6b;
+
+    --codespace-error-color: #f79b94;
+}

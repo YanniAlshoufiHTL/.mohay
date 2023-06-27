@@ -22,6 +22,7 @@
             </div>
             <div id="folder-viewer" class="draggable" draggable="true">
                 <button class="button" @click="executeCode">Submit</button>
+                <button class="button" @click="displayError">Test Error</button>
             </div>
         </div>
     </div>
@@ -71,6 +72,20 @@ export default {
 
             return sketch;
         },
+        displayError(ErrorLine) {
+            const codeArea = document.getElementById('code-area2');
+            let lines = codeArea.children;
+
+            Array.from(lines).forEach((line, index) => {
+
+                if (index === ErrorLine) {
+                    line.style.background = getComputedStyle(document.documentElement).getPropertyValue('--codespace-error-color');
+                } else {
+                    line.style.background = getComputedStyle(document.documentElement).getPropertyValue('--bg-color');
+                }
+
+            });
+        },
         updateCode(event = null) {
             console.log("update");
 
@@ -82,13 +97,18 @@ export default {
 
             Array.from(lines).forEach((line, index) => {
                 const numberDiv = document.createElement('div');
-                numberDiv.textContent = index + 1;
+                numberDiv.textContent = index;
+                numberDiv.style.fontFamily = 'JetBrainsMonoNLNerdFont';
                 numbersDiv.appendChild(numberDiv);
             });
 
             const lastDiv = document.createElement('div');
-            lastDiv.textContent = lines.length + 1;
+            lastDiv.style.fontFamily = 'JetBrainsMonoNLNerdFont';
+            lastDiv.textContent = lines.length;
             numbersDiv.appendChild(lastDiv);
+
+            //display Error and update style
+            this.displayError(1);
         },
         getCodeLines() {
             const codeArea = document.getElementById('code-area2');
@@ -243,7 +263,6 @@ $main-wrapper-width: 95vw;
         grid-column: 1;
         grid-row: 2;
 
-
         .button {
             text-align: center;
 
@@ -263,6 +282,8 @@ $main-wrapper-width: 95vw;
     }
 
     #code-area {
+        font-family: JetBrainsMonoNLNerdFont;
+
         margin-top: 0.5rem;
 
         grid-column: 2;
@@ -274,25 +295,34 @@ $main-wrapper-width: 95vw;
         #numbers {
             margin-top: 0.3rem;
 
-            color: #D3D3D3;
+            color: var(--documentation-fg-color);
             text-align: right;
 
             margin-left: 0.2rem;
-            width: 2%;
-            height: 99%;
+            width: 4%;
+            height: 98%;
 
             padding-right: 0.15rem;
             border-right: #D3D3D352 1px solid;
         }
 
+        overflow: auto;
 
         #code-area2 {
+            font-family: JetBrainsMonoNLNerdFont;
+            height: 95% !important;
+
+            div {
+                background-color: initial;
+                background-color: var(--codespace-box-bg-color);
+            }
+
             margin-top: 0.3rem;
 
             outline: none;
             margin-left: 0.8rem;
             height: 100%;
-            width: 98%;
+            width: 96%;
         }
     }
 
