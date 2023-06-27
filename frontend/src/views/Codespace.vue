@@ -22,7 +22,6 @@
             </div>
             <div id="folder-viewer" class="draggable" draggable="true">
                 <button class="button" @click="executeCode">Submit</button>
-                <button class="button" @click="displayError">Test Error</button>
             </div>
         </div>
     </div>
@@ -38,25 +37,25 @@ export default {
     methods: {
         async executeCode() {
             const code = this.getCodeLines();
-            debugger;
 
             const result = await analyzeAndGetNew(code);
             console.log(result)
+
             if (result.codeCorrect === true) {
                 console.log(result.code);
-                alert(result.code);
 
-                debugger;
                 const p5Code = result.code.result;
                 this.executeP5Code(p5Code);
 
             } else {
+                this.ErrorLine = result.line;
                 console.log(
                     `The code has an error in it at line ${result.line}!\nError message:\n\n${result.failureReason}`
                 );
                 alert(
                     `The code has an error in it at line ${result.line}!\nError message:\n\n${result.failureReason}`
                 );
+
             }
         },
 
@@ -64,7 +63,6 @@ export default {
             const sketch = new p5((sketch) => {
                 sketch.setup = () => {
                     let canvas = sketch.createCanvas(890, 375);
-                    
                     canvas.parent('preview');
                 };
 
@@ -76,7 +74,7 @@ export default {
 
             return sketch;
         },
-        displayError(ErrorLine) {
+        displayError() {
             const codeArea = document.getElementById('code-area2');
             let lines = codeArea.children;
 
@@ -134,6 +132,7 @@ export default {
         let dragSourceContent = "";
         let dragSourceClass = "";
 
+        let ErrorLine = -1;
 
         this.updateCode();
 
