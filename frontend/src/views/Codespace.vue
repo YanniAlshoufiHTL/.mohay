@@ -60,9 +60,13 @@ export default {
         },
 
         executeP5Code(code) {
+            const old = document.getElementsByClassName('p5Canvas');
+            old.remove();
+
+
             const sketch = new p5((sketch) => {
                 sketch.setup = () => {
-                    let canvas = sketch.createCanvas(890, 375);
+                    let canvas = sketch.createCanvas(400, 200);
                     canvas.parent('preview');
                 };
 
