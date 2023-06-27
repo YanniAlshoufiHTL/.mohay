@@ -45,7 +45,7 @@ async function transpileCode(code) {
     const transpiledCode = await fetch(
         "http://localhost:7000/loose-transpile",
         options
-    ).then(x => x.json());
+    ).then((x) => x.json());
 
     return transpiledCode ? transpiledCode : null;
 }
