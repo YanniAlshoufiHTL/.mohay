@@ -63,7 +63,7 @@ export default {
         executeP5Code(code) {
             const sketch = new p5((sketch) => {
                 sketch.setup = () => {
-                    let canvas = sketch.createCanvas(890, 475);
+                    let canvas = sketch.createCanvas(890, 375);
                     
                     canvas.parent('preview');
                 };
