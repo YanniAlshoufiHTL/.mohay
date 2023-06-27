@@ -8,9 +8,7 @@
         </router-link>
         <router-link class="nav-link" :to="{ name: 'AboutUs' }"> Login </router-link>
         <div id="nav-btn-div">
-          <router-link id="btn-link" class="codespace-btn" :to="{ name: 'Codespace' }"
-            >Codespace</router-link
-          >
+          <router-link id="btn-link" class="codespace-btn" :to="{ name: 'Codespace' }">Codespace</router-link>
         </div>
       </div>
     </div>
@@ -27,6 +25,8 @@ export default {
 @import '../styles/global.scss';
 
 nav {
+  font-family: var(--primary-font);
+
   position: fixed;
   top: 0;
   left: 0;
@@ -37,7 +37,7 @@ nav {
 
   background-color: var(--nav-bg-color);
 
-  > .wrapper {
+  >.wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -126,6 +126,7 @@ nav {
   from {
     width: 0%;
   }
+
   to {
     width: 100%;
   }
@@ -135,12 +136,14 @@ nav {
   from {
     width: 0%;
   }
+
   to {
     width: 100%;
   }
 }
 
 $first-query-width: 1200px;
+
 @media (max-width: $first-query-width) {
   #logo-div {
     font-size: calc($first-query-width / (100 / 4));

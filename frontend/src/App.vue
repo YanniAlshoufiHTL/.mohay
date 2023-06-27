@@ -60,8 +60,4 @@ export default {
 
 <style lang="scss">
 @import './styles/global.scss';
-
-* {
-  font-family: var(--primary-font);
-}
 </style>
