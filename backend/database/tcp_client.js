@@ -2,7 +2,7 @@ const net = require('net');
 const { resolve } = require('path');
 
 // Define the server address and port
-const serverAddress = '172.17.210.168';
+const serverAddress = '172.17.220.168';
 const serverPort = 6924;
 
 let socket;
@@ -26,17 +26,19 @@ function sendMessage(variable) {
       });
 
       socket.once('error', (error) => {
-        console.error('Socket error:', error);
-        reject(error);
+          while(socket.destroyed) {
+            try {
+              createTCPConnection();
+            } catch {}
+          }
       });
 
       console.log('Sent message:', message);
     } else {
       console.error('Socket is not open');
-      reject(new Error('Socket is not open'));
     }
   });
 }
 module.exports = {
-    sendMessage, createTCPConnection
+  sendMessage, createTCPConnection
 }

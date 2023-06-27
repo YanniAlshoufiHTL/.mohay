@@ -12,10 +12,11 @@ app.use(cors())
 app.use(express.json());
 
 tcpClient.createTCPConnection();
+
 app.post('/loose-transpile', async (req, res) => {
     const code = req.body.code;
     const result = await transpileCode(code);
-    res.send(result);
+    res.send({result: result.toString()});
 });
 
 app.post('/login', async (req, res) => {
