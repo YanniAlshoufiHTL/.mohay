@@ -43,30 +43,29 @@ export default {
 
             if (result.codeCorrect === true) {
                 console.log(result.code);
-
                 const p5Code = result.code.result;
                 this.executeP5Code(p5Code);
+                this.ErrorLine = -1;
 
             } else {
-                this.ErrorLine = result.line;
+                this.ErrorLine = result.errorLine;
                 console.log(
-                    `The code has an error in it at line ${result.line}!\nError message:\n\n${result.failureReason}`
+                    `The code has an error in it at line ${result.errorLine}!\nError message:\n\n${result.failureReason}`
                 );
-                alert(
-                    `The code has an error in it at line ${result.line}!\nError message:\n\n${result.failureReason}`
-                );
-
             }
+            this.displayError();
         },
 
         executeP5Code(code) {
-            const old = document.getElementsByClassName('p5Canvas');
-            old.remove();
+            let old = document.getElementsByClassName('p5Canvas');
+            if (old[0] != null) {
+                old[0].remove();
+            }
 
 
             const sketch = new p5((sketch) => {
                 sketch.setup = () => {
-                    let canvas = sketch.createCanvas(400, 200);
+                    let canvas = sketch.createCanvas(890, 460);
                     canvas.parent('preview');
                 };
 
@@ -82,9 +81,10 @@ export default {
             const codeArea = document.getElementById('code-area2');
             let lines = codeArea.children;
 
-            Array.from(lines).forEach((line, index) => {
+            console.log(this.ErrorLine);
 
-                if (index === ErrorLine) {
+            Array.from(lines).forEach((line, index) => {
+                if (index === this.ErrorLine) {
                     line.style.background = getComputedStyle(document.documentElement).getPropertyValue('--codespace-error-color');
                 } else {
                     line.style.background = getComputedStyle(document.documentElement).getPropertyValue('--bg-color');
@@ -103,29 +103,29 @@ export default {
 
             Array.from(lines).forEach((line, index) => {
                 const numberDiv = document.createElement('div');
-                numberDiv.textContent = index;
+                numberDiv.textContent = index + 1;
                 numberDiv.style.fontFamily = 'JetBrainsMonoNLNerdFont';
                 numbersDiv.appendChild(numberDiv);
             });
 
             const lastDiv = document.createElement('div');
             lastDiv.style.fontFamily = 'JetBrainsMonoNLNerdFont';
-            lastDiv.textContent = lines.length;
+            lastDiv.textContent = lines.length + 1;
             numbersDiv.appendChild(lastDiv);
 
             //display Error and update style
             this.displayError(1);
+            this.executeCode();
         },
         getCodeLines() {
             const codeArea = document.getElementById('code-area2');
             const lines = codeArea.children;
-            let code = '';
-            code += codeArea.textContent + '\n';
+            let code = "";
 
             for (let i = 0; i < lines.length; i++) {
                 code += lines[i].textContent + '\n';
             }
-
+            console.log(code);
             return code;
         },
     },
