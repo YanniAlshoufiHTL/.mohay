@@ -71,7 +71,7 @@ class TCP_Server {
     static string Transpile(string input = null) {
 
         //input = "wow EEE = 10\r\nrect (EEE,EEE) EEE EEE\r\nline (1,1) (1,1)\r\npoint (1,1)\r\nrect (1,1) 10 10\r\ncircle (1,1) 10\r\narc (1,1) 10 20 30\r\nc #123456\r\nf true\r\nf false\r\ns true\r\ns false\r\nline (1,1) (1,1)";
-        input = "wow E = 10\r\nrect (E, E*20) 10 E";
+        //input = "wow E = 10\r\nrect (E, E*20) 10 E";
 
         globalAttribute = new();
         expressions = new();
