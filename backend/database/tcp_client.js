@@ -26,17 +26,19 @@ function sendMessage(variable) {
       });
 
       socket.once('error', (error) => {
-        console.error('Socket error:', error);
-        reject(error);
+          while(socket.destroyed) {
+            try {
+              createTCPConnection();
+            } catch {}
+          }
       });
 
       console.log('Sent message:', message);
     } else {
       console.error('Socket is not open');
-      reject(new Error('Socket is not open'));
     }
   });
 }
 module.exports = {
-    sendMessage, createTCPConnection
+  sendMessage, createTCPConnection
 }

@@ -38,6 +38,7 @@ export default {
     methods: {
         async executeCode() {
             const code = this.getCodeLines();
+            debugger;
 
             const result = await analyzeAndGetNew(code);
             console.log(result)
@@ -45,7 +46,8 @@ export default {
                 console.log(result.code);
                 alert(result.code);
 
-                const p5Code = `sketch.background('#f0f');const E = 10;sketch.fill('#000000');sketch.stroke('#000000');sketch.rect(E,E*20,10,E);`;
+                debugger;
+                const p5Code = result.code.result;
                 this.executeP5Code(p5Code);
 
             } else {
