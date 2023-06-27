@@ -65,7 +65,7 @@ export default {
 
             const sketch = new p5((sketch) => {
                 sketch.setup = () => {
-                    let canvas = sketch.createCanvas(890, 460);
+                    let canvas = sketch.createCanvas(890, 474);
                     canvas.parent('preview');
                 };
 

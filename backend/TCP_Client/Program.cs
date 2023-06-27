@@ -24,7 +24,7 @@ class TCP_Server {
     }
 
     private static void ListenForClients() {
-        IPAddress ipAddress = IPAddress.Parse("172.17.220.168");
+        IPAddress ipAddress = IPAddress.Parse("192.168.127.105");
         int port = 6924;
 
         tcpListener = new TcpListener(ipAddress, port);

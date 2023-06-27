@@ -1,0 +1,10 @@
+
+c #0f0
+f true
+s false
+rect (25,25) 550 400
+c #f00
+f true
+c #0f0
+s true
+rect (50,50) 500 350

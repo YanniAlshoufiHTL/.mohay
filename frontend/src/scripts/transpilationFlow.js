@@ -43,7 +43,7 @@ async function transpileCode(code) {
     };
 
     const transpiledCode = await fetch(
-        "http://localhost:7000/loose-transpile",
+        "http://192.168.127.251:7000/loose-transpile",
         options
     ).then((x) => x.json());
 
