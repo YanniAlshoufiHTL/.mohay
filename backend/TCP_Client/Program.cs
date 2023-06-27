@@ -16,11 +16,11 @@ class TCP_Server {
     private static TcpListener? tcpListener;
     private static Thread? listenThread;
     static void Main() {
-        //listenThread = new Thread(new ThreadStart(ListenForClients));
-        //listenThread.Start();
-        //Console.WriteLine("Server started");
-        string output = Transpile();
-        Console.WriteLine(output);
+        listenThread = new Thread(new ThreadStart(ListenForClients));
+        listenThread.Start();
+        Console.WriteLine("Server started");
+        //string output = Transpile();
+        //Console.WriteLine(output);
     }
 
     private static void ListenForClients() {

@@ -39,23 +39,23 @@ export default {
         async executeCode() {
             const code = this.getCodeLines();
 
-            //const result = await analyzeAndGetNew(code);
-            //console.log(result)
-            //if (result.codeCorrect === true) {
-            //console.log(result.code);
-            //alert(result.code);
+            const result = await analyzeAndGetNew(code);
+            console.log(result)
+            if (result.codeCorrect === true) {
+                console.log(result.code);
+                alert(result.code);
 
-            const p5Code = `sketch.background('#f0f');const E = 10;sketch.fill('#000000');sketch.stroke('#000000');sketch.rect(E,E*20,10,E);`;
-            this.executeP5Code(p5Code);
+                const p5Code = `sketch.background('#f0f');const E = 10;sketch.fill('#000000');sketch.stroke('#000000');sketch.rect(E,E*20,10,E);`;
+                this.executeP5Code(p5Code);
 
-            /*} else {
+            } else {
                 console.log(
                     `The code has an error in it at line ${result.line}!\nError message:\n\n${result.failureReason}`
                 );
                 alert(
                     `The code has an error in it at line ${result.line}!\nError message:\n\n${result.failureReason}`
                 );
-            }*/
+            }
         },
 
         executeP5Code(code) {
