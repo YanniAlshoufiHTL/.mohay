@@ -71,7 +71,9 @@ function getTranspilableCode(code) {
                 const pair = parPairs[i];
 
                 for (let j = pair[1]; j >= pair[0]; j--) {
-                    if (x[j] === " ") (x = x.slice(0, j)), x.slice(j + 1);
+                    if (x[j] === " ") {
+                        x = x.slice(0, j) + x.slice(j + 1);
+                    }
                 }
             }
 
