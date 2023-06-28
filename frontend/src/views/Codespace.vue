@@ -79,54 +79,86 @@ export default {
         },
         displayError() {
             const codeArea = document.getElementById('code-area2');
-            let lines = codeArea.children;
+            const lines = codeArea.children;
 
-            console.log(this.ErrorLine);
+            let index = 1;
 
-            Array.from(lines).forEach((line, index) => {
-                if (index === this.ErrorLine) {
-                    line.style.background = getComputedStyle(document.documentElement).getPropertyValue('--codespace-error-color');
-                } else {
-                    line.style.background = getComputedStyle(document.documentElement).getPropertyValue('--bg-color');
+            console.log("Error line is " + this.ErrorLine);
+
+            Array.from(lines).forEach((line) => {
+                //if (index === this.ErrorLine) {
+                //    line.style.background = getComputedStyle(document.documentElement).getPropertyValue('--codespace-error-color');
+                //} else {
+                //    line.style.background = getComputedStyle(document.documentElement).getPropertyValue('--bg-color');
+                //}
+
+                if (this.ErrorLine !== undefined && this.ErrorLine !== -1) {
+                    if (index === this.ErrorLine) {
+                        line.style.background = getComputedStyle(document.documentElement).getPropertyValue('--codespace-error-color');
+                    } else {
+                        line.style.background = getComputedStyle(document.documentElement).getPropertyValue('--bg-color');
+                    }
+                    index++;
                 }
 
             });
         },
         updateCode(event = null) {
-            console.log("update");
 
             const codeArea = document.getElementById('code-area2');
             const numbersDiv = document.getElementById('numbers');
-            let lines = codeArea.children;
+            let lines = codeArea.children.length + 1;
 
             numbersDiv.innerHTML = '';
 
-            Array.from(lines).forEach((line, index) => {
+            for (let i = 0; i < lines; i++) {
                 const numberDiv = document.createElement('div');
-                numberDiv.textContent = index + 1;
+                numberDiv.textContent = i + 1;
                 numberDiv.style.fontFamily = 'JetBrainsMonoNLNerdFont';
                 numbersDiv.appendChild(numberDiv);
-            });
+            };
 
             const lastDiv = document.createElement('div');
             lastDiv.style.fontFamily = 'JetBrainsMonoNLNerdFont';
-            lastDiv.textContent = lines.length + 1;
+            lastDiv.textContent = lines + 1;
             numbersDiv.appendChild(lastDiv);
 
             //display Error and update style
-            this.displayError(1);
+            this.ErrorLine = 3;
             this.executeCode();
+            this.displayError();
         },
         getCodeLines() {
-            const codeArea = document.getElementById('code-area2');
-            const lines = codeArea.children;
-            let code = "";
+            //const codeArea = document.getElementById('code-area2');
+            //const lines = codeArea.children;
+            //let code = "";
+            //
+            //for (let i = 0; i < lines.length; i++) {
+            //    code += lines[i].textContent + '\n';
+            //}
+            //console.log(code);
+            //return code;
 
-            for (let i = 0; i < lines.length; i++) {
-                code += lines[i].textContent + '\n';
+            const divElement = document.getElementById("code-area2");
+
+            function extractTextContent(node) {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    return node.textContent.trim() + '\n';
+                }
+
+                if (node.nodeType === Node.ELEMENT_NODE) {
+                    let textContent = '';
+                    for (let childNode of node.childNodes) {
+                        textContent += extractTextContent(childNode);
+                    }
+                    return textContent;
+                }
+
+                return '';
             }
-            console.log(code);
-            return code;
+
+            let extractedContents = extractTextContent(divElement).trim();
+            return extractedContents;
         },
     },
     mounted() {
@@ -139,7 +171,6 @@ export default {
         let ErrorLine = -1;
 
         this.updateCode();
-
 
         function dragStart(event) {
             dragSource = this;
