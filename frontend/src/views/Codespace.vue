@@ -81,27 +81,9 @@ export default {
             const codeArea = document.getElementById('code-area2');
             const lines = codeArea.children;
 
-            let index = 1;
+            let index = 2;
 
             console.log("Error line is " + this.ErrorLine);
-
-            Array.from(lines).forEach((line) => {
-                //if (index === this.ErrorLine) {
-                //    line.style.background = getComputedStyle(document.documentElement).getPropertyValue('--codespace-error-color');
-                //} else {
-                //    line.style.background = getComputedStyle(document.documentElement).getPropertyValue('--bg-color');
-                //}
-
-                if (this.ErrorLine !== undefined && this.ErrorLine !== -1) {
-                    if (index === this.ErrorLine) {
-                        line.style.background = getComputedStyle(document.documentElement).getPropertyValue('--codespace-error-color');
-                    } else {
-                        line.style.background = getComputedStyle(document.documentElement).getPropertyValue('--bg-color');
-                    }
-                    index++;
-                }
-
-            });
         },
         updateCode(event = null) {
 
